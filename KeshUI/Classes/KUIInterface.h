@@ -2,48 +2,6 @@
 
 #pragma once
 
-/*
-* Interface Class Hierarchy
-* =========================
-*
-* KUIInterface (receives external events and creates its own; dispatches events to containers)
-*
-* KUIInterfaceElement (controls location and z-ordering)
-*  |
-*  |- KUIInterfaceComponent (direct rendering calls.)
-*  |
-*  \- KUIInterfaceContainer (receives and dispatches all events to children - used to group widgets and other containers together)
-*      |
-*      \- KUIInterfaceWidget (selective event receipt - used to implement specific interface elements)
-*
-* KUIInterfaceWidgetChildManager (links to a component inside a widget for widget-specific child info)
-*
-*
-* Interface Ownership Hierarchy
-* =============================
-*
-* KUIInterface
-*  |
-*  \- Root containers (root/overlay/tooltip/cursor)
-*      |
-*      \- Child containers <--------<---------<---\
-*          |                                      |
-*          |- More containers (for layout.) -->---/
-*          |
-*          |- Components (for direct rendering.)
-*          |
-*          \- Widgets (for specific interface elements.)
-*              |
-*              \- WidgetChildManager
-*
-*
-*
-* Containers can contain either components (for direct rendering) or other containers and widgets.
-* Events are not dispatched directly to components, they only handle draw calls.
-* Do not overload on standard containers, or event dispatching will take unneeded cpu cycles.
-*/
-
-
 #include "KUIMacros.h"
 #include "KUIInterfaceElement.h"
 #include "KUIInterfaceContainer.h"
