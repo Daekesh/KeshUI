@@ -1,4 +1,4 @@
-// Copyright 1998-2013 Epic Games, Inc. All Rights Reserved.
+// Copyright 2014-2015 Matt Chapman. All Rights Reserved.
 
 #include "KeshUI.h"
 #include "Container/KUITooltipContainer.h"
