@@ -1,3 +1,5 @@
+// Copyright 2014-2015 Matt Chapman. All Rights Reserved.
+
 #pragma once
 
 #include "KUIInterfaceContainer.h"
