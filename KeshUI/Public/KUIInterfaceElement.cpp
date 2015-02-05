@@ -454,9 +454,9 @@ void UKUIInterfaceElement::Render( AKUIInterface* aHud, UCanvas* oCanvas, const 
 			if ( !oRenderCache->IsRenderCacheValid() )
 				oRenderCache->UpdateRenderCache( this );
 
-			v2LastScreenRenderLocation = v2Origin + GetRenderLocation() + oRenderCacheObject->GetLastScreenRenderLocation();
+			//v2LastScreenRenderLocation = v2Origin + GetRenderLocation()/* + oRenderCacheObject->GetLastScreenRenderLocation()*/;
 			oCanvas->Reset();
-			oRenderCache->Render( aHud, oCanvas, v2LastScreenRenderLocation );
+			oRenderCache->Render( aHud, oCanvas, GetScreenLocation() );
 
 			KUISendEvent( FKUIInterfaceElementRenderEvent, EKUIInterfaceElementEventList::E_Render, oCanvas, v2Origin );
 		}

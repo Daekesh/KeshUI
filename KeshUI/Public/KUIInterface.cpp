@@ -717,7 +717,7 @@ void AKUIInterface::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 
-	if ( IsMapPreview() )
+	if ( !IsMapPreview() )
 		SetActorTickEnabled( true );
 
 #if KUI_INTERFACE_MOUSEOVER_DEBUG
