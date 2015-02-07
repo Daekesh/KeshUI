@@ -23,7 +23,7 @@ AKUIInterface::AKUIInterface( const class FObjectInitializer& oObjectInitializer
 
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bTickEvenWhenPaused = true;
-	SetActorTickEnabled( false );
+	SetActorTickEnabled( true );
 
 	bVisible = true;
 	bCursorVisible = true;
@@ -716,9 +716,6 @@ bool AKUIInterface::IsConsumingKeyEvents() const
 void AKUIInterface::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-
-	if ( !IsMapPreview() )
-		SetActorTickEnabled( true );
 
 #if KUI_INTERFACE_MOUSEOVER_DEBUG
 	arDebugMouseOver.SetNum( ctRootContainers.Num() );
