@@ -74,13 +74,6 @@ UObject** UKUIInterfaceElement::GetAsset( const FName& nName ) const
 }
 
 
-template<class T>
-T** UKUIInterfaceElement::GetAsset( const FName& nName ) const
-{
-	return ( T** ) GetAsset( nName );
-}
-
-
 bool UKUIInterfaceElement::IsVisible() const
 {
 	return bVisible;

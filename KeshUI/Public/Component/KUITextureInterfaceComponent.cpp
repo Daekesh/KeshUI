@@ -66,7 +66,7 @@ void UKUITextureInterfaceComponent::SetTexturePointer( UTexture** tTexturePtr )
 
 void UKUITextureInterfaceComponent::SetTextureName( const FName& nTextureName )
 {
-	SetTexturePointer( ( UTexture** ) GetAsset( nTextureName ) );
+	SetTexturePointer( GetAsset<UTexture>( nTextureName ) );
 }
 
 

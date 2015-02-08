@@ -216,10 +216,13 @@ public:
 	virtual UKUIInterfaceContainer* GetContainer() const;
 
 	/* Returns the asset identified by the given FName from the asset libraries. */
-	virtual UObject** GetAsset( const FName& nName ) const;
+	virtual FORCEINLINE UObject** GetAsset( const FName& nName ) const;
 
 	template<class T>
-	T** GetAsset( const FName& nName ) const;
+	FORCEINLINE T** GetAsset( const FName& nName ) const
+	{
+		return ( T** ) GetAsset( nName );
+	}
 
 	virtual UWorld* GetWorld() const override;
 

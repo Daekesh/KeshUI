@@ -15,13 +15,6 @@ UKUIAssetLibrary::UKUIAssetLibrary( const class FObjectInitializer& oObjectIniti
 }
 
 
-template<class T>
-T** UKUIAssetLibrary::GetAsset( const FName& nName ) const
-{
-	return ( T** ) GetAsset( nName );
-}
-
-
 UObject** UKUIAssetLibrary::GetAsset( const FName& nName ) const
 {
 	UObject** oAsset = NULL;

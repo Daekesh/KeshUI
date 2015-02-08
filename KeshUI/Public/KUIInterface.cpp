@@ -473,13 +473,6 @@ UObject** AKUIInterface::GetAsset( const FName& nName ) const
 }
 
 
-template<class T>
-T** AKUIInterface::GetAsset( const FName& nName ) const
-{
-	return ( T** ) GetAsset( nName );
-}
-
-
 void AKUIInterface::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDown, bool bIncludeCursor )
 {
 	if ( !bTopDown )

@@ -63,7 +63,10 @@ public:
 	virtual UObject** GetAsset( const FName& nName ) const;
 
 	template<class T>
-	T** GetAsset( const FName& nName ) const;
+	FORCEINLINE T** GetAsset( const FName& nName ) const
+	{
+		return ( T** ) GetAsset( nName );
+	}
 
 	/* Returns the player controller that owns this interface. */
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )

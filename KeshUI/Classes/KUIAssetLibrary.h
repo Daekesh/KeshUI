@@ -29,10 +29,13 @@ class KESHUI_API UKUIAssetLibrary : public UObject
 
 public:
 
-	template<class T>
-	T** GetAsset( const FName& name ) const;
+	virtual UObject** GetAsset( const FName& nName ) const;
 
-	virtual UObject** GetAsset( const FName& name ) const;
+	template<class T>
+	FORCEINLINE T** GetAsset( const FName& nName ) const
+	{
+		return ( T** ) GetAsset( nName );
+	}
 
 protected:
 

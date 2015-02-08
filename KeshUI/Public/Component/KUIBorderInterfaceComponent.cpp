@@ -67,7 +67,7 @@ void UKUIBorderInterfaceComponent::SetBackgroundTexturePointer( UTexture2D** tTe
 
 void UKUIBorderInterfaceComponent::SetBackgroundTextureName( const FName& nTextureName )
 {
-	SetBackgroundTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetBackgroundTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -104,7 +104,7 @@ void UKUIBorderInterfaceComponent::SetLeftBorderTexturePointer( UTexture2D** tTe
 
 void UKUIBorderInterfaceComponent::SetLeftBorderTextureName( const FName& nTextureName )
 {
-	SetLeftBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -141,7 +141,7 @@ void UKUIBorderInterfaceComponent::SetRightBorderTexturePointer( UTexture2D** tT
 
 void UKUIBorderInterfaceComponent::SetRightBorderTextureName( const FName& nTextureName )
 {
-	SetRightBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -178,7 +178,7 @@ void UKUIBorderInterfaceComponent::SetTopBorderTexturePointer( UTexture2D** tTex
 
 void UKUIBorderInterfaceComponent::SetTopBorderTextureName( const FName& nTextureName )
 {
-	SetTopBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetTopBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -215,7 +215,7 @@ void UKUIBorderInterfaceComponent::SetBottomBorderTexturePointer( UTexture2D** t
 
 void UKUIBorderInterfaceComponent::SetBottomBorderTextureName( const FName& nTextureName )
 {
-	SetBottomBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetBottomBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -258,7 +258,7 @@ void UKUIBorderInterfaceComponent::SetTopLeftBorderTexturePointer( UTexture2D** 
 
 void UKUIBorderInterfaceComponent::SetTopLeftBorderTextureName( const FName& nTextureName )
 {
-	SetTopLeftBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetTopLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -301,7 +301,7 @@ void UKUIBorderInterfaceComponent::SetTopRightBorderTexturePointer( UTexture2D**
 
 void UKUIBorderInterfaceComponent::SetTopRightBorderTextureName( const FName& nTextureName )
 {
-	SetTopRightBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetTopRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -344,7 +344,7 @@ void UKUIBorderInterfaceComponent::SetBottomLeftBorderTexturePointer( UTexture2D
 
 void UKUIBorderInterfaceComponent::SetBottomLeftBorderTextureName( const FName& nTextureName )
 {
-	SetBottomLeftBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetBottomLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -387,7 +387,7 @@ void UKUIBorderInterfaceComponent::SetBottomRightBorderTexturePointer( UTexture2
 
 void UKUIBorderInterfaceComponent::SetBottomRightBorderTextureName( const FName& nTextureName )
 {
-	SetBottomRightBorderTexturePointer( ( UTexture2D** ) GetAsset( nTextureName ) );
+	SetBottomRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
 }
 
 

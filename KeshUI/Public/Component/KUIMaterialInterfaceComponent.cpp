@@ -90,7 +90,7 @@ void UKUIMaterialInterfaceComponent::SetTextureParameterPointer( const FName& nP
 
 void UKUIMaterialInterfaceComponent::SetTextureParameterName( const FName& nParameterName, const FName& nTextureName )
 {
-	SetTextureParameterPointer( nParameterName, ( UTexture** ) GetAsset( nTextureName ) );
+	SetTextureParameterPointer( nParameterName, GetAsset<UTexture>( nTextureName ) );
 }
 
 
@@ -116,7 +116,7 @@ void UKUIMaterialInterfaceComponent::SetMaterialPointer( UMaterialInterface** mM
 
 void UKUIMaterialInterfaceComponent::SetMaterialName( const FName& nMaterialName )
 {
-	SetMaterialPointer( ( UMaterialInterface** ) GetAsset( nMaterialName ) );
+	SetMaterialPointer( GetAsset<UMaterialInterface>( nMaterialName ) );
 }
 
 

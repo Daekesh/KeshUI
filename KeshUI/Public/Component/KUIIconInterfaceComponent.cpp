@@ -43,7 +43,7 @@ void UKUIIconInterfaceComponent::SetTexturePointer( UTexture** tTexturePtr )
 
 void UKUIIconInterfaceComponent::SetTextureName( const FName& nTextureName )
 {
-	SetTexturePointer( ( UTexture** ) GetAsset( nTextureName ) );
+	SetTexturePointer( GetAsset<UTexture>( nTextureName ) );
 }
 
 

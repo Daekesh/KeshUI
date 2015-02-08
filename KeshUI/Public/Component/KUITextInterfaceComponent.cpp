@@ -100,7 +100,7 @@ void UKUITextInterfaceComponent::SetFontPointer( UFont** foFontPtr )
 
 void UKUITextInterfaceComponent::SetFontName( const FName& nFontName )
 {
-	SetFontPointer( ( UFont** ) GetAsset( nFontName ) );
+	SetFontPointer( GetAsset<UFont>( nFontName ) );
 }
 
 
