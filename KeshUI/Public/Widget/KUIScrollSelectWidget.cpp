@@ -33,7 +33,7 @@ void UKUIScrollSelectWidget::SetLeftButton( UKUIButtonWidget* cmLeftButton )
 
 	if ( this->cmLeftButton.IsValid() )
 	{
-		this->cmLeftButton->SetClickDelegate( this, static_cast< FKUISimpleClickWidgetClickPrototype>( &UKUIScrollSelectWidget::OnLeftButtonClick ) );
+		this->cmLeftButton->SetClickDelegate( this, static_cast<FKUISimpleClickWidgetClickPrototype>( &UKUIScrollSelectWidget::OnLeftButtonClick ) );
 		this->cmLeftButton->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Left );
 		this->cmLeftButton->SetVerticalAlignment( EKUIInterfaceVAlign::VA_Centre );
 		AddChild( this->cmLeftButton.Get() );
@@ -56,7 +56,7 @@ void UKUIScrollSelectWidget::SetRightButton( UKUIButtonWidget* cmRightButton )
 
 	if ( this->cmRightButton.IsValid() )
 	{
-		this->cmRightButton->SetClickDelegate( this, static_cast< FKUISimpleClickWidgetClickPrototype>( &UKUIScrollSelectWidget::OnRightButtonClick ) );
+		this->cmRightButton->SetClickDelegate( this, static_cast<FKUISimpleClickWidgetClickPrototype>( &UKUIScrollSelectWidget::OnRightButtonClick ) );
 		this->cmRightButton->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Right );
 		this->cmRightButton->SetVerticalAlignment( EKUIInterfaceVAlign::VA_Centre );
 		AddChild( this->cmRightButton.Get() );

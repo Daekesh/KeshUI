@@ -140,7 +140,7 @@ FVector2D AKUIInterface::GetMouseButtonDownLocation( EMouseButtons::Type eButton
 
 FVector2D AKUIInterface::GetMouseButtonDownLocationBP( uint8 eButton ) const
 {
-	return AKUIInterface::GetMouseButtonDownLocation( static_cast< EMouseButtons::Type>( eButton ) );
+	return AKUIInterface::GetMouseButtonDownLocation( static_cast<EMouseButtons::Type>( eButton ) );
 }
 
 

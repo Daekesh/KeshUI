@@ -694,21 +694,21 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_Tick - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnTick( *reinterpret_cast< FKUIInterfaceContainerTickEvent*>( &stEventInfo ) );
+			oElement->OnTick( *reinterpret_cast<FKUIInterfaceContainerTickEvent*>( &stEventInfo ) );
 			// No BP event
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MouseMove - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMouseMove( *reinterpret_cast< FKUIInterfaceContainerMouseLocationEvent*>( &stEventInfo ) );
+			oElement->OnMouseMove( *reinterpret_cast<FKUIInterfaceContainerMouseLocationEvent*>( &stEventInfo ) );
 			// No BP event
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MouseButtonDown - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerMouseButtonEvent* stMouseEventInfo = reinterpret_cast< FKUIInterfaceContainerMouseButtonEvent*>( &stEventInfo );
+			FKUIInterfaceContainerMouseButtonEvent* stMouseEventInfo = reinterpret_cast<FKUIInterfaceContainerMouseButtonEvent*>( &stEventInfo );
 			stMouseEventInfo->bHandled = oElement->OnMouseButtonDown( *stMouseEventInfo );
 			// No BP event
 		};
@@ -716,7 +716,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MouseButtonUp - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerMouseButtonEvent* stMouseEventInfo = reinterpret_cast< FKUIInterfaceContainerMouseButtonEvent*>( &stEventInfo );
+			FKUIInterfaceContainerMouseButtonEvent* stMouseEventInfo = reinterpret_cast<FKUIInterfaceContainerMouseButtonEvent*>( &stEventInfo );
 			stMouseEventInfo->bHandled = oElement->OnMouseButtonUp( *stMouseEventInfo );
 			// No BP event
 		};
@@ -724,7 +724,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_KeyDown - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast< FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
+			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast<FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
 			stKeyEventInfo->bHandled = oElement->OnKeyDown( *stKeyEventInfo );
 			// No BP event
 		};
@@ -732,7 +732,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_KeyUp - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast< FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
+			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast<FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
 			stKeyEventInfo->bHandled = oElement->OnKeyUp( *stKeyEventInfo );
 			// No BP event
 		};
@@ -740,7 +740,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_KeyRepeat - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast< FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
+			FKUIInterfaceContainerKeyEvent* stKeyEventInfo = reinterpret_cast<FKUIInterfaceContainerKeyEvent*>( &stEventInfo );
 			stKeyEventInfo->bHandled = oElement->OnKeyRepeat( *stKeyEventInfo );
 			// No BP event
 		};
@@ -748,7 +748,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_KeyChar - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			FKUIInterfaceContainerCharEvent* stCharEventInfo = reinterpret_cast< FKUIInterfaceContainerCharEvent*>( &stEventInfo );
+			FKUIInterfaceContainerCharEvent* stCharEventInfo = reinterpret_cast<FKUIInterfaceContainerCharEvent*>( &stEventInfo );
 			stCharEventInfo->bHandled = oElement->OnKeyChar( *stCharEventInfo );
 			// No BP event
 		};
@@ -756,50 +756,50 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_ScreenResolutionChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnScreenResolutionChange( *reinterpret_cast< FKUIInterfaceContainerScreenResolutionEvent*>( &stEventInfo ) );
-			oElement->OnScreenResolutionChangeBP( *reinterpret_cast< FKUIInterfaceContainerScreenResolutionEvent*>( &stEventInfo ) );
+			oElement->OnScreenResolutionChange( *reinterpret_cast<FKUIInterfaceContainerScreenResolutionEvent*>( &stEventInfo ) );
+			oElement->OnScreenResolutionChangeBP( *reinterpret_cast<FKUIInterfaceContainerScreenResolutionEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MatchStart - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMatchStart( *reinterpret_cast< FKUIInterfaceEvent*>( &stEventInfo ) );
-			oElement->OnMatchStartBP( *reinterpret_cast< FKUIInterfaceEvent*>( &stEventInfo ) );
+			oElement->OnMatchStart( *reinterpret_cast<FKUIInterfaceEvent*>( &stEventInfo ) );
+			oElement->OnMatchStartBP( *reinterpret_cast<FKUIInterfaceEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MatchPaused - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMatchPaused( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
-			oElement->OnMatchPausedBP( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnMatchPaused( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnMatchPausedBP( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MatchUnpaused - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMatchUnpaused( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
-			oElement->OnMatchUnpausedBP( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnMatchUnpaused( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnMatchUnpausedBP( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MatchEnd - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMatchEnd( *reinterpret_cast< FKUIInterfaceEvent*>( &stEventInfo ) );
-			oElement->OnMatchEndBP( *reinterpret_cast< FKUIInterfaceEvent*>( &stEventInfo ) );
+			oElement->OnMatchEnd( *reinterpret_cast<FKUIInterfaceEvent*>( &stEventInfo ) );
+			oElement->OnMatchEndBP( *reinterpret_cast<FKUIInterfaceEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_PlayerDeath - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnPlayerDeath( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
-			oElement->OnPlayerDeathBP( *reinterpret_cast< FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnPlayerDeath( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
+			oElement->OnPlayerDeathBP( *reinterpret_cast<FKUIInterfaceContainerPlayerEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_VisibilityChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnVisibilityChange( *reinterpret_cast< FKUIInterfaceContainerVisibilityEvent*>( &stEventInfo ) );
-			oElement->OnVisibilityChangeBP( *reinterpret_cast< FKUIInterfaceContainerVisibilityEvent*>( &stEventInfo ) );
+			oElement->OnVisibilityChange( *reinterpret_cast<FKUIInterfaceContainerVisibilityEvent*>( &stEventInfo ) );
+			oElement->OnVisibilityChangeBP( *reinterpret_cast<FKUIInterfaceContainerVisibilityEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_Focus - KUI_CONTAINER_EVENT_FIRST ] =
@@ -819,29 +819,29 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_FocusChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnFocusChange( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
-			oElement->OnFocusChangeBP( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnFocusChange( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnFocusChangeBP( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_ChildSizeChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnChildSizeChange( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
-			oElement->OnChildSizeChangeBP( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildSizeChange( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildSizeChangeBP( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_ChildLocationChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnChildLocationChange( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
-			oElement->OnChildLocationChangeBP( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildLocationChange( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildLocationChangeBP( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_MatchStateChange - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnMatchStateChange( *reinterpret_cast< FKUIInterfaceContainerMatchStateEvent*>( &stEventInfo ) );
-			oElement->OnMatchStateChangeBP( *reinterpret_cast< FKUIInterfaceContainerMatchStateEvent*>( &stEventInfo ) );
+			oElement->OnMatchStateChange( *reinterpret_cast<FKUIInterfaceContainerMatchStateEvent*>( &stEventInfo ) );
+			oElement->OnMatchStateChangeBP( *reinterpret_cast<FKUIInterfaceContainerMatchStateEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_LayoutInvalidated - KUI_CONTAINER_EVENT_FIRST ] =
@@ -868,15 +868,15 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceContainerEventList::E_ChildAdded - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnChildAdded( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
-			oElement->OnChildAddedBP( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildAdded( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildAddedBP( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceContainerEventList::E_ChildRemoved - KUI_CONTAINER_EVENT_FIRST ] =
 			[] ( UKUIInterfaceContainer* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnChildRemoved( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
-			oElement->OnChildRemovedBP( *reinterpret_cast< FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildRemoved( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
+			oElement->OnChildRemovedBP( *reinterpret_cast<FKUIInterfaceContainerElementEvent*>( &stEventInfo ) );
 		};
 
 #pragma warning( default : 4946 )

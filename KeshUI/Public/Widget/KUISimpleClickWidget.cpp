@@ -132,8 +132,8 @@ void UKUISimpleClickWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		// Can't use UStruct pointers... so this.
 #pragma warning( disable : 4946 )
 
-		dgSimpleClickWidgetClick.ExecuteIfBound( this, reinterpret_cast< FKUIInterfaceWidgetClickEvent*>( &stEventInfo )->v2ClickOffset );
-		OnClickBP( *reinterpret_cast< FKUIInterfaceWidgetClickEvent*>( &stEventInfo ) );
+		dgSimpleClickWidgetClick.ExecuteIfBound( this, reinterpret_cast<FKUIInterfaceWidgetClickEvent*>( &stEventInfo )->v2ClickOffset );
+		OnClickBP( *reinterpret_cast<FKUIInterfaceWidgetClickEvent*>( &stEventInfo ) );
 
 #pragma warning( default : 4946 )
 

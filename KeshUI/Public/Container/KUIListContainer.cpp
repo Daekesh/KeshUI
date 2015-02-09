@@ -26,7 +26,7 @@ UKUIListContainer::UKUIListContainer( const class FObjectInitializer& oObjectIni
 	KUICreateDefaultSubobjectAssign( cmClickArea, UKUISimpleClickWidget, "Clickable Area" );
 	cmClickArea->FillContainer();
 	cmClickArea->SetZIndex( 0 );
-	cmClickArea->SetClickDelegate( this, static_cast< FKUISimpleClickWidgetClickPrototype>( &UKUIListContainer::OnClick ) );
+	cmClickArea->SetClickDelegate( this, static_cast<FKUISimpleClickWidgetClickPrototype>( &UKUIListContainer::OnClick ) );
 
 	AddChild( cmClickArea );
 }
