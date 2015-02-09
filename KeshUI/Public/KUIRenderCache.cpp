@@ -78,7 +78,7 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 	tRenderTarget->UpdateResource();
 	tRenderTarget->UpdateResourceImmediate();
 
-	UCanvas* uoCanvas = static_cast< UCanvas* >( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Render Cache Canvas" ) ) ) );
+	UCanvas* uoCanvas = Cast<UCanvas>( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Render Cache Canvas" ) ) ) );
 
 	if ( uoCanvas == NULL )
 	{
@@ -93,7 +93,7 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 		RenderCacheRenderTargetMakeCurrentCommand,
 		FTextureRenderTarget2DResource*,
 		TextureRenderTarget,
-		static_cast< FTextureRenderTarget2DResource* >( tRenderTarget->GameThread_GetRenderTargetResource() ),
+		static_cast< FTextureRenderTarget2DResource*>( tRenderTarget->GameThread_GetRenderTargetResource() ),
 		{
 			SetRenderTarget( RHICmdList, TextureRenderTarget->GetRenderTargetTexture(), FTexture2DRHIRef() );
 			RHICmdList.SetViewport( 0, 0, 0.0f, TextureRenderTarget->GetSizeXY().X, TextureRenderTarget->GetSizeXY().Y, 1.0f );
@@ -123,7 +123,7 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 		RenderCacheRenderTargetResolveCommand,
 		FTextureRenderTargetResource*,
 		RenderTargetResource,
-		static_cast< FTextureRenderTarget2DResource* >( tRenderTarget->GameThread_GetRenderTargetResource() ),
+		static_cast< FTextureRenderTarget2DResource*>( tRenderTarget->GameThread_GetRenderTargetResource() ),
 		{
 			RHICmdList.CopyToResolveTarget( RenderTargetResource->GetRenderTargetTexture(), RenderTargetResource->TextureRHI, true, FResolveParams() );
 		}

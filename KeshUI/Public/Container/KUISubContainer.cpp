@@ -195,7 +195,7 @@ void UKUISubContainer::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTo
 		// Can't use UStruct pointers... so this.
 #pragma warning( disable : 4946 )
 
-		FKUIInterfaceContainerMouseButtonEvent& stNewEventInfo = *reinterpret_cast< FKUIInterfaceContainerMouseButtonEvent* >( &stEventInfo );
+		FKUIInterfaceContainerMouseButtonEvent& stNewEventInfo = *reinterpret_cast< FKUIInterfaceContainerMouseButtonEvent*>( &stEventInfo );
 		stNewEventInfo.v2Location -= GetCornerOffset();
 
 #pragma warning( default : 4946 )
