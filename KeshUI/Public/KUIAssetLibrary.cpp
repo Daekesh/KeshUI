@@ -32,7 +32,7 @@ UObject** UKUIAssetLibrary::GetAsset( const FName& nName ) const
 		if ( arAssetLibrary[ i ].nAssetName != nName )
 			continue;
 
-		oAsset = ( UObject** ) &( arAssetLibrary[ i ].oAsset );
+		oAsset = const_cast<UObject**>( &( arAssetLibrary[ i ].oAsset ) );
 
 		if ( oAsset != NULL )
 			return oAsset;
@@ -45,6 +45,6 @@ UObject** UKUIAssetLibrary::GetAsset( const FName& nName ) const
 		if ( oAsset != NULL )
 			return oAsset;
 	}
-
+	
 	return NULL;
 }

@@ -217,7 +217,7 @@ void UKUIScrollContainer::SetHorizontalScrollbar( UKUISliderWidget* cmScrollbar 
 	if ( cmHorizontalScrollBar.IsValid() )
 	{
 		Super::AddChild( cmHorizontalScrollBar.Get() );
-		cmHorizontalScrollBar->SetValueChangeDelegate( this, ( FKUISliderValueChangePrototype ) &UKUIScrollContainer::OnScrollbarScrolled );
+		cmHorizontalScrollBar->SetValueChangeDelegate( this, static_cast< FKUISliderValueChangePrototype >( &UKUIScrollContainer::OnScrollbarScrolled ) );
 		cmHorizontalScrollBar->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Left );
 		cmHorizontalScrollBar->SetVerticalAlignment( EKUIInterfaceVAlign::VA_Bottom );
 	}
@@ -245,7 +245,7 @@ void UKUIScrollContainer::SetVerticalScrollbar( UKUISliderWidget* cmScrollbar )
 	if ( cmVerticalScrollBar.IsValid() )
 	{
 		Super::AddChild( cmVerticalScrollBar.Get() );
-		cmVerticalScrollBar->SetValueChangeDelegate( this, ( FKUISliderValueChangePrototype ) &UKUIScrollContainer::OnScrollbarScrolled );
+		cmVerticalScrollBar->SetValueChangeDelegate( this, static_cast< FKUISliderValueChangePrototype >( &UKUIScrollContainer::OnScrollbarScrolled ) );
 		cmVerticalScrollBar->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Right );
 		cmVerticalScrollBar->SetVerticalAlignment( EKUIInterfaceVAlign::VA_Top );
 	}

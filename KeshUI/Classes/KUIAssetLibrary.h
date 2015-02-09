@@ -34,7 +34,7 @@ public:
 	template<class T>
 	FORCEINLINE T** GetAsset( const FName& nName ) const
 	{
-		return ( T** ) GetAsset( nName );
+		return reinterpret_cast<T**>( GetAsset( nName ) );
 	}
 
 protected:
