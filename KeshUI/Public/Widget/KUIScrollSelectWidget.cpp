@@ -123,13 +123,13 @@ UKUITextInterfaceComponent* UKUIScrollSelectWidget::GetTextComponent()
 }
 
 
-void UKUIScrollSelectWidget::OnLeftButtonClick( UKUIButtonWidget* cmButton )
+void UKUIScrollSelectWidget::OnLeftButtonClick( UKUISimpleClickWidget* cmButton, const FVector2D& v2ClickOffset )
 {
 	PreviousValue();
 }
 
 
-void UKUIScrollSelectWidget::OnRightButtonClick( UKUIButtonWidget* cmButton )
+void UKUIScrollSelectWidget::OnRightButtonClick( UKUISimpleClickWidget* cmButton, const FVector2D& v2ClickOffset )
 {
 	NextValue();
 }

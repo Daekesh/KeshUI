@@ -7,6 +7,7 @@
 #include "KUIScrollSelectWidget.generated.h"
 
 class UKUIScrollSelectWidget;
+class UKUISimpleClickWidget;
 class UKUIButtonWidget;
 class UKUITextInterfaceComponent;
 
@@ -54,10 +55,10 @@ protected:
 	FVector2D v2LargestTextSize;
 
 	/* Called when the left button is clicked. */
-	virtual void OnLeftButtonClick( UKUIButtonWidget* cmButton );
+	virtual void OnLeftButtonClick( UKUISimpleClickWidget* cmButton, const FVector2D& v2ClickOffset );
 
 	/* Called when the right button is clicked. */
-	virtual void OnRightButtonClick( UKUIButtonWidget* cmButton );
+	virtual void OnRightButtonClick( UKUISimpleClickWidget* cmButton, const FVector2D& v2ClickOffset );
 
 	/* Makes sure size is correct, etc. */
 	virtual void DoLayout() override;
