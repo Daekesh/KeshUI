@@ -121,7 +121,7 @@ void UKUILineInterfaceComponent::ConstructNewItem()
 		vEnd
 	) );
 
-	( ( FCanvasLineItem* ) stItem.Get() )->LineThickness = fThickness;
+	static_cast<FCanvasLineItem*>(&*stItem)->LineThickness = fThickness;
 
 	Super::ConstructNewItem();
 }
@@ -131,9 +131,9 @@ void UKUILineInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas, 
 {
 	if ( stItem.IsValid() )
 	{
-		( ( FCanvasLineItem* ) stItem.Get() )->Origin = vOrigin;
-		( ( FCanvasLineItem* ) stItem.Get() )->EndPos = vEnd;
-		( ( FCanvasLineItem* ) stItem.Get() )->LineThickness = fThickness;
+		static_cast<FCanvasLineItem*>(&*stItem)->Origin = vOrigin;
+		static_cast<FCanvasLineItem*>(&*stItem)->EndPos = vEnd;
+		static_cast<FCanvasLineItem*>(&*stItem)->LineThickness = fThickness;
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );

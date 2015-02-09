@@ -344,7 +344,7 @@ void UKUITextInterfaceComponent::SetCorrectStereoscopic( bool bCorrect )
 FFontRenderInfo UKUITextInterfaceComponent::GetFontRenderInfo()
 {
 	if ( stItem.IsValid() )
-		return ( ( FCanvasTextItem* ) stItem.Get() )->FontRenderInfo;
+		return static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo;
 
 	FFontRenderInfo stInfo;
 
@@ -413,23 +413,23 @@ void UKUITextInterfaceComponent::ConstructNewItem()
 	) );
 
 	if ( this->bShadow )
-		( ( FCanvasTextItem* ) stItem.Get() )->EnableShadow( lcShadowColor, v2ShadowOffset );
+		static_cast<FCanvasTextItem*>(&*stItem)->EnableShadow( lcShadowColor, v2ShadowOffset );
 
 	else
-		( ( FCanvasTextItem* ) stItem.Get() )->DisableShadow();
+		static_cast<FCanvasTextItem*>(&*stItem)->DisableShadow();
 
 	bUpdateShadowInfo = false;
 
-	( ( FCanvasTextItem* ) stItem.Get() )->bCentreX = bCentreX;
-	( ( FCanvasTextItem* ) stItem.Get() )->bCentreY = bCentreY;
-	( ( FCanvasTextItem* ) stItem.Get() )->bOutlined = bOutlined;
-	( ( FCanvasTextItem* ) stItem.Get() )->OutlineColor = lcOutlineColor;
-	( ( FCanvasTextItem* ) stItem.Get() )->Scale = v2Scale;
-	( ( FCanvasTextItem* ) stItem.Get() )->Depth = fDepth;
-	( ( FCanvasTextItem* ) stItem.Get() )->HorizSpacingAdjust = fHorizontalSpacingAdjust;
-	( ( FCanvasTextItem* ) stItem.Get() )->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
-	( ( FCanvasTextItem* ) stItem.Get() )->FontRenderInfo.bClipText = bClipped;
-	( ( FCanvasTextItem* ) stItem.Get() )->Text = txText;
+	static_cast<FCanvasTextItem*>(&*stItem)->bCentreX = bCentreX;
+	static_cast<FCanvasTextItem*>(&*stItem)->bCentreY = bCentreY;
+	static_cast<FCanvasTextItem*>(&*stItem)->bOutlined = bOutlined;
+	static_cast<FCanvasTextItem*>(&*stItem)->OutlineColor = lcOutlineColor;
+	static_cast<FCanvasTextItem*>(&*stItem)->Scale = v2Scale;
+	static_cast<FCanvasTextItem*>(&*stItem)->Depth = fDepth;
+	static_cast<FCanvasTextItem*>(&*stItem)->HorizSpacingAdjust = fHorizontalSpacingAdjust;
+	static_cast<FCanvasTextItem*>(&*stItem)->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
+	static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo.bClipText = bClipped;
+	static_cast<FCanvasTextItem*>(&*stItem)->Text = txText;
 
 	Super::ConstructNewItem();
 }
@@ -445,24 +445,24 @@ void UKUITextInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas, 
 		if ( bUpdateShadowInfo )
 		{
 			if ( this->bShadow )
-				( ( FCanvasTextItem* ) stItem.Get() )->EnableShadow( lcShadowColor, v2ShadowOffset );
+				static_cast<FCanvasTextItem*>(&*stItem)->EnableShadow( lcShadowColor, v2ShadowOffset );
 
 			else
-				( ( FCanvasTextItem* ) stItem.Get() )->DisableShadow();
+				static_cast<FCanvasTextItem*>(&*stItem)->DisableShadow();
 
 			bUpdateShadowInfo = false;
 		}
 
-		( ( FCanvasTextItem* ) stItem.Get() )->bCentreX = bCentreX;
-		( ( FCanvasTextItem* ) stItem.Get() )->bCentreY = bCentreY;
-		( ( FCanvasTextItem* ) stItem.Get() )->bOutlined = bOutlined;
-		( ( FCanvasTextItem* ) stItem.Get() )->OutlineColor = lcOutlineColor;
-		( ( FCanvasTextItem* ) stItem.Get() )->Scale = v2Scale;
-		( ( FCanvasTextItem* ) stItem.Get() )->Depth = fDepth;
-		( ( FCanvasTextItem* ) stItem.Get() )->HorizSpacingAdjust = fHorizontalSpacingAdjust;
-		( ( FCanvasTextItem* ) stItem.Get() )->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
-		( ( FCanvasTextItem* ) stItem.Get() )->FontRenderInfo.bClipText = bClipped;
-		( ( FCanvasTextItem* ) stItem.Get() )->Text = txText;
+		static_cast<FCanvasTextItem*>(&*stItem)->bCentreX = bCentreX;
+		static_cast<FCanvasTextItem*>(&*stItem)->bCentreY = bCentreY;
+		static_cast<FCanvasTextItem*>(&*stItem)->bOutlined = bOutlined;
+		static_cast<FCanvasTextItem*>(&*stItem)->OutlineColor = lcOutlineColor;
+		static_cast<FCanvasTextItem*>(&*stItem)->Scale = v2Scale;
+		static_cast<FCanvasTextItem*>(&*stItem)->Depth = fDepth;
+		static_cast<FCanvasTextItem*>(&*stItem)->HorizSpacingAdjust = fHorizontalSpacingAdjust;
+		static_cast<FCanvasTextItem*>(&*stItem)->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
+		static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo.bClipText = bClipped;
+		static_cast<FCanvasTextItem*>(&*stItem)->Text = txText;
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );

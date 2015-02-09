@@ -817,25 +817,28 @@ void UKUIInterfaceElement::SendEvent( FKUIInterfaceEvent& stEventInfo )
 	{
 		arDispatchers.SetNum( KUI_BASE_EVENT_LAST - KUI_BASE_EVENT_FIRST + 1 );
 
-		arDispatchers[ EKUIInterfaceElementEventList::E_AddedToContainer - KUI_BASE_EVENT_FIRST ] = 
+		// Can't use UStruct pointers... so this.
+#pragma warning( disable : 4946 )
+
+		arDispatchers[ EKUIInterfaceElementEventList::E_AddedToContainer - KUI_BASE_EVENT_FIRST ] =
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnAddedToContainer( *( ( FKUIInterfaceElementContainerEvent* ) &stEventInfo ) );
-			oElement->OnAddedToContainerBP( *( ( FKUIInterfaceElementContainerEvent* ) &stEventInfo ) );
+			oElement->OnAddedToContainer( *reinterpret_cast<FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
+			oElement->OnAddedToContainerBP( *reinterpret_cast<FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceElementEventList::E_RemovedFromContainer - KUI_BASE_EVENT_FIRST ] = 
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnRemovedFromContainer( *( ( FKUIInterfaceElementContainerEvent* ) &stEventInfo ) );
-			oElement->OnRemovedFromContainerBP( *( ( FKUIInterfaceElementContainerEvent* ) &stEventInfo ) );
+			oElement->OnRemovedFromContainer( *reinterpret_cast<FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
+			oElement->OnRemovedFromContainerBP( *reinterpret_cast<FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceElementEventList::E_Render - KUI_BASE_EVENT_FIRST ] = 
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnRender( *( ( FKUIInterfaceElementRenderEvent* ) &stEventInfo ) );
-			oElement->OnRenderBP( *( ( FKUIInterfaceElementRenderEvent* ) &stEventInfo ) );
+			oElement->OnRender( *reinterpret_cast<FKUIInterfaceElementRenderEvent* >( &stEventInfo ) );
+			oElement->OnRenderBP( *reinterpret_cast<FKUIInterfaceElementRenderEvent* >( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceElementEventList::E_AlignLocationCalculated - KUI_BASE_EVENT_FIRST ] = 
@@ -855,16 +858,19 @@ void UKUIInterfaceElement::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		arDispatchers[ EKUIInterfaceElementEventList::E_LocationChange - KUI_BASE_EVENT_FIRST ] = 
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnLocationChange( *( ( FKUIInterfaceContainerLocationChangeEvent* ) &stEventInfo ) );
-			oElement->OnLocationChangeBP( *( ( FKUIInterfaceContainerLocationChangeEvent* ) &stEventInfo ) );
+			oElement->OnLocationChange( *reinterpret_cast<FKUIInterfaceContainerLocationChangeEvent* >( &stEventInfo ) );
+			oElement->OnLocationChangeBP( *reinterpret_cast<FKUIInterfaceContainerLocationChangeEvent* >( &stEventInfo ) );
 		};
 
 		arDispatchers[ EKUIInterfaceElementEventList::E_SizeChange - KUI_BASE_EVENT_FIRST ] = 
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
-			oElement->OnSizeChange( *( ( FKUIInterfaceContainerSizeChangeEvent* ) &stEventInfo ) );
-			oElement->OnSizeChangeBP( *( ( FKUIInterfaceContainerSizeChangeEvent* ) &stEventInfo ) );
+			oElement->OnSizeChange( *reinterpret_cast<FKUIInterfaceContainerSizeChangeEvent* >( &stEventInfo ) );
+			oElement->OnSizeChangeBP( *reinterpret_cast<FKUIInterfaceContainerSizeChangeEvent* >( &stEventInfo ) );
 		};
+
+#pragma warning( default : 4946 )
+
 	}
 
 	if ( stEventInfo.iEventID >= KUI_BASE_EVENT_FIRST && stEventInfo.iEventID <= KUI_BASE_EVENT_LAST )

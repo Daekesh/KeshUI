@@ -289,12 +289,12 @@ void UKUIMaterialInterfaceComponent::ConstructNewItem()
 		v2Size,
 		v2MaterialCoords,
 		v2MaterialCoords + v2MaterialSize
-		) );
+	) );
 
-	( ( FCanvasTileItem* ) stItem.Get() )->SetColor( GetDrawColor().ReinterpretAsLinear() );
-	( ( FCanvasTileItem* ) stItem.Get() )->Rotation = rRotation;
-	( ( FCanvasTileItem* ) stItem.Get() )->PivotPoint = v2PivotPoint;
-	( ( FCanvasTileItem* ) stItem.Get() )->Z = fDepth;
+	static_cast<FCanvasTileItem*>(&*stItem)->SetColor( GetDrawColor().ReinterpretAsLinear() );
+	static_cast<FCanvasTileItem*>(&*stItem)->Rotation = rRotation;
+	static_cast<FCanvasTileItem*>(&*stItem)->PivotPoint = v2PivotPoint;
+	static_cast<FCanvasTileItem*>(&*stItem)->Z = fDepth;
 
 	Super::ConstructNewItem();
 }
@@ -335,12 +335,12 @@ void UKUIMaterialInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanv
 
 	if ( stItem.IsValid() )
 	{
-		( ( FCanvasTileItem* ) stItem.Get() )->Size = v2Size;
-		( ( FCanvasTileItem* ) stItem.Get() )->UV0 = v2MaterialCoords;
-		( ( FCanvasTileItem* ) stItem.Get() )->UV1 = v2MaterialCoords + v2MaterialSize;
-		( ( FCanvasTileItem* ) stItem.Get() )->Rotation = rRotation;
-		( ( FCanvasTileItem* ) stItem.Get() )->PivotPoint = v2PivotPoint;
-		( ( FCanvasTileItem* ) stItem.Get() )->Z = fDepth;
+		static_cast<FCanvasTileItem*>(&*stItem)->Size = v2Size;
+		static_cast<FCanvasTileItem*>(&*stItem)->UV0 = v2MaterialCoords;
+		static_cast<FCanvasTileItem*>(&*stItem)->UV1 = v2MaterialCoords + v2MaterialSize;
+		static_cast<FCanvasTileItem*>(&*stItem)->Rotation = rRotation;
+		static_cast<FCanvasTileItem*>(&*stItem)->PivotPoint = v2PivotPoint;
+		static_cast<FCanvasTileItem*>(&*stItem)->Z = fDepth;
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );

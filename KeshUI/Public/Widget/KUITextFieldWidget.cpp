@@ -776,10 +776,16 @@ void UKUITextFieldWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 	if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_InlineValueChange )
 	{
-		FKUIInterfaceWidgetInlineValueChangeEvent& stInlineValueChangeInfo = *( ( FKUIInterfaceWidgetInlineValueChangeEvent* ) &stEventInfo );
+		// Can't use UStruct pointers... so this.
+#pragma warning( disable : 4946 )
 
-		dgInlineValueChange.ExecuteIfBound( this, ( void* ) stInlineValueChangeInfo.oOldValue, ( void* ) stInlineValueChangeInfo.oOldValue );
-		OnInlineValueChangeBP( *( ( FString* ) stInlineValueChangeInfo.oOldValue ), *( ( FString* ) stInlineValueChangeInfo.oNewValue ) );
+		FKUIInterfaceWidgetInlineValueChangeEvent& stInlineValueChangeInfo = *reinterpret_cast< FKUIInterfaceWidgetInlineValueChangeEvent* >( &stEventInfo );
+
+		dgInlineValueChange.ExecuteIfBound( this, reinterpret_cast< void* >( stInlineValueChangeInfo.oOldValue ), reinterpret_cast< void* >( stInlineValueChangeInfo.oNewValue ) );
+		OnInlineValueChangeBP( *reinterpret_cast< FString* >( stInlineValueChangeInfo.oOldValue ), *reinterpret_cast< FString* >( stInlineValueChangeInfo.oNewValue ) );
+
+#pragma warning( default : 4946 )
+
 	}
 
 	if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_ValueChange )

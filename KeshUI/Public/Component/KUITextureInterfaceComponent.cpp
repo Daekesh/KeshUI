@@ -239,9 +239,9 @@ void UKUITextureInterfaceComponent::ConstructNewItem()
 		GetDrawColor().ReinterpretAsLinear()
 	) );
 
-	( ( FCanvasTileItem* ) stItem.Get() )->Rotation = rRotation;
-	( ( FCanvasTileItem* ) stItem.Get() )->PivotPoint = v2PivotPoint;
-	( ( FCanvasTileItem* ) stItem.Get() )->Z = fDepth;
+	static_cast<FCanvasTileItem*>(&*stItem)->Rotation = rRotation;
+	static_cast<FCanvasTileItem*>(&*stItem)->PivotPoint = v2PivotPoint;
+	static_cast<FCanvasTileItem*>(&*stItem)->Z = fDepth;
 
 	Super::ConstructNewItem();
 }
@@ -254,12 +254,12 @@ void UKUITextureInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanva
 
 	if ( stItem.IsValid() )
 	{
-		( ( FCanvasTileItem* ) stItem.Get() )->Size = v2Size;
-		( ( FCanvasTileItem* ) stItem.Get() )->UV0 = v2TextureCoords;
-		( ( FCanvasTileItem* ) stItem.Get() )->UV1 = v2TextureCoords + v2TextureSize;
-		( ( FCanvasTileItem* ) stItem.Get() )->Rotation = rRotation;
-		( ( FCanvasTileItem* ) stItem.Get() )->PivotPoint = v2PivotPoint;
-		( ( FCanvasTileItem* ) stItem.Get() )->Z = fDepth;
+		static_cast<FCanvasTileItem*>(&*stItem)->Size = v2Size;
+		static_cast<FCanvasTileItem*>(&*stItem)->UV0 = v2TextureCoords;
+		static_cast<FCanvasTileItem*>(&*stItem)->UV1 = v2TextureCoords + v2TextureSize;
+		static_cast<FCanvasTileItem*>(&*stItem)->Rotation = rRotation;
+		static_cast<FCanvasTileItem*>(&*stItem)->PivotPoint = v2PivotPoint;
+		static_cast<FCanvasTileItem*>(&*stItem)->Z = fDepth;
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );

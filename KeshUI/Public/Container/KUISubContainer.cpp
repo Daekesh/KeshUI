@@ -192,8 +192,13 @@ void UKUISubContainer::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTo
 {
 	if ( stEventInfo.iEventID == EKUIInterfaceContainerEventList::E_MouseButtonDown || stEventInfo.iEventID == EKUIInterfaceContainerEventList::E_MouseButtonUp )
 	{
-		FKUIInterfaceContainerMouseButtonEvent& stNewEventInfo = *( ( FKUIInterfaceContainerMouseButtonEvent* ) &stEventInfo );
+		// Can't use UStruct pointers... so this.
+#pragma warning( disable : 4946 )
+
+		FKUIInterfaceContainerMouseButtonEvent& stNewEventInfo = *reinterpret_cast< FKUIInterfaceContainerMouseButtonEvent* >( &stEventInfo );
 		stNewEventInfo.v2Location -= GetCornerOffset();
+
+#pragma warning( default : 4946 )
 
 		Super::BroadcastEvent( stNewEventInfo, bTopDown );
 		return;

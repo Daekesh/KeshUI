@@ -80,7 +80,7 @@ void UKUIBoxInterfaceComponent::ConstructNewItem()
 		v2Size
 	) );
 
-	( ( FCanvasBoxItem* ) stItem.Get() )->LineThickness = fThickness;
+	static_cast<FCanvasBoxItem*>(&*stItem)->LineThickness = fThickness;
 
 	Super::ConstructNewItem();
 }
@@ -90,8 +90,8 @@ void UKUIBoxInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas, c
 {
 	if ( stItem.IsValid() )
 	{
-		( ( FCanvasBoxItem* ) stItem.Get() )->Size = v2Size;
-		( ( FCanvasBoxItem* ) stItem.Get() )->LineThickness = fThickness;
+		static_cast<FCanvasBoxItem*>(&*stItem)->Size = v2Size;
+		static_cast<FCanvasBoxItem*>(&*stItem)->LineThickness = fThickness;
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
