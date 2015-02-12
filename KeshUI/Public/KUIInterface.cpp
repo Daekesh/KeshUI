@@ -415,18 +415,19 @@ void AKUIInterface::RemoveCancellable( UObject* oCancellable )
 bool AKUIInterface::Cancel()
 {
 	IKUICancellable* oCancellable = NULL;
+	int32 iLastIndex = 0;
 	
-	for ( int32 i = 0; i < arCancellables.Num(); ++i )
+	for ( int32 i = arCancellables.Num() - 1; i >= 0; --i )
 	{
 		if ( arCancellables[ i ].Get() == NULL )
-		{
-			arCancellables.SetNum( i );
-			break;
-		}
+			continue;
 
 		oCancellable = Cast<IKUICancellable>( arCancellables[ i ].Get() );
+		iLastIndex = i;
+		break;
 	}
 
+	arCancellables.SetNum( iLastIndex );
 
 	if ( oCancellable != NULL )
 	{
