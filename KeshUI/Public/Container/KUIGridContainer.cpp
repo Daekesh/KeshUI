@@ -51,6 +51,18 @@ void UKUIGridContainer::SetGridSlot( uint8 iRow, uint8 iColumn, UKUIInterfaceEle
 }
 
 
+UKUIInterfaceElement* UKUIGridContainer::GetGridSlot( uint8 iRow, uint8 iColumn ) const
+{
+	if ( iRow >= arRows.Num() )
+		return NULL;
+
+	if ( iColumn >= arColumns.Num() )
+		return NULL;
+
+	return ar2Elements[ iRow ][ iColumn ].Get();
+}
+
+
 void UKUIGridContainer::RemoveGridSlot( UKUIInterfaceElement* oChild )
 {
 	if ( oChild == NULL )

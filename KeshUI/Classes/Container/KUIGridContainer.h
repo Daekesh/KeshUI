@@ -24,6 +24,10 @@ public:
 	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
 	virtual void SetGridSlot( uint8 iRow, uint8 iColumn, UKUIInterfaceElement* oChild );
 
+	/* Gets the element at the given grid slot. */
+	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	virtual UKUIInterfaceElement* GetGridSlot( uint8 iRow, uint8 iColumn ) const;
+
 	/* Removes an element from the grid slot.  Does not remove it from the container. */
 	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
 	virtual void RemoveGridSlot( UKUIInterfaceElement* oChild );
