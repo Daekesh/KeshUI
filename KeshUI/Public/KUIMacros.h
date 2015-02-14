@@ -84,6 +84,7 @@
 // Network (custom world)
 #define HasServerCW( w ) ( w == NULL ? true : w->GetNetMode() != ENetMode::NM_Client )
 #define HasClientCW( w ) ( w == NULL ? true : w->GetNetMode() != ENetMode::NM_DedicatedServer )
+#define HasNetworkCW( w ) ( w == NULL ? true : w->GetNetMode() != ENetMode::NM_Standalone )
 #define IsClientOnlyCW( w ) ( w == NULL ? false : w->GetNetMode() == ENetMode::NM_Client )
 #define IsServerOnlyCW( w ) ( w == NULL ? false : w->GetNetMode() == ENetMode::NM_DedicatedServer )
 #define IsNetworkClientCW( w ) ( w == NULL ? true : ( w->GetNetMode() != ENetMode::NM_DedicatedServer && w->GetNetMode() != ENetMode::NM_Standalone ) )
@@ -92,6 +93,7 @@
 // Network
 #define HasServer() HasServerCW( GetWorld() )
 #define HasClient() HasClientCW( GetWorld() )
+#define HasNetwork() HasNetworkCW( GetWorld() )
 #define IsClientOnly() IsClientOnlyCW( GetWorld() )
 #define IsServerOnly() IsServerOnlyCW( GetWorld() )
 #define IsNetworkClient() IsNetworkClientCW( GetWorld() )

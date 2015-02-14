@@ -53,7 +53,8 @@ AKUIInterface::AKUIInterface( const class FObjectInitializer& oObjectInitializer
 	arMouseButtonDownLocations[ EMouseButtons::Right ] = FVector2D::ZeroVector;
 	arMouseButtonDownLocations[ EMouseButtons::Middle ] = FVector2D::ZeroVector;
 
-	aLatestInstance = this;
+	if ( !IsTemplate() )
+		aLatestInstance = this;
 }
 
 AKUIInterface* AKUIInterface::GetLatestInstance()
