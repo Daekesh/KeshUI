@@ -47,6 +47,10 @@ public:
 	UFUNCTION(Category="KeshUI | Container | Paged", BlueprintCallable)
 	virtual uint8 AddPage( UKUIInterfaceElement* oPage );
 
+	/* Returns a page by index. */
+	UFUNCTION( Category = "KeshUI | Container | Paged", BlueprintCallable )
+	virtual UKUIInterfaceElement* GetPage( uint8 iIndex ) const;
+
 	/* Removes a page by reference. */
 	UFUNCTION(Category="KeshUI | Container | Paged", BlueprintCallable)
 	virtual void RemovePageByReference( UKUIInterfaceElement* oPage, bool bRemoveChild = true );

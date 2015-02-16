@@ -53,6 +53,15 @@ uint8 UKUIPagedContainer::AddPage( UKUIInterfaceElement* oPage )
 }
 
 
+UKUIInterfaceElement* UKUIPagedContainer::GetPage( uint8 iIndex ) const
+{
+	if ( !arPages.IsValidIndex( iIndex ) )
+		return NULL;
+
+	return arPages[ iIndex ].Get();
+}
+
+
 void UKUIPagedContainer::RemovePageByReference( UKUIInterfaceElement* oPage, bool bRemoveChild )
 {
 	if ( oPage == NULL )
