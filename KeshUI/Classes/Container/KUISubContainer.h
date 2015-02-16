@@ -58,10 +58,9 @@ public:
 
 	/* Uses custom cache class. */
 	virtual void EnableRenderCache() override;
-
 	virtual FVector2D GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const override;
-
 	virtual void BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDown = false ) override;
+	virtual bool IsMouseOver() const override;
 
 protected:
 

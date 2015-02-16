@@ -3,6 +3,7 @@
 
 #include "KeshUI.h"
 #include "Container/KUISubContainerRenderCache.h"
+#include "KUIInterface.h"
 #include "Container/KUISubContainer.h"
 
 
@@ -217,4 +218,35 @@ FVector2D UKUISubContainer::GetNestedLocation( UKUIInterfaceContainer* ctRoot ) 
 		return GetLocation() - GetCornerOffset();
 
 	return ( this->GetContainer()->GetNestedLocation( ctRoot ) - GetCornerOffset() + GetLocation() );
+}
+
+
+bool UKUISubContainer::IsMouseOver() const
+{
+	if ( v2LastScreenRenderLocation.X == -1.f )
+		return false;
+
+	if ( GetInterface() == NULL )
+	{
+		KUIErrorUO( "Null interface" );
+		return false;
+	}
+
+	if ( GetContainer() != NULL )
+	{
+		if ( !GetContainer()->IsMouseOver() )
+			return false;
+	}
+
+	const FVector2D v2CursorLocation = GetInterface()->GetCursorLocation();
+	const FVector2D v2Size = GetSize();
+	const FVector2D v2TopLeftLocation = GetScreenLocation() + v2CornerOffset;
+
+	if ( v2CursorLocation.X >= v2TopLeftLocation.X &&
+		v2CursorLocation.Y >= v2TopLeftLocation.Y &&
+		v2CursorLocation.X < ( v2TopLeftLocation.X + v2Size.X ) &&
+		v2CursorLocation.Y < ( v2TopLeftLocation.Y + v2Size.Y ) )
+		return true;
+
+	return false;
 }
