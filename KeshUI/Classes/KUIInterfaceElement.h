@@ -377,7 +377,7 @@ public:
 
 	/* Returns true if this consume key events when focused. */
 	UFUNCTION(Category = "KeshUI | Base", BlueprintCallable)
-	virtual bool IsKeyEventConsumer() const;
+	virtual bool IsInputEventConsumer() const;
 
 	/* Turns on render caching. */
 	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
@@ -397,6 +397,12 @@ public:
 	/* Dispatches the event. */
 	virtual void SendEvent( FKUIInterfaceEvent& stEventInfo );
 
+	virtual void AddTag( const FString& strTag );
+
+	virtual const FString& GetTag( int32 iIndex ) const;
+
+	virtual bool HasTag( const FString& strTag ) const;
+
 	bool bDebug;
 
 protected:
@@ -414,6 +420,7 @@ protected:
 	FVector2D v2LastScreenRenderLocation;
 	TArray<TWeakObjectPtr<UKUIInterfaceElement>> arAlignedToThis;
 	TWeakObjectPtr<AKUIInterface> aLastRenderedBy;
+	TArray<FString> arTags;
 
 	UPROPERTY()
 	UKUIRenderCache* oRenderCache;

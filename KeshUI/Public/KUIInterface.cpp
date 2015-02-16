@@ -537,6 +537,15 @@ bool AKUIInterface::OnMouseButtonDown( EMouseButtons::Type eButton, const FVecto
 		arMouseButtonDownLocations[ eButton ] = v2Location;
 
 	FKUIInterfaceContainerMouseButtonEvent stEventInfo( EKUIInterfaceContainerEventList::E_MouseButtonDown, false, eButton, v2Location );
+
+	if ( IsConsumingInputEvents() )
+	{
+		ctFocused->SendEvent( stEventInfo );
+
+		if ( stEventInfo.bHandled )
+			return true;
+	}
+
 	BroadcastEvent( stEventInfo, true );
 
 	if ( !IsTemplate() )
@@ -549,16 +558,19 @@ bool AKUIInterface::OnMouseButtonDown( EMouseButtons::Type eButton, const FVecto
 bool AKUIInterface::OnMouseButtonUp( EMouseButtons::Type eButton, const FVector2D& v2Location )
 {
 	FKUIInterfaceContainerMouseButtonEvent stEventInfo( EKUIInterfaceContainerEventList::E_MouseButtonUp, false, eButton, v2Location );
+
+	if ( IsConsumingInputEvents() )
+	{
+		ctFocused->SendEvent( stEventInfo );
+
+		if ( stEventInfo.bHandled )
+			return true;
+	}
+
 	BroadcastEvent( stEventInfo, true );
 
 	if ( !IsTemplate() )
 		OnMouseButtonUpBP( eButton, v2Location );
-
-	if ( !stEventInfo.bHandled )
-	{
-		KUILogDebug( "Mouse up not handled: %d", ( uint8 ) eButton );
-		SetFocus( NULL );
-	}
 
 	return stEventInfo.bHandled;
 }
@@ -568,16 +580,18 @@ bool AKUIInterface::OnKeyDown( FKey eKey )
 {
 	FKUIInterfaceContainerKeyEvent stEventInfo( EKUIInterfaceContainerEventList::E_KeyDown, false, eKey );
 
-	if ( IsConsumingKeyEvents() )
+	if ( IsConsumingInputEvents() )
+	{
 		ctFocused->SendEvent( stEventInfo );
 
-	else
-	{
-		BroadcastEvent( stEventInfo, true );
-
-		if ( !IsTemplate() )
-			OnKeyDownBP( eKey );
+		if ( stEventInfo.bHandled )
+			return true;
 	}
+
+	BroadcastEvent( stEventInfo, true );
+
+	if ( !IsTemplate() )
+		OnKeyDownBP( eKey );
 
 	return stEventInfo.bHandled;
 }
@@ -587,16 +601,18 @@ bool AKUIInterface::OnKeyUp( FKey eKey )
 {
 	FKUIInterfaceContainerKeyEvent stEventInfo( EKUIInterfaceContainerEventList::E_KeyUp, false, eKey );
 
-	if ( IsConsumingKeyEvents() )
+	if ( IsConsumingInputEvents() )
+	{
 		ctFocused->SendEvent( stEventInfo );
 
-	else
-	{
-		BroadcastEvent( stEventInfo, true );
-
-		if ( !IsTemplate() )
-			OnKeyUpBP( eKey );
+		if ( stEventInfo.bHandled )
+			return true;
 	}
+
+	BroadcastEvent( stEventInfo, true );
+
+	if ( !IsTemplate() )
+		OnKeyUpBP( eKey );
 
 	return stEventInfo.bHandled;
 }
@@ -606,16 +622,18 @@ bool AKUIInterface::OnKeyRepeat( FKey eKey )
 {
 	FKUIInterfaceContainerKeyEvent stEventInfo( EKUIInterfaceContainerEventList::E_KeyRepeat, false, eKey );
 
-	if ( IsConsumingKeyEvents() )
+	if ( IsConsumingInputEvents() )
+	{
 		ctFocused->SendEvent( stEventInfo );
 
-	else
-	{
-		BroadcastEvent( stEventInfo, true );
-
-		if ( !IsTemplate() )
-			OnKeyRepeatBP( eKey );
+		if ( stEventInfo.bHandled )
+			return true;
 	}
+
+	BroadcastEvent( stEventInfo, true );
+
+	if ( !IsTemplate() )
+		OnKeyRepeatBP( eKey );
 
 	return stEventInfo.bHandled;
 }
@@ -623,21 +641,20 @@ bool AKUIInterface::OnKeyRepeat( FKey eKey )
 
 bool AKUIInterface::OnKeyChar( TCHAR chChar )
 {
-	if ( !IsConsumingKeyEvents() )
+	if ( !IsConsumingInputEvents() )
 		return false;
 
 	FKUIInterfaceContainerCharEvent stEventInfo( EKUIInterfaceContainerEventList::E_KeyChar, false, chChar );
 
-	if ( IsConsumingKeyEvents() )
-		ctFocused->SendEvent( stEventInfo );
+	ctFocused->SendEvent( stEventInfo );
 
-	else
-	{
-		BroadcastEvent( stEventInfo, true );
+	if ( stEventInfo.bHandled )
+		return true;
 
-		if ( !IsTemplate() )
-			OnKeyCharBP( stEventInfo.strChar );
-	}
+	BroadcastEvent( stEventInfo, true );
+
+	if ( !IsTemplate() )
+		OnKeyCharBP( FString::Chr( chChar ) );
 
 	return stEventInfo.bHandled;
 }
@@ -699,12 +716,12 @@ void AKUIInterface::OnPlayerDeath( uint32 iPlayerId )
 }
 
 
-bool AKUIInterface::IsConsumingKeyEvents() const
+bool AKUIInterface::IsConsumingInputEvents() const
 {
 	if ( ctFocused == NULL )
 		return false;
 
-	return ctFocused->IsKeyEventConsumer();
+	return ctFocused->IsInputEventConsumer();
 }
 
 

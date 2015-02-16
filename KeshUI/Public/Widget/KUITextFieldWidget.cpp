@@ -752,7 +752,7 @@ void UKUITextFieldWidget::OnTextBoxClick( UKUISimpleClickWidget* cmClicked, cons
 }
 
 
-bool UKUITextFieldWidget::IsKeyEventConsumer() const
+bool UKUITextFieldWidget::IsInputEventConsumer() const
 {
 	return true;
 }

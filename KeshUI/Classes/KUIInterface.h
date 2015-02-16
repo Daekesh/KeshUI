@@ -190,7 +190,7 @@ public:
 
 	/* Returns true if the currently focused element consumes key events. */
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
-	virtual bool IsConsumingKeyEvents() const;
+	virtual bool IsConsumingInputEvents() const;
 
 	virtual void PostInitializeComponents() override;
 

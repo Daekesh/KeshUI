@@ -100,7 +100,7 @@ public:
 	virtual void SetValueChangeDelegate( UObject* oObject, FKUIInterfaceWidgetValueChangePrototype fnTextUpdatedCallback );
 
 	/* Overrides to return true. */
-	virtual bool IsKeyEventConsumer() const override;
+	virtual bool IsInputEventConsumer() const override;
 
 	virtual bool RespondsToEvent( uint8 iEventID ) const override;
 

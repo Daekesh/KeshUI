@@ -29,6 +29,7 @@ UKUIInterfaceElement::UKUIInterfaceElement( const class FObjectInitializer& oObj
 	arAlignedToThis.SetNum( 0 );
 	oRenderCache = NULL;
 	aLastRenderedBy = NULL;
+	arTags.SetNum( 0 );
 
 	bDebug = false;
 }
@@ -757,7 +758,7 @@ FVector2D UKUIInterfaceElement::CalculateAlignLocation( const FVector2D& v2Origi
 }
 
 
-bool UKUIInterfaceElement::IsKeyEventConsumer() const
+bool UKUIInterfaceElement::IsInputEventConsumer() const
 {
 	return false;
 }
@@ -922,4 +923,35 @@ void UKUIInterfaceElement::OnRemovedFromContainer( const FKUIInterfaceElementCon
 void UKUIInterfaceElement::OnRender( const FKUIInterfaceElementRenderEvent& stEventInfo )
 {
 
+}
+
+
+void UKUIInterfaceElement::AddTag( const FString& strTag )
+{
+	arTags.AddUnique( strTag );
+}
+
+
+const FString& UKUIInterfaceElement::GetTag( int32 iIndex ) const
+{
+	static FString strEmpty = "";
+
+	if ( !arTags.IsValidIndex( iIndex ) )
+		return strEmpty;
+
+	return arTags[ iIndex ];
+}
+
+
+bool UKUIInterfaceElement::HasTag( const FString& strTag ) const
+{
+	for ( int32 i = 0, length = arTags.Num(); i < length; ++i )
+	{
+		if ( arTags[ i ] != strTag )
+			continue;
+
+		return true;
+	}
+
+	return false;
 }
