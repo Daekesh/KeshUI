@@ -99,7 +99,7 @@ bool UKUIKeyPressInterceptWidget::OnKeyDown( const FKUIInterfaceContainerKeyEven
 
 	// Don't intercept modifier keys, but add them to the keybind later
 	if ( stEventInfo.eKey.IsModifierKey() )
-		return true;
+		return false;
 
 	KeyIntercept( stEventInfo.eKey );
 	return true;
