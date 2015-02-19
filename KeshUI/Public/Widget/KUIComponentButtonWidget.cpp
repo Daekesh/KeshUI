@@ -80,7 +80,7 @@ void UKUIComponentButtonWidget::OnWidgetStateChange()
 {
 	Super::OnWidgetStateChange();
 
-	uint8 iButtonComponentIndex = EKUIButtonState::S_Default;
+	iButtonComponentIndex = EKUIButtonState::S_Default;
 
 	if ( bMouseOver )
 		iButtonComponentIndex += EKUIButtonState::S_MouseOver;
@@ -91,7 +91,7 @@ void UKUIComponentButtonWidget::OnWidgetStateChange()
 	if ( bDisabled )
 		iButtonComponentIndex += EKUIButtonState::S_Disabled;
 
-	uint8 iElementComponentIndex = iButtonComponentIndex;
+	iElementComponentIndex = iButtonComponentIndex;
 
 	iButtonComponentIndex = GetComponentIndex( arButtonComponents, ( EKUIButtonState::State ) iButtonComponentIndex );
 	iElementComponentIndex = GetComponentIndex( arElementComponents, ( EKUIButtonState::State ) iElementComponentIndex );
