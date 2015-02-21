@@ -540,10 +540,11 @@ void UKUITextFieldWidget::AddString( const FString& strString )
 		}
 	}
 
-	iCaretPosition += strString.Len();
 	SetString( strFullString.Left( iCaretPosition ) + strString + strFullString.Right( strFullString.Len() - iCaretPosition ) );
 	strLastAdd = strString;
 	eLastAction = EKUITextFieldWidgetLastAction::LA_Add;
+
+	SetCaretPosition( iCaretPosition + strString.Len() );
 }
 
 
