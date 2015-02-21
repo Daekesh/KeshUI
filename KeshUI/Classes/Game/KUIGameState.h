@@ -14,7 +14,7 @@ class AKUITeamInfo;
 #define KUI_MATCH_START_TIME_NOT_STARTED -1.f
 
 /**
- * The base game state class for Barrage.
+ * The base game state class for KeshUI.
  */
 UCLASS(ClassGroup="KeshUI | Game", Blueprintable, BlueprintType, NotPlaceable)
 class KESHUI_API AKUIGameState : public AGameState
