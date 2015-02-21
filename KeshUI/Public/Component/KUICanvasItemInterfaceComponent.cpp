@@ -59,8 +59,7 @@ void UKUICanvasItemInterfaceComponent::SetDrawColor( float fRed, float fGreen, f
 {
 	Super::SetDrawColor( fRed, fGreen, fBlue, fAlpha );
 
-	if ( stItem.IsValid() )
-		stItem->SetColor( FColor( fRed, fGreen, fBlue, fAlpha ).ReinterpretAsLinear() );
+	Invalidate();
 }
 
 

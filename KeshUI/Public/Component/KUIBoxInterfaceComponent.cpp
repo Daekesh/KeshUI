@@ -81,6 +81,7 @@ void UKUIBoxInterfaceComponent::ConstructNewItem()
 	) );
 
 	static_cast<FCanvasBoxItem*>(&*stItem)->LineThickness = fThickness;
+	static_cast< FCanvasBoxItem* >( &*stItem )->SetColor( GetDrawColor().ReinterpretAsLinear() );
 
 	Super::ConstructNewItem();
 }

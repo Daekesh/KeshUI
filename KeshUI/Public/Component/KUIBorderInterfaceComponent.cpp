@@ -9,24 +9,17 @@
 UKUIBorderInterfaceComponent::UKUIBorderInterfaceComponent( const class FObjectInitializer& oObjectInitializer )
 	: Super(oObjectInitializer)
 {
-	tTextureBackground = NULL;
-	tTextureBorderLeft = NULL;
-	tTextureBorderRight = NULL;
-	tTextureBorderTop = NULL;
-	tTextureBorderBottom = NULL;
-	tTextureBorderTopLeft = NULL;
-	tTextureBorderTopRight = NULL;
-	tTextureBorderBottomLeft = NULL;
-	tTextureBorderBottomRight = NULL;
-	tTextureBackgroundPtr = NULL;
-	tTextureBorderLeftPtr = NULL;
-	tTextureBorderRightPtr = NULL;
-	tTextureBorderTopPtr = NULL;
-	tTextureBorderBottomPtr = NULL;
-	tTextureBorderTopLeftPtr = NULL;
-	tTextureBorderTopRightPtr = NULL;
-	tTextureBorderBottomLeftPtr = NULL;
-	tTextureBorderBottomRightPtr = NULL;
+	arTextures.SetNum( EBCBorderTexture::TI_Max );
+	arTexturePtrs.SetNum( EBCBorderTexture::TI_Max );
+	arItems.SetNum( EBCBorderTexture::TI_Max );
+
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+	{
+		arTextures[ i ] = NULL;
+		arTexturePtrs[ i ] = NULL;
+		arItems[ i ].Reset();
+	}
+
 	v2Size = FVector2D::ZeroVector;
 	rRotation = FRotator::ZeroRotator;
 	v2PivotPoint = FVector2D::ZeroVector;
@@ -37,357 +30,78 @@ UKUIBorderInterfaceComponent::UKUIBorderInterfaceComponent( const class FObjectI
 }
 
 
-UTexture2D* UKUIBorderInterfaceComponent::GetBackgroundTexture() const
+UTexture2D* UKUIBorderInterfaceComponent::GetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex ) const
 {
-	return tTextureBackground;
+	return arTextures[ eIndex ];
 }
 
 
-void UKUIBorderInterfaceComponent::SetBackgroundTexture( UTexture2D* tTexture )
+void UKUIBorderInterfaceComponent::SetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D* tTexture )
 {
-	if ( tTextureBackground == tTexture )
+	if ( arTextures[ eIndex ] == tTexture )
 		return;
 
-	tTextureBackground = tTexture;
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetBackgroundTexturePointer( UTexture2D** tTextureBackgroundPtr )
-{
-	if ( this->tTextureBackgroundPtr == tTextureBackgroundPtr )
-		return;
-
-	this->tTextureBackgroundPtr = tTextureBackgroundPtr;
-
-	SetBackgroundTexture( *tTextureBackgroundPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetBackgroundTextureName( const FName& nTextureName )
-{
-	SetBackgroundTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetLeftBorderTexture() const
-{
-	return tTextureBorderLeft;
-}
-
-
-void UKUIBorderInterfaceComponent::SetLeftBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderLeft == tTexture )
-		return;
-
-	tTextureBorderLeft = tTexture;
-
-	if ( tTexture != NULL && v4BorderMetrics.X == KUI_BORDER_NOT_SET )
-		v4BorderMetrics.X = tTexture->GetSurfaceWidth();
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetLeftBorderTexturePointer( UTexture2D** tTextureBorderLeftPtr )
-{
-	if ( this->tTextureBorderLeftPtr == tTextureBorderLeftPtr )
-		return;
-
-	this->tTextureBorderLeftPtr = tTextureBorderLeftPtr;
-
-	SetLeftBorderTexture( *tTextureBorderLeftPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetLeftBorderTextureName( const FName& nTextureName )
-{
-	SetLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetRightBorderTexture() const
-{
-	return tTextureBorderRight;
-}
-
-
-void UKUIBorderInterfaceComponent::SetRightBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderRight == tTexture )
-		return;
-
-	tTextureBorderRight = tTexture;
-
-	if ( tTexture != NULL && v4BorderMetrics.Y == KUI_BORDER_NOT_SET )
-		v4BorderMetrics.Y = tTexture->GetSurfaceWidth();
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetRightBorderTexturePointer( UTexture2D** tTextureBorderRightPtr )
-{
-	if ( this->tTextureBorderRightPtr == tTextureBorderRightPtr )
-		return;
-
-	this->tTextureBorderRightPtr = tTextureBorderRightPtr;
-
-	SetRightBorderTexture( *tTextureBorderRightPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetRightBorderTextureName( const FName& nTextureName )
-{
-	SetRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetTopBorderTexture() const
-{
-	return tTextureBorderTop;
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderTop == tTexture )
-		return;
-
-	tTextureBorderTop = tTexture;
-
-	if ( tTexture != NULL && v4BorderMetrics.Z == KUI_BORDER_NOT_SET )
-		v4BorderMetrics.Z = tTexture->GetSurfaceHeight();
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopBorderTexturePointer( UTexture2D** tTextureBorderTopPtr )
-{
-	if ( this->tTextureBorderTopPtr == tTextureBorderTopPtr )
-		return;
-
-	this->tTextureBorderTopPtr = tTextureBorderTopPtr;
-
-	SetTopBorderTexture( *tTextureBorderTopPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopBorderTextureName( const FName& nTextureName )
-{
-	SetTopBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetBottomBorderTexture() const
-{
-	return tTextureBorderBottom;
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderBottom == tTexture )
-		return;
-
-	tTextureBorderBottom = tTexture;
-
-	if ( tTexture != NULL && v4BorderMetrics.W == KUI_BORDER_NOT_SET )
-		v4BorderMetrics.W = tTexture->GetSurfaceHeight();
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomBorderTexturePointer( UTexture2D** tTextureBorderBottomPtr )
-{
-	if ( this->tTextureBorderBottomPtr == tTextureBorderBottomPtr )
-		return;
-
-	this->tTextureBorderBottomPtr = tTextureBorderBottomPtr;
-
-	SetBottomBorderTexture( *tTextureBorderBottomPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomBorderTextureName( const FName& nTextureName )
-{
-	SetBottomBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetTopLeftBorderTexture() const
-{
-	return tTextureBorderTopLeft;
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopLeftBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderTopLeft == tTexture )
-		return;
-
-	tTextureBorderTopLeft = tTexture;
+	arTextures[ eIndex ] = tTexture;
 
 	if ( tTexture != NULL )
 	{
-		if ( v4BorderMetrics.X == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.X = tTexture->GetSurfaceWidth();
+		switch ( eIndex )
+		{
+			case EBCBorderTexture::TI_TopLeft:
+			case EBCBorderTexture::TI_Left:
+			case EBCBorderTexture::TI_BottomLeft:
+				if ( v4BorderMetrics.X == KUI_BORDER_NOT_SET )
+					v4BorderMetrics.X = tTexture->GetSurfaceWidth();
 
-		if ( v4BorderMetrics.Z == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.Z = tTexture->GetSurfaceHeight();
+				break;
+
+			case EBCBorderTexture::TI_TopRight:
+			case EBCBorderTexture::TI_Right:
+			case EBCBorderTexture::TI_BottomRight:
+				if ( v4BorderMetrics.Z == KUI_BORDER_NOT_SET )
+					v4BorderMetrics.Z = tTexture->GetSurfaceWidth();
+
+				break;
+		}
+
+		switch ( eIndex )
+		{
+			case EBCBorderTexture::TI_TopLeft:
+			case EBCBorderTexture::TI_Top:
+			case EBCBorderTexture::TI_TopRight:
+				if ( v4BorderMetrics.Y == KUI_BORDER_NOT_SET )
+					v4BorderMetrics.Y = tTexture->GetSurfaceHeight();
+
+				break;
+
+			case EBCBorderTexture::TI_BottomLeft:
+			case EBCBorderTexture::TI_Bottom:
+			case EBCBorderTexture::TI_BottomRight:
+				if ( v4BorderMetrics.W == KUI_BORDER_NOT_SET )
+					v4BorderMetrics.W = tTexture->GetSurfaceHeight();
+
+				break;
+		}
 	}
 
 	Invalidate();
 }
 
 
-void UKUIBorderInterfaceComponent::SetTopLeftBorderTexturePointer( UTexture2D** tTextureBorderTopLeftPtr )
+void UKUIBorderInterfaceComponent::SetTexturePointer( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D** tTexturePtr )
 {
-	if ( this->tTextureBorderTopLeftPtr == tTextureBorderTopLeftPtr )
+	if ( arTexturePtrs[ eIndex ] == tTexturePtr )
 		return;
 
-	this->tTextureBorderTopLeftPtr = tTextureBorderTopLeftPtr;
+	arTexturePtrs[ eIndex ] = tTexturePtr;
 
-	SetTopLeftBorderTexture( *tTextureBorderTopLeftPtr );
+	SetTexture( eIndex, tTexturePtr != NULL ? *tTexturePtr : NULL );
 }
 
 
-void UKUIBorderInterfaceComponent::SetTopLeftBorderTextureName( const FName& nTextureName )
+void UKUIBorderInterfaceComponent::SetTextureName( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, const FName& nTextureName )
 {
-	SetTopLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetTopRightBorderTexture() const
-{
-	return tTextureBorderTopRight;
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopRightBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderTopRight == tTexture )
-		return;
-
-	tTextureBorderTopRight = tTexture;
-
-	if ( tTexture != NULL )
-	{
-		if ( v4BorderMetrics.Y == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.Y = tTexture->GetSurfaceWidth();
-
-		if ( v4BorderMetrics.Z == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.Z = tTexture->GetSurfaceHeight();
-	}
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopRightBorderTexturePointer( UTexture2D** tTextureBorderTopRightPtr )
-{
-	if ( this->tTextureBorderTopRightPtr == tTextureBorderTopRightPtr )
-		return;
-
-	this->tTextureBorderTopRightPtr = tTextureBorderTopRightPtr;
-
-	SetTopRightBorderTexture( *tTextureBorderTopRightPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetTopRightBorderTextureName( const FName& nTextureName )
-{
-	SetTopRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetBottomLeftBorderTexture() const
-{
-	return tTextureBorderBottomLeft;
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomLeftBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderBottomLeft == tTexture )
-		return;
-
-	tTextureBorderBottomLeft = tTexture;
-
-	if ( tTexture != NULL )
-	{
-		if ( v4BorderMetrics.X == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.X = tTexture->GetSurfaceWidth();
-
-		if ( v4BorderMetrics.W == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.W = tTexture->GetSurfaceHeight();
-	}
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomLeftBorderTexturePointer( UTexture2D** tTextureBorderBottomLeftPtr )
-{
-	if ( this->tTextureBorderBottomLeftPtr == tTextureBorderBottomLeftPtr )
-		return;
-
-	this->tTextureBorderBottomLeftPtr = tTextureBorderBottomLeftPtr;
-
-	SetBottomLeftBorderTexture( *tTextureBorderBottomLeftPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomLeftBorderTextureName( const FName& nTextureName )
-{
-	SetBottomLeftBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
-}
-
-
-UTexture2D* UKUIBorderInterfaceComponent::GetBottomRightBorderTexture() const
-{
-	return tTextureBorderBottomRight;
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomRightBorderTexture( UTexture2D* tTexture )
-{
-	if ( tTextureBorderBottomRight == tTexture )
-		return;
-
-	tTextureBorderBottomRight = tTexture;
-
-	if ( tTexture != NULL )
-	{
-		if ( v4BorderMetrics.Y == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.Y = tTexture->GetSurfaceWidth();
-
-		if ( v4BorderMetrics.W == KUI_BORDER_NOT_SET )
-			v4BorderMetrics.W = tTexture->GetSurfaceHeight();
-	}
-
-	Invalidate();
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomRightBorderTexturePointer( UTexture2D** tTextureBorderBottomRightPtr )
-{
-	if ( this->tTextureBorderBottomRightPtr == tTextureBorderBottomRightPtr )
-		return;
-
-	this->tTextureBorderBottomRightPtr = tTextureBorderBottomRightPtr;
-
-	SetBottomRightBorderTexture( *tTextureBorderBottomRightPtr );
-}
-
-
-void UKUIBorderInterfaceComponent::SetBottomRightBorderTextureName( const FName& nTextureName )
-{
-	SetBottomRightBorderTexturePointer( GetAsset<UTexture2D>( nTextureName ) );
+	SetTexturePointer( eIndex, GetAsset<UTexture2D>( nTextureName ) );
 }
 
 
@@ -472,35 +186,27 @@ FVector4 UKUIBorderInterfaceComponent::GetBorderMetrics() const
 }
 
 
-void UKUIBorderInterfaceComponent::SetBorderMetrics( float fLeft, float fRight, float fTop, float fBottom )
+void UKUIBorderInterfaceComponent::SetBorderMetrics( float fLeft, float fTop, float fRight, float fBottom )
 {
 	if ( fLeft != KUI_BORDER_NO_CHANGE )
 		v4BorderMetrics.X = fLeft;
 
 	if ( fRight != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.Y = fRight;
+		v4BorderMetrics.Z = fRight;
 
 	if ( fTop != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.Z = fTop;
+		v4BorderMetrics.Y = fTop;
 
 	if ( fBottom != KUI_BORDER_NO_CHANGE )
 		v4BorderMetrics.W = fBottom;
+
+	Invalidate();
 }
 
 
 void UKUIBorderInterfaceComponent::SetBorderMetricsStruct( const FVector4& v4Metrics )
 {
-	if ( v4Metrics.X != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.X = v4Metrics.X;
-
-	if ( v4Metrics.Y != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.Y = v4Metrics.Y;
-
-	if ( v4Metrics.Z != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.Z = v4Metrics.Z;
-
-	if ( v4Metrics.W != KUI_BORDER_NO_CHANGE )
-		v4BorderMetrics.W = v4Metrics.W;
+	SetBorderMetrics( v4Metrics.X, v4Metrics.Y, v4Metrics.Z, v4Metrics.W );
 }
 
 
@@ -509,9 +215,7 @@ bool UKUIBorderInterfaceComponent::HasValidComponents() const
 	if ( v2Size.X <= 0 || v2Size.Y <= 0 )
 		return false;
 
-	if ( tTextureBackground == NULL && tTextureBorderLeft == NULL && tTextureBorderRight == NULL &&
-		 tTextureBorderTop == NULL && tTextureBorderBottom == NULL && tTextureBorderTopLeft == NULL && 
-		 tTextureBorderTopRight == NULL && tTextureBorderBottomLeft == NULL && tTextureBorderBottomRight == NULL )
+	if ( arTextures[ EBCBorderTexture::TI_Centre ] == NULL )
 		return false;
 
 	return true;
@@ -524,77 +228,9 @@ void UKUIBorderInterfaceComponent::ConstructNewItem()
 		return;
 
 	stItem.Reset();
-}
 
-
-void UKUIBorderInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject )
-{
-	Super::Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
-
-	if ( IsRenderCaching() && oRenderCacheObject != this )
-		return;
-
-	if ( tTextureBackgroundPtr != NULL && *tTextureBackgroundPtr != tTextureBackground )
-		SetBackgroundTexture( *tTextureBackgroundPtr );
-
-	if ( tTextureBorderLeftPtr != NULL && *tTextureBorderLeftPtr != tTextureBorderLeft )
-		SetLeftBorderTexture( *tTextureBorderLeftPtr );
-
-	if ( tTextureBorderRightPtr != NULL && *tTextureBorderRightPtr != tTextureBorderRight )
-		SetRightBorderTexture( *tTextureBorderRightPtr );
-
-	if ( tTextureBorderTopPtr != NULL && *tTextureBorderTopPtr != tTextureBorderTop )
-		SetTopBorderTexture( *tTextureBorderTopPtr );
-
-	if ( tTextureBorderBottomPtr != NULL && *tTextureBorderBottomPtr != tTextureBorderBottom )
-		SetBottomBorderTexture( *tTextureBorderBottomPtr );
-
-	if ( tTextureBorderTopLeftPtr != NULL && *tTextureBorderTopLeftPtr != tTextureBorderTopLeft )
-		SetTopLeftBorderTexture( *tTextureBorderTopLeftPtr );
-
-	if ( tTextureBorderTopRightPtr != NULL && *tTextureBorderTopRightPtr != tTextureBorderTopRight )
-		SetTopRightBorderTexture( *tTextureBorderTopRightPtr );
-
-	if ( tTextureBorderBottomLeftPtr != NULL && *tTextureBorderBottomLeftPtr != tTextureBorderBottomLeft )
-		SetBottomLeftBorderTexture( *tTextureBorderBottomLeftPtr );
-
-	if ( tTextureBorderBottomRightPtr != NULL && *tTextureBorderBottomRightPtr != tTextureBorderBottomRight )
-		SetBottomRightBorderTexture( *tTextureBorderBottomRightPtr );
-
-	if ( !HasValidComponents() )
-		return;
-
-	FVector2D v2RenderLocation = ( ( IsRenderCaching() || !IsPositionable() ) ? FVector2D::ZeroVector : v2Origin + GetRenderLocation() );
-
-	v2RenderLocation.X = bRoundPosition ? FMath::RoundToInt( v2RenderLocation.X ) : v2RenderLocation.X;
-	v2RenderLocation.Y = bRoundPosition ? FMath::RoundToInt( v2RenderLocation.Y ) : v2RenderLocation.Y;
-
-	EBlendMode eBlendMode = EBlendMode::BLEND_Translucent;
-
-	switch ( this->eBlendMode )
-	{
-		case SE_BLEND_Opaque:
-			eBlendMode = EBlendMode::BLEND_Opaque;
-
-		case SE_BLEND_Masked:
-		case SE_BLEND_MaskedDistanceField:
-		case SE_BLEND_MaskedDistanceFieldShadowed:
-			eBlendMode = EBlendMode::BLEND_Masked;
-
-		case SE_BLEND_Additive:
-			eBlendMode = EBlendMode::BLEND_Additive;
-
-		case SE_BLEND_Modulate:
-			eBlendMode = EBlendMode::BLEND_Modulate;
-
-		case SE_BLEND_Translucent:
-		case SE_BLEND_TranslucentDistanceField:
-		case SE_BLEND_TranslucentDistanceFieldShadowed:
-		case SE_BLEND_AlphaComposite:
-		case SE_BLEND_AlphaBlend:
-		default:
-			eBlendMode = EBlendMode::BLEND_Translucent;
-	}
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+		arItems[ i ].Reset();
 
 	FVector4 v4BorderMetricsActual;
 	v4BorderMetricsActual.X = ( v4BorderMetrics.X != KUI_BORDER_NOT_SET ? v4BorderMetrics.X : 0.f );
@@ -621,122 +257,142 @@ void UKUIBorderInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas
 	v2CentreSize.X = v2Size.X - v4BorderMetricsActual.X - v4BorderMetricsActual.Y;
 	v2CentreSize.Y = v2Size.Y - v4BorderMetricsActual.Z - v4BorderMetricsActual.W;
 
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+	{
+		if ( arTextures[ i ] == NULL )
+			continue;
+
+		FVector2D v2ItemPosition = FVector2D::ZeroVector;
+		FVector2D v2ItemSize = FVector2D::ZeroVector;
+
+		switch ( i )
+		{
+			case EBCBorderTexture::TI_TopLeft:
+				v2ItemPosition.X = 0.f;
+				v2ItemPosition.Y = 0.f;
+				v2ItemSize.X = v4BorderMetricsActual.X;
+				v2ItemSize.Y = v4BorderMetricsActual.Y;
+				break;
+
+			case EBCBorderTexture::TI_Left:
+				v2ItemPosition.X = 0.f;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y;
+				v2ItemSize.X = v4BorderMetricsActual.X;
+				v2ItemSize.Y = v2CentreSize.Y;
+				break;
+
+			case EBCBorderTexture::TI_BottomLeft:
+				v2ItemPosition.X = 0.f;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y + v2CentreSize.Y;
+				v2ItemSize.X = v4BorderMetricsActual.X;
+				v2ItemSize.Y = v4BorderMetricsActual.W;
+				break;
+
+			case EBCBorderTexture::TI_Top:
+				v2ItemPosition.X = v4BorderMetricsActual.X;
+				v2ItemPosition.Y = 0.f;
+				v2ItemSize.X = v2CentreSize.X;
+				v2ItemSize.Y = v4BorderMetricsActual.Y;
+				break;
+
+			case EBCBorderTexture::TI_Centre:
+				v2ItemPosition.X = v4BorderMetricsActual.X;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y;
+				v2ItemSize = v2CentreSize;
+				break;
+
+			case EBCBorderTexture::TI_Bottom:
+				v2ItemPosition.X = v4BorderMetricsActual.X;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y + v2CentreSize.Y;
+				v2ItemSize.X = v2CentreSize.X;
+				v2ItemSize.Y = v4BorderMetricsActual.W;
+				break;
+
+			case EBCBorderTexture::TI_TopRight:
+				v2ItemPosition.X = v4BorderMetricsActual.X + v2CentreSize.X;
+				v2ItemPosition.Y = 0.f;
+				v2ItemSize.X = v4BorderMetricsActual.Z;
+				v2ItemSize.Y = v4BorderMetricsActual.Y;
+				break;
+
+			case EBCBorderTexture::TI_Right:
+				v2ItemPosition.X = v4BorderMetricsActual.X + v2CentreSize.X;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y;
+				v2ItemSize.X = v4BorderMetricsActual.Z;
+				v2ItemSize.Y = v2CentreSize.Y;
+				break;
+
+			case EBCBorderTexture::TI_BottomRight:
+				v2ItemPosition.X = v4BorderMetricsActual.X + v2CentreSize.X;
+				v2ItemPosition.Y = v4BorderMetricsActual.Y + v2CentreSize.Y;
+				v2ItemSize.X = v4BorderMetricsActual.Z;
+				v2ItemSize.Y = v4BorderMetricsActual.W;
+				break;
+		}
+
+		arItems[ i ] = TSharedPtr<FCanvasTileItem>( new FCanvasTileItem(
+			v2ItemPosition,
+			arTextures[ i ]->Resource,
+			v2ItemSize,
+			FVector2D::ZeroVector,
+			v2ItemSize / FVector2D( arTextures[ i ]->GetSurfaceWidth(), arTextures[ i ]->GetSurfaceHeight() ),
+			GetDrawColor().ReinterpretAsLinear()
+		) );
+	}
+
+	Validate();
+}
+
+
+void UKUIBorderInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject )
+{
+	Super::Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
+
+	if ( IsRenderCaching() && oRenderCacheObject != this )
+		return;
+
+	if ( !HasValidComponents() )
+		return;
+
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+		if ( arTexturePtrs[ i ] != NULL && *arTexturePtrs[ i ] != arTextures[ i ] )
+			SetTexture( static_cast<EBCBorderTexture::TextureIndex>( i ), *arTexturePtrs[ i ] );
+
+	if ( !arItems[ EBCBorderTexture::TI_Centre ].IsValid() )
+		ConstructNewItem();
+
+	FVector2D v2RenderLocation = ( ( IsRenderCaching() || !IsPositionable() ) ? FVector2D::ZeroVector : v2Origin + GetRenderLocation() );
+
+	v2RenderLocation.X = bRoundPosition ? FMath::RoundToInt( v2RenderLocation.X ) : v2RenderLocation.X;
+	v2RenderLocation.Y = bRoundPosition ? FMath::RoundToInt( v2RenderLocation.Y ) : v2RenderLocation.Y;
+
 	//oCanvas->SetClip( v2RenderLocation.X + v2Size.X, v2RenderLocation.Y + v2Size.Y );
 
-	if ( tTextureBackground && v2CentreSize.X >= 1.f && v2CentreSize.Y >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBackground,
-			v2RenderLocation.X + v4BorderMetricsActual.X,
-			v2RenderLocation.Y + v4BorderMetricsActual.Z,
-			v2CentreSize.X,
-			v2CentreSize.Y,
-			0.f, 0.f,
-			v2CentreSize.X,
-			v2CentreSize.Y,
-			eBlendMode
-		);
-	
-	if ( tTextureBorderLeft && v4BorderMetricsActual.X >= 1.f && v2CentreSize.Y >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBorderLeft,
-			v2RenderLocation.X,
-			v2RenderLocation.Y,
-			v4BorderMetricsActual.X,
-			v2CentreSize.Y,
-			0.f, 0.f,
-			tTextureBorderLeft->GetSurfaceWidth(),
-			tTextureBorderLeft->GetSurfaceHeight(),
-			eBlendMode
-		);
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+	{
+		if ( arItems[ i ].IsValid() )
+		{
+			arItems[ i ]->Position += v2RenderLocation;
 
-	if ( tTextureBorderRight && v4BorderMetricsActual.Y >= 1.f && v2CentreSize.Y >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBorderRight,
-			v2RenderLocation.X,
-			v2RenderLocation.Y,
-			v4BorderMetricsActual.Y,
-			v2CentreSize.Y,
-			0.f, 0.f,
-			tTextureBorderRight->GetSurfaceWidth(),
-			tTextureBorderRight->GetSurfaceHeight(),
-			eBlendMode
-		);
+			if ( oRenderCacheObject != NULL && eBlendMode == SE_BLEND_Translucent )
+				arItems[ i ]->BlendMode = ESimpleElementBlendMode::SE_BLEND_AlphaComposite;
 
-	if ( tTextureBorderTop && v4BorderMetricsActual.Z >= 1.f && v2CentreSize.X >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBorderTop,
-			v2RenderLocation.X,
-			v2RenderLocation.Y,
-			v2CentreSize.X,
-			v4BorderMetricsActual.Z,
-			0.f, 0.f,
-			tTextureBorderTop->GetSurfaceWidth(),
-			tTextureBorderTop->GetSurfaceHeight(),
-			eBlendMode
-		);
+			else
+				arItems[ i ]->BlendMode = eBlendMode;
+		}
+	}
 
-	if ( tTextureBorderBottom && v4BorderMetricsActual.W >= 1.f && v2CentreSize.X >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBorderBottom,
-			v2RenderLocation.X,
-			v2RenderLocation.Y,
-			v2CentreSize.X,
-			v4BorderMetricsActual.W,
-			0.f, 0.f,
-			tTextureBorderBottom->GetSurfaceWidth(),
-			tTextureBorderBottom->GetSurfaceHeight(),
-			eBlendMode
-		);
+	if ( arItems[ EBCBorderTexture::TI_Centre ].IsValid() )      oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_Centre ] );
+	if ( arItems[ EBCBorderTexture::TI_Left ].IsValid() )        oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_Left ] );
+	if ( arItems[ EBCBorderTexture::TI_Right ].IsValid() )       oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_Right ] );
+	if ( arItems[ EBCBorderTexture::TI_Top ].IsValid() )         oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_Top ] );
+	if ( arItems[ EBCBorderTexture::TI_Bottom ].IsValid() )      oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_Bottom ] );
+	if ( arItems[ EBCBorderTexture::TI_TopLeft ].IsValid() )     oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_TopLeft ] );
+	if ( arItems[ EBCBorderTexture::TI_TopRight ].IsValid() )    oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_TopRight ] );
+	if ( arItems[ EBCBorderTexture::TI_BottomLeft ].IsValid() )  oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_BottomLeft ] );
+	if ( arItems[ EBCBorderTexture::TI_BottomRight ].IsValid() ) oCanvas->DrawItem( *arItems[ EBCBorderTexture::TI_BottomRight ] );
 
-	if ( tTextureBorderTopLeft && v4BorderMetricsActual.X >= 1.f && v4BorderMetricsActual.Z >= 1.f )
-		oCanvas->DrawTile( 
-			tTextureBorderTopLeft,
-			v2RenderLocation.X, 
-			v2RenderLocation.Y,
-			v4BorderMetricsActual.X,
-			v4BorderMetricsActual.Z,
-			0.f, 0.f,
-			tTextureBorderTopLeft->GetSurfaceWidth(), 
-			tTextureBorderTopLeft->GetSurfaceHeight(),
-			eBlendMode
-		);
-
-	if ( tTextureBorderTopRight && v4BorderMetricsActual.Y >= 1.f && v4BorderMetricsActual.Z >= 1.f )
-		oCanvas->DrawTile( 
-			tTextureBorderTopRight,
-			v2RenderLocation.X + v4BorderMetricsActual.Y + v2CentreSize.X,
-			v2RenderLocation.Y,
-			v4BorderMetricsActual.Y,
-			v4BorderMetricsActual.Z,
-			0.f, 0.f,
-			tTextureBorderTopRight->GetSurfaceWidth(), 
-			tTextureBorderTopRight->GetSurfaceHeight(),
-			eBlendMode
-		);
-
-	if ( tTextureBorderBottomLeft && v4BorderMetricsActual.X >= 1.f && v4BorderMetricsActual.W >= 1.f )
-		oCanvas->DrawTile( 
-			tTextureBorderBottomLeft,
-			v2RenderLocation.X, 
-			v2RenderLocation.Y + v4BorderMetricsActual.Z + v2CentreSize.Y,
-			v4BorderMetricsActual.X,
-			v4BorderMetricsActual.W,
-			0.f, 0.f,
-			tTextureBorderBottomLeft->GetSurfaceWidth(), 
-			tTextureBorderBottomLeft->GetSurfaceHeight(),
-			eBlendMode
-		);
-
-	if ( tTextureBorderBottomRight && v4BorderMetricsActual.Y >= 1.f && v4BorderMetricsActual.W >= 1.f )
-		oCanvas->DrawTile(
-			tTextureBorderBottomRight,
-			v2RenderLocation.X + v4BorderMetricsActual.Y + v2CentreSize.X,
-			v2RenderLocation.Y + v4BorderMetricsActual.Z + v2CentreSize.Y,
-			v4BorderMetricsActual.Y,
-			v4BorderMetricsActual.W,
-			0.f, 0.f,
-			tTextureBorderBottomRight->GetSurfaceWidth(), 
-			tTextureBorderBottomRight->GetSurfaceHeight(),
-			eBlendMode
-		);
+	for ( uint8 i = EBCBorderTexture::TI_Centre; i < EBCBorderTexture::TI_Max; ++i )
+		if ( arItems[ i ].IsValid() )
+			arItems[ i ]->Position -= v2RenderLocation;
 }

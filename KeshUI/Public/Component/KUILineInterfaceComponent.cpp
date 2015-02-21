@@ -121,7 +121,8 @@ void UKUILineInterfaceComponent::ConstructNewItem()
 		vEnd
 	) );
 
-	static_cast<FCanvasLineItem*>(&*stItem)->LineThickness = fThickness;
+	static_cast< FCanvasLineItem* >( &*stItem )->LineThickness = fThickness;
+	static_cast< FCanvasLineItem* >( &*stItem )->SetColor( GetDrawColor().ReinterpretAsLinear() );
 
 	Super::ConstructNewItem();
 }

@@ -10,6 +10,25 @@
 #define KUI_BORDER_NONE 0.f
 #define KUI_BORDER_NO_CHANGE -2.f
 
+UENUM( BlueprintType)
+namespace EBCBorderTexture
+{
+	enum TextureIndex
+	{
+		TI_Centre = 0      UMETA( DisplayName = "Center Texture" ),
+		TI_Left = 1        UMETA( DisplayName = "Left Texture" ),
+		TI_Right = 2       UMETA( DisplayName = "Right Texture" ),
+		TI_Top = 3         UMETA( DisplayName = "Top Texture" ),
+		TI_Bottom = 4      UMETA( DisplayName = "Bottom Texture" ),
+		TI_TopLeft = 5     UMETA( DisplayName = "Top Left Texture" ),
+		TI_TopRight = 6    UMETA( DisplayName = "Top Right Texture" ),
+		TI_BottomLeft = 7  UMETA( DisplayName = "Bottom Left Texture" ),
+		TI_BottomRight = 8 UMETA( DisplayName = "Bottom Right Texture" ),
+		TI_Max = 9         UMETA( Hidden )
+	};
+}
+
+
 /**
  * KeshUI UI Framework (KUI) Border render component.
  */
@@ -21,140 +40,20 @@ class KESHUI_API UKUIBorderInterfaceComponent : public UKUICanvasItemInterfaceCo
 
 public:
 
-	/* Gets the background texture. */
+	/* Gets the indexed texture. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetBackgroundTexture() const;
+	virtual UTexture2D* GetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex ) const;
 
-	/* Sets the background texture. */
+	/* Sets the indexed texture. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetBackgroundTexture( UTexture2D* tTexture );
+	virtual void SetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D* tTexture );
 
-	/* Sets the background texture pointer. */
-	virtual void SetBackgroundTexturePointer( UTexture2D** tTexture );
+	/* Sets the indexed texture pointer. */
+	virtual void SetTexturePointer( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D** tTexturePtr );
 
-	/* Sets the background texture name. */
+	/* Sets the indexed texture name. */
 	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetBackgroundTextureName( const FName& nTexture );
-
-	/* Gets the left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetLeftBorderTexture() const;
-
-	/* Sets the left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetLeftBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetLeftBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetLeftBorderTextureName( const FName& nTexture );
-
-	/* Gets the right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetRightBorderTexture() const;
-
-	/* Sets the right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetRightBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetRightBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetRightBorderTextureName( const FName& nTexture );
-
-	/* Gets the top border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetTopBorderTexture() const;
-
-	/* Sets the top border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetTopBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetTopBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetTopBorderTextureName( const FName& nTexture );
-
-	/* Gets the bottom border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetBottomBorderTexture() const;
-
-	/* Sets the bottom border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetBottomBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetBottomBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetBottomBorderTextureName( const FName& nTexture );
-
-	/* Gets the top left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetTopLeftBorderTexture() const;
-
-	/* Sets the top left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetTopLeftBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetTopLeftBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetTopLeftBorderTextureName( const FName& nTexture );
-
-	/* Gets the top right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetTopRightBorderTexture() const;
-
-	/* Sets the top right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetTopRightBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetTopRightBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetTopRightBorderTextureName( const FName& nTexture );
-
-	/* Gets the bottom left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetBottomLeftBorderTexture() const;
-
-	/* Sets the bottom left border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetBottomLeftBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetBottomLeftBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetBottomLeftBorderTextureName( const FName& nTexture );
-
-	/* Gets the bottom right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual UTexture2D* GetBottomRightBorderTexture() const;
-
-	/* Sets the bottom right border texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual void SetBottomRightBorderTexture( UTexture2D* tTexture );
-
-	/* Sets the background texture pointer. */
-	virtual void SetBottomRightBorderTexturePointer( UTexture2D** tTexture );
-
-	/* Sets the background texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetBottomRightBorderTextureName( const FName& nTexture );
+	virtual void SetTextureName( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, const FName& nTextureName );
 
 	/* Gets the size of the component. */
 	virtual FVector2D GetSize() const override;
@@ -196,7 +95,7 @@ public:
 
 	/* Sets the border metrics. */
 	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual void SetBorderMetrics( float fLeft, float fRight, float fTop, float fBottom );
+	virtual void SetBorderMetrics( float fLeft, float fTop, float fRight, float fBottom );
 
 	/* Sets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
 	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
@@ -211,40 +110,9 @@ public:
 protected:
 
 	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBackground;
-	UTexture2D** tTextureBackgroundPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderLeft;
-	UTexture2D** tTextureBorderLeftPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderRight;
-	UTexture2D** tTextureBorderRightPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderTop;
-	UTexture2D** tTextureBorderTopPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderBottom;
-	UTexture2D** tTextureBorderBottomPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderTopLeft;
-	UTexture2D** tTextureBorderTopLeftPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderTopRight;
-	UTexture2D** tTextureBorderTopRightPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderBottomLeft;
-	UTexture2D** tTextureBorderBottomLeftPtr;
-
-	UPROPERTY() // Ensures reference count
-	UTexture2D* tTextureBorderBottomRight;
-	UTexture2D** tTextureBorderBottomRightPtr;
+	TArray<UTexture2D*> arTextures;
+	TArray<UTexture2D**> arTexturePtrs;
+	TArray<TSharedPtr<FCanvasTileItem>> arItems;
 
 	FVector2D v2Size;
 	FRotator rRotation;
