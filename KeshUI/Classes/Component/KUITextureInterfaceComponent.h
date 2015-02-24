@@ -12,8 +12,10 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUITextureInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUITextureInterfaceComponent )
+
+	UKUITextureInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
@@ -41,7 +43,7 @@ public:
 	virtual void SetDepth( float fDepth );
 
 	/* Gets the size of texture on the screen (at 0 depth.) */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the texture on the screen (at 0 depth.) */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
@@ -52,7 +54,7 @@ public:
 
 	/* Gets the texture coordinates. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
-	virtual FVector2D GetTextureCoords() const;
+	virtual const FVector2D& GetTextureCoords() const;
 
 	/* Sets the texture coordinates. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
@@ -64,7 +66,7 @@ public:
 
 	/* Gets the texture size.  Texture size is added on to the texture coordinate. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
-	virtual FVector2D GetTextureSize() const;
+	virtual const FVector2D& GetTextureSize() const;
 
 	/* Sets the texture size. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
@@ -76,7 +78,7 @@ public:
 
 	/* Gets the rotation of the component. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
-	virtual FRotator GetRotation() const;
+	virtual const FRotator& GetRotation() const;
 
 	/* Sets the rotation of the component. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
@@ -88,7 +90,7 @@ public:
 
 	/* Gets the pivot point of the component. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)
-	virtual FVector2D GetPivotPoint() const;
+	virtual const FVector2D& GetPivotPoint() const;
 
 	/* Sets the pivot point of the component. */
 	UFUNCTION(Category="KeshUI | Component | Texture", BlueprintCallable)

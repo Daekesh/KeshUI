@@ -15,8 +15,10 @@ class UKUITextureInterfaceComponent;
 UCLASS( ClassGroup = "KeshUI", BlueprintType, Blueprintable )
 class KESHUI_API UKUIListRowContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIListRowContainer )
+
+	UKUIListRowContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

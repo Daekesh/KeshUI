@@ -13,8 +13,10 @@
 UCLASS( ClassGroup = "KeshUI", Blueprintable, BlueprintType, NotPlaceable )
 class KESHUI_API UKUIRenderCache : public UKUITextureInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIRenderCache  )
+
+	UKUIRenderCache ( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

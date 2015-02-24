@@ -12,14 +12,16 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUILineInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUILineInterfaceComponent )
+
+	UKUILineInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the origin of the component. */
 	UFUNCTION(Category="KeshUI | Component | Line", BlueprintCallable)
-	virtual FVector GetOrigin() const;
+	virtual const FVector& GetOrigin() const;
 
 	/* Sets the origin of the component. */
 	UFUNCTION(Category="KeshUI | Component | Line", BlueprintCallable)
@@ -31,7 +33,7 @@ public:
 
 	/* Gets the end of the component. */
 	UFUNCTION(Category="KeshUI | Component | Line", BlueprintCallable)
-	virtual FVector GetEnd() const;
+	virtual const FVector& GetEnd() const;
 
 	/* Sets the end of the component. */
 	UFUNCTION(Category="KeshUI | Component | Line", BlueprintCallable)
@@ -50,7 +52,7 @@ public:
 	virtual void SetThickness( float fThickness );
 
 	/* Gets the size of this component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Returns true if this can have its location changed. */
 	virtual bool IsPositionable() const override;
@@ -65,6 +67,7 @@ protected:
 
 	FVector vOrigin;
 	FVector vEnd;
+	FVector2D v2Size;
 	float fThickness;
 
 	/* Tries to construct a new FCanvasLineItem! */

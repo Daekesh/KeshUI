@@ -50,8 +50,10 @@ namespace EKUIInterfaceRoot
 UCLASS(ClassGroup="KeshUI", Blueprintable, BlueprintType)
 class KESHUI_API AKUIInterface : public AHUD
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( AKUIInterface  )
+
+	AKUIInterface ( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

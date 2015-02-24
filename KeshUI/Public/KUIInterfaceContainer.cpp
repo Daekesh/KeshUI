@@ -22,7 +22,7 @@ UKUIInterfaceContainer::UKUIInterfaceContainer( const class FObjectInitializer& 
 }
 
 
-FVector2D UKUIInterfaceContainer::GetSize() const
+const FVector2D& UKUIInterfaceContainer::GetSize() const
 {
 	return v2Size;
 }

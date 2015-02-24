@@ -11,8 +11,10 @@
 UCLASS( ClassGroup = "KeshUI | Game", Blueprintable, BlueprintType )
 class KESHUI_API UKUIGameViewportClient : public UGameViewportClient
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIGameViewportClient )
+
+	UKUIGameViewportClient( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

@@ -13,8 +13,10 @@
 UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIListRowColumnContainer : public UKUIListRowContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIListRowColumnContainer )
+
+	UKUIListRowColumnContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 	

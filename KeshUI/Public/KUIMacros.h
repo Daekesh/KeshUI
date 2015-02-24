@@ -156,7 +156,8 @@
 	typedef void( __cdecl UObject::* ## n ## Prototype )( p1 param1, p2 param2, p3 param3, p4 param4, p5 param5, p6 param6, p7 param7, p8 param8 );
 
 // Constructors
-#define KUI_CLASS_HEADER_ACCESS( c, a ) //\
-//	a : \
-//	c ( const class FObjectInitializer& oObjectInitializer );
+#define KUI_CLASS_HEADER_ACCESS( c, a ) a:
+	//\
+	//a : \
+	//c ( const class FObjectInitializer& oObjectInitializer );
 #define KUI_CLASS_HEADER( c ) KUI_CLASS_HEADER_ACCESS( c, public )

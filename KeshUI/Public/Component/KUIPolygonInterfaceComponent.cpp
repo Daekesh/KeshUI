@@ -10,12 +10,13 @@ UKUIPolygonInterfaceComponent::UKUIPolygonInterfaceComponent( const class FObjec
 {
 	v2Position = FVector2D::ZeroVector;
 	v2Radius = FVector2D::ZeroVector;
+	v2Size = FVector2D::ZeroVector;
 	iSideCount = 0;
 	tTexture = NULL;
 }
 
 
-FVector2D UKUIPolygonInterfaceComponent::GetPosition() const
+const FVector2D& UKUIPolygonInterfaceComponent::GetPosition() const
 {
 	return v2Position;
 }
@@ -45,7 +46,7 @@ void UKUIPolygonInterfaceComponent::SetPosition( float fX, float fY )
 }
 
 
-FVector2D UKUIPolygonInterfaceComponent::GetRadius() const
+const FVector2D& UKUIPolygonInterfaceComponent::GetRadius() const
 {
 	return v2Radius;
 }
@@ -66,6 +67,8 @@ void UKUIPolygonInterfaceComponent::SetRadius( float fWidth, float fHeight )
 
 	v2Radius.X = fWidth;
 	v2Radius.Y = fHeight;
+
+	v2Size = v2Radius * 2.f;
 
 	if ( GetContainer() != NULL )
 	{
@@ -111,9 +114,9 @@ void UKUIPolygonInterfaceComponent::SetTexture( UTexture* tTexture )
 }
 
 
-FVector2D UKUIPolygonInterfaceComponent::GetSize() const
+const FVector2D& UKUIPolygonInterfaceComponent::GetSize() const
 {
-	return ( v2Radius * 2.f );
+	return v2Size;
 }
 
 

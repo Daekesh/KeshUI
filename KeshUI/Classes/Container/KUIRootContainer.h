@@ -14,8 +14,10 @@ class AKUIInterface;
 UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIRootContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIRootContainer )
+
+	UKUIRootContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

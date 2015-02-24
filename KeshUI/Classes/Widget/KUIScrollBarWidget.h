@@ -12,8 +12,10 @@ class UKUIScrollContainer;
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIScrollBarWidget : public UKUISliderWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIScrollBarWidget )
+
+	UKUIScrollBarWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

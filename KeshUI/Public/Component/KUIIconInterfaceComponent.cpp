@@ -10,6 +10,9 @@ UKUIIconInterfaceComponent::UKUIIconInterfaceComponent( const class FObjectIniti
 {
 	stIcon = UCanvas::MakeIcon( NULL );
 	fScale = 1.f;
+	v2Size = FVector2D::ZeroVector;
+	v2TexSize = FVector2D::ZeroVector;
+	v2TexCoords = FVector2D::ZeroVector;
 }
 
 
@@ -25,6 +28,12 @@ void UKUIIconInterfaceComponent::SetTexture( UTexture* tTexture )
 		return;
 
 	stIcon = UCanvas::MakeIcon( tTexture, stIcon.U, stIcon.V, stIcon.UL, stIcon.VL );
+
+	if ( stIcon.Texture != NULL )
+		v2Size = FVector2D( stIcon.Texture->GetSurfaceWidth() * fScale, stIcon.Texture->GetSurfaceHeight() * fScale );
+
+	else
+		v2Size = FVector2D::ZeroVector;
 	
 	InvalidateContainerRenderCache();
 }
@@ -47,9 +56,9 @@ void UKUIIconInterfaceComponent::SetTextureName( const FName& nTextureName )
 }
 
 
-FVector2D UKUIIconInterfaceComponent::GetTextureCoords() const
+const FVector2D& UKUIIconInterfaceComponent::GetTextureCoords() const
 {
-	return FVector2D( stIcon.U, stIcon.V );
+	return v2TexCoords;
 }
 
 
@@ -67,13 +76,16 @@ void UKUIIconInterfaceComponent::SetTextureCoords( float fU, float fV )
 	stIcon.U = fU;
 	stIcon.V = fV;
 
+	v2TexCoords.X = fU;
+	v2TexCoords.Y = fV;
+
 	InvalidateContainerRenderCache();
 }
 
 
-FVector2D UKUIIconInterfaceComponent::GetTextureSize() const
+const FVector2D& UKUIIconInterfaceComponent::GetTextureSize() const
 {
-	return FVector2D( stIcon.UL, stIcon.VL );
+	return v2TexSize;
 }
 
 
@@ -91,6 +103,9 @@ void UKUIIconInterfaceComponent::SetTextureSize( float fUL, float fVL )
 	stIcon.UL = fUL;
 	stIcon.VL = fVL;
 
+	v2TexSize.X = fUL;
+	v2TexSize.Y = fVL;
+
 	InvalidateContainerRenderCache();
 }
 
@@ -106,7 +121,13 @@ void UKUIIconInterfaceComponent::SetIconScale( float fScale )
 	if ( this->fScale == fScale )
 		return;
 
-	this->fScale = fScale;
+	this->fScale = fScale;	
+
+	if ( stIcon.Texture != NULL )
+		v2Size = FVector2D( stIcon.Texture->GetSurfaceWidth() * fScale, stIcon.Texture->GetSurfaceHeight() * fScale );
+
+	else
+		v2Size = FVector2D::ZeroVector;
 
 	if ( GetContainer() != NULL )
 	{
@@ -118,12 +139,9 @@ void UKUIIconInterfaceComponent::SetIconScale( float fScale )
 }
 
 
-FVector2D UKUIIconInterfaceComponent::GetSize() const
+const FVector2D& UKUIIconInterfaceComponent::GetSize() const
 {
-	if ( stIcon.Texture == NULL )
-		return FVector2D::ZeroVector;
-
-	return FVector2D( stIcon.Texture->GetSurfaceWidth() * fScale, stIcon.Texture->GetSurfaceHeight() * fScale );
+	return v2Size;
 }
 
 

@@ -15,7 +15,7 @@ UKUISubContainer::UKUISubContainer( const class FObjectInitializer& oObjectIniti
 }
 
 
-FVector2D UKUISubContainer::GetCornerOffset() const
+const FVector2D& UKUISubContainer::GetCornerOffset() const
 {
 	return v2CornerOffset;
 }
@@ -39,7 +39,7 @@ void UKUISubContainer::SetCornerOffset( float fX, float fY )
 }
 
 
-FVector2D UKUISubContainer::GetTotalSize() const
+const FVector2D& UKUISubContainer::GetTotalSize() const
 {
 	return v2TotalSize;
 }
@@ -209,7 +209,7 @@ void UKUISubContainer::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTo
 }
 
 
-FVector2D UKUISubContainer::GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const
+const FVector2D UKUISubContainer::GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const
 {
 	if ( this == ctRoot )
 		return -GetCornerOffset();

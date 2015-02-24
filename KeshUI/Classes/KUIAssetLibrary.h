@@ -24,8 +24,10 @@ struct FKUIAssetLibraryEntry
 UCLASS( ClassGroup = "KeshUI", Blueprintable, BlueprintType )
 class KESHUI_API UKUIAssetLibrary : public UObject
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIAssetLibrary )
+
+	UKUIAssetLibrary( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

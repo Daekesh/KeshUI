@@ -130,7 +130,7 @@ bool UKUIInterfaceElement::IsDisabledRecursive() const
 }
 
 
-FVector2D UKUIInterfaceElement::GetLocation() const
+const FVector2D& UKUIInterfaceElement::GetLocation() const
 {
 	return v2Location;
 }
@@ -167,7 +167,7 @@ void UKUIInterfaceElement::SetLocation( float fX, float fY )
 }
 
 
-FVector4 UKUIInterfaceElement::GetMargin() const
+const FVector4& UKUIInterfaceElement::GetMargin() const
 {
 	return v4Margin;
 }
@@ -204,7 +204,7 @@ void UKUIInterfaceElement::SetMargin( float fLeft, float fTop, float fRight, flo
 }
 
 
-FVector2D UKUIInterfaceElement::GetSize() const
+const FVector2D& UKUIInterfaceElement::GetSize() const
 {
 	return FVector2D::ZeroVector;
 }
@@ -226,7 +226,7 @@ void UKUIInterfaceElement::SetSize( float fWidth, float fHeight )
 }
 
 
-FVector2D UKUIInterfaceElement::GetMarginSize() const
+const FVector2D UKUIInterfaceElement::GetMarginSize() const
 {
 	return FVector2D(
 		v4Margin.X + v4Margin.Z,
@@ -235,7 +235,7 @@ FVector2D UKUIInterfaceElement::GetMarginSize() const
 }
 
 
-FVector2D UKUIInterfaceElement::GetMarginOffset() const
+const FVector2D UKUIInterfaceElement::GetMarginOffset() const
 {
 	return FVector2D(
 		v4Margin.X,
@@ -355,7 +355,7 @@ void UKUIInterfaceElement::SetAlignLocation( const FVector2D& v2AlignLocation )
 }
 
 
-FVector2D UKUIInterfaceElement::GetRenderLocation()
+const FVector2D UKUIInterfaceElement::GetRenderLocation()
 {
 	if ( !bValidAlignLocation )
 	{
@@ -398,7 +398,7 @@ bool UKUIInterfaceElement::IsCursorOver() const
 }
 
 
-bool UKUIInterfaceElement::IsPointOver( FVector2D v2Point ) const
+bool UKUIInterfaceElement::IsPointOver( const FVector2D& v2Point ) const
 {
 	const FVector2D v2ScreenLocation = GetScreenLocation();
 	const FVector2D v2Size = GetSize();
@@ -413,13 +413,13 @@ bool UKUIInterfaceElement::IsPointOver( FVector2D v2Point ) const
 }
 
 
-FVector2D UKUIInterfaceElement::GetScreenLocation() const
+const FVector2D UKUIInterfaceElement::GetScreenLocation() const
 {
 	return GetNestedLocation( NULL );
 }
 
 
-FVector2D UKUIInterfaceElement::GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const
+const FVector2D UKUIInterfaceElement::GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const
 {
 	if ( this == ctRoot )
 		return FVector2D::ZeroVector;
@@ -477,7 +477,7 @@ void UKUIInterfaceElement::Render( AKUIInterface* aHud, UCanvas* oCanvas, const 
 }
 
 
-FVector2D UKUIInterfaceElement::GetLastScreenRenderLocation() const
+const FVector2D& UKUIInterfaceElement::GetLastScreenRenderLocation() const
 {
 	return v2LastScreenRenderLocation;
 }
@@ -675,7 +675,7 @@ void UKUIInterfaceElement::CalculateAlignLocation( TArray<UKUIInterfaceElement*>
 }
 
 
-FVector2D UKUIInterfaceElement::CalculateAlignLocation( const FVector2D& v2Origin, const FVector2D& v2Extent, const FVector2D& v2Size, const FVector2D& v2Default )
+const FVector2D UKUIInterfaceElement::CalculateAlignLocation( const FVector2D& v2Origin, const FVector2D& v2Extent, const FVector2D& v2Size, const FVector2D& v2Default )
 {
 	FVector2D v2AlignLocation;
 	const FVector2D v2MarginSize = GetMarginSize(); // X+Z, Y+W

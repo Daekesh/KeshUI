@@ -202,17 +202,19 @@ struct FKUIInterfaceContainerSizeChangeEvent : public FKUIInterfaceEvent
 UCLASS(Abstract, Category="KeshUI | UI", BlueprintType)
 class KESHUI_API UKUIInterfaceElement : public UObject
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIInterfaceElement )
+
+	UKUIInterfaceElement( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the base interface this container is in. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual AKUIInterface* GetInterface() const;
 
 	/* Gets the container this component is in. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual UKUIInterfaceContainer* GetContainer() const;
 
 	/* Returns the asset identified by the given FName from the asset libraries. */
@@ -227,95 +229,95 @@ public:
 	virtual UWorld* GetWorld() const override;
 
 	/* Returns true if this element is visible. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual bool IsVisible() const;
 
 	/* Sets whether this element is visible. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetVisible( bool bVisible );
 
 	/* Returns true if this and all its containers are visible. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual bool IsVisibleRecursive() const;
 
 	/* Returns true if this element is disabled. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
 	virtual bool IsDisabled() const;
 
 	/* Returns true if this or any of its containers are disabled. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
 	virtual bool IsDisabledRecursive() const;
 
 	/* Gets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetLocation() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D& GetLocation() const;
 
 	/* Sets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetLocationStruct( const FVector2D& v2Location );
 
 	/* Sets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetLocation( float fX, float fY );
 
-	/* Gets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector4 GetMargin() const;
+	/* Gets the border around an element. */
+	//UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector4& GetMargin() const;
 
-	/* Sets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	/* Sets the border around an element. */
+	//UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetMarginStruct( const FVector4& v2Margin );
 
-	/* Sets the relative container offset. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	/* Sets the border around an element. */
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetMargin( float fLeft, float fTop, float fRight, float fBottom );
 
 	/* Gets the size of this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetSize() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D& GetSize() const;
 
 	/* Sets the size of this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetSize( float fWidth, float fHeight );
 
 	/* Returns the total size of this element, including the margin. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetMarginSize() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D GetMarginSize() const;
 
 	/* Returns the location of this element, with the margin taken off. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetMarginOffset() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D GetMarginOffset() const;
 
 	/* Gets the element this is aligned to.  If this has a value, then the element location is the offset from the alignment. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual UKUIInterfaceElement* GetAlignedTo() const;
 
 	/* Sets the element this is aligned to. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetAlignedTo( UKUIInterfaceElement* oAlignedTo );
 
 	/* Gets the horizontal alignment. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual TEnumAsByte<EKUIInterfaceHAlign::Type> GetHorizontalAlignment() const;
 
 	/* Sets the horizontal alignment. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetHorizontalAlignment( const TEnumAsByte<EKUIInterfaceHAlign::Type> eHAlign );
 
 	/* Gets the vertical alignment. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual TEnumAsByte<EKUIInterfaceVAlign::Type> GetVerticalAlignment() const;
 
 	/* Sets the vertical alignment. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetVerticalAlignment( const TEnumAsByte<EKUIInterfaceVAlign::Type> eVAlign );
 
 	/* Sets this element to fill its container. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void FillContainer();
 
 	/* Returns true if this has a valid aligned location. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual bool HasValidAlignLocation() const;
 
 	/* Invalidates the align location. */
@@ -325,42 +327,42 @@ public:
 	virtual void SetAlignLocation( const FVector2D& v2AlignLocation );
 
 	/* Gets the render location of this element (alignloc + loc).  Calculates the align location if necessary. */
-	virtual FVector2D GetRenderLocation();
+	virtual const FVector2D GetRenderLocation();
 
 	/* Gets the Z-Index order for this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual uint16 GetZIndex() const;
 
 	/* Sets the Z-Index order for this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetZIndex( uint16 iZIndex );
 
 	/* Returns whether the mouse is over this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual bool IsCursorOver() const;
 
 	/* Returns whether the given point is on this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual bool IsPointOver( FVector2D v2Point ) const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual bool IsPointOver( const FVector2D& v2Point ) const;
 
 	/* Returns the screen position of this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetScreenLocation() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D GetScreenLocation() const;
 
 	/* Returns the nested location of this element. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const;
 
 	/* Called to render the element on the screen. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject = NULL );
 
 	/* Returns the last location this element was rendered. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
-	virtual FVector2D GetLastScreenRenderLocation() const;
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	virtual const FVector2D& GetLastScreenRenderLocation() const;
 
 	/* Returns true if the mouse is currently over the element. Uses cached screen render location. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual bool IsMouseOver() const;
 
 	/* Adds an object that should invalidate its location when this object moves. */
@@ -373,22 +375,22 @@ public:
 	virtual void CalculateAlignLocation( TArray<UKUIInterfaceElement*>& arAlignStack );
 
 	/* Works out the align location given some metrics. */
-	virtual FVector2D CalculateAlignLocation( const FVector2D& v2Origin, const FVector2D& v2Extent, const FVector2D& v2Size, const FVector2D& v2Default = FVector2D::ZeroVector );
+	virtual const FVector2D CalculateAlignLocation( const FVector2D& v2Origin, const FVector2D& v2Extent, const FVector2D& v2Size, const FVector2D& v2Default = FVector2D::ZeroVector );
 
 	/* Returns true if this consume key events when focused. */
-	UFUNCTION(Category = "KeshUI | Base", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI | Element", BlueprintCallable)
 	virtual bool IsInputEventConsumer() const;
 
 	/* Turns on render caching. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
 	virtual void EnableRenderCache();
 
 	/* Turns off render caching. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
 	virtual void DisableRenderCache();
 
 	/* Returns true if render caching is enabled. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
 	virtual bool IsRenderCaching() const;
 
 	/* Returns true if we respond to this event. */
@@ -450,31 +452,31 @@ protected:
 	virtual void OnRender( const FKUIInterfaceElementRenderEvent& stEventInfo );
 
 	/* Called when this elements location is changed. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)
 	virtual void OnLocationChangeBP( const FKUIInterfaceContainerLocationChangeEvent& stEventInfo );
 
 	/* Called when this elements size is changed. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintImplementableEvent )
 	virtual void OnSizeChangeBP( const FKUIInterfaceContainerSizeChangeEvent& stEventInfo );
 
 	/* Called when the align location is invalidated. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)
 	virtual void OnAlignLocationInvalidatedBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Called after alignment has been calculated. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)
 	virtual void OnAlignmentLocationCalculatedBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Triggered when this is added to a container. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)
 	virtual void OnAddedToContainerBP( const FKUIInterfaceElementContainerEvent& stEventInfo );
 
 	/* Triggered when this is removed from a container. */
-	UFUNCTION(Category="KeshUI | Base", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)
 	virtual void OnRemovedFromContainerBP( const FKUIInterfaceElementContainerEvent& stEventInfo );
 
 	/* Called before this element is rendered. */
-	UFUNCTION( Category = "KeshUI | Base", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI | Element", BlueprintImplementableEvent )
 	virtual void OnRenderBP( const FKUIInterfaceElementRenderEvent& stEventInfo );
 
 };

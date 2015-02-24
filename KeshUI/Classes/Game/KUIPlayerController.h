@@ -14,8 +14,10 @@ class AKUIPlayerState;
 UCLASS( ClassGroup = "KeshUI | Game", Blueprintable, BlueprintType )
 class KESHUI_API AKUIPlayerController : public APlayerController
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( AKUIPlayerController )
+
+	AKUIPlayerController( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

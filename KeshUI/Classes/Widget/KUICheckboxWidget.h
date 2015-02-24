@@ -27,8 +27,10 @@ namespace EKUICheckboxState
 UCLASS(Abstract, Category="KeshUI | Widget", BlueprintType, Blueprintable)
 class KESHUI_API UKUICheckboxWidget : public UKUISimpleClickWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUICheckboxWidget )
+
+	UKUICheckboxWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

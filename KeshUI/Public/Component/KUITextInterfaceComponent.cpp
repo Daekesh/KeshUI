@@ -24,16 +24,17 @@ UKUITextInterfaceComponent::UKUITextInterfaceComponent( const class FObjectIniti
 	bClipped = false;
 	fHorizontalSpacingAdjust = 0.f;
 	bDontCorrectStereoscopic = true;
+	v2Size = FVector2D::ZeroVector;
 }
 
 
-FText UKUITextInterfaceComponent::GetText() const
+const FText& UKUITextInterfaceComponent::GetText() const
 { 
 	return txText;
 }
 
 
-FString UKUITextInterfaceComponent::GetTextString() const
+const FString& UKUITextInterfaceComponent::GetTextString() const
 {
 	return txText.ToString();
 }
@@ -149,7 +150,7 @@ void UKUITextInterfaceComponent::SetCentredVertically( bool bCentred )
 }
 
 
-FVector2D UKUITextInterfaceComponent::GetScale() const
+const FVector2D& UKUITextInterfaceComponent::GetScale() const
 { 
 	return v2Scale;
 }
@@ -213,7 +214,7 @@ void UKUITextInterfaceComponent::SetOutlined( bool bOutlined )
 }
 
 
-FLinearColor UKUITextInterfaceComponent::GetOutlineColor() const
+const FLinearColor& UKUITextInterfaceComponent::GetOutlineColor() const
 {
 	return lcOutlineColor;
 }
@@ -230,7 +231,7 @@ void UKUITextInterfaceComponent::SetOutlineColor( const FLinearColor& lcColor )
 }
 
 
-FVector2D UKUITextInterfaceComponent::GetShadowOffset() const
+const FVector2D& UKUITextInterfaceComponent::GetShadowOffset() const
 {
 	return v2ShadowOffset;
 }
@@ -273,7 +274,7 @@ void UKUITextInterfaceComponent::SetShadow( bool bShadow )
 }
 
 
-FLinearColor UKUITextInterfaceComponent::GetShadowColor() const
+const FLinearColor& UKUITextInterfaceComponent::GetShadowColor() const
 {
 	return lcShadowColor;
 }
@@ -341,30 +342,30 @@ void UKUITextInterfaceComponent::SetCorrectStereoscopic( bool bCorrect )
 }
 
 
-FFontRenderInfo UKUITextInterfaceComponent::GetFontRenderInfo()
+FFontRenderInfo& UKUITextInterfaceComponent::GetFontRenderInfo()
 {
 	if ( stItem.IsValid() )
 		return static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo;
 
-	FFontRenderInfo stInfo;
+	static FFontRenderInfo stInfo;
 
 	return stInfo;
 }
 
 
-FVector2D UKUITextInterfaceComponent::GetSize() const
+const FVector2D& UKUITextInterfaceComponent::GetSize() const
 {
-	return GetSizeText( txText );
+	return v2Size;
 }
 
 
-FVector2D UKUITextInterfaceComponent::GetSizeText( const FText& txText ) const
+const FVector2D UKUITextInterfaceComponent::GetSizeText( const FText& txText ) const
 {
 	return GetSizeString( txText.ToString() );
 }
 
 
-FVector2D UKUITextInterfaceComponent::GetSizeString( const FString& strString ) const
+const FVector2D UKUITextInterfaceComponent::GetSizeString( const FString& strString ) const
 {
 	if ( foFont == NULL )
 		return FVector2D::ZeroVector;
@@ -430,6 +431,8 @@ void UKUITextInterfaceComponent::ConstructNewItem()
 	static_cast<FCanvasTextItem*>(&*stItem)->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
 	static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo.bClipText = bClipped;
 	static_cast<FCanvasTextItem*>(&*stItem)->Text = txText;
+
+	v2Size = GetSizeText( txText );
 
 	Super::ConstructNewItem();
 }

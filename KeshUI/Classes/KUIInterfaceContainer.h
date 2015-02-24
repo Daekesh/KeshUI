@@ -258,13 +258,15 @@ struct FKUIInterfaceContainerMatchStateEvent : public FKUIInterfaceEvent
 UCLASS(ClassGroup="KeshUI", BlueprintType, Blueprintable)
 class KESHUI_API UKUIInterfaceContainer : public UKUIInterfaceElement
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIInterfaceContainer )
+
+	UKUIInterfaceContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the size of this element. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
 	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)

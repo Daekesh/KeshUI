@@ -11,7 +11,9 @@
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIDropDownSelectWidget : public UKUISelectWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIDropDownSelectWidget )
+
+	UKUIDropDownSelectWidget( const class FObjectInitializer& oObjectInitializer );
 
 };

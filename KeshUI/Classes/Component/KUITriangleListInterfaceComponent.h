@@ -12,8 +12,10 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUITriangleListInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUITriangleListInterfaceComponent )
+
+	UKUITriangleListInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
@@ -52,7 +54,7 @@ public:
 	virtual void SetTexture( UTexture* tTexture );
 
 	/* Gets the size of this component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Returns true if this can have its location changed. */
 	virtual bool IsPositionable() const override;
@@ -64,6 +66,7 @@ protected:
 
 	int16 iTriangleCount;
 	FVector4 v4Bounds;
+	FVector2D v2Size;
 	TArray<FCanvasUVTri> arTriangles;
 
 	UPROPERTY() // Ensures reference count

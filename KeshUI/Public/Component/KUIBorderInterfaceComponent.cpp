@@ -105,7 +105,7 @@ void UKUIBorderInterfaceComponent::SetTextureName( TEnumAsByte<EBCBorderTexture:
 }
 
 
-FVector2D UKUIBorderInterfaceComponent::GetSize() const
+const FVector2D& UKUIBorderInterfaceComponent::GetSize() const
 {
 	return v2Size;
 }
@@ -131,7 +131,7 @@ void UKUIBorderInterfaceComponent::SetSize( float fWidth, float fHeight )
 }
 
 
-FRotator UKUIBorderInterfaceComponent::GetRotation() const
+const FRotator& UKUIBorderInterfaceComponent::GetRotation() const
 {
 	return rRotation;
 }
@@ -156,7 +156,7 @@ void UKUIBorderInterfaceComponent::SetRotation( float fPitch, float fYaw, float 
 }
 
 
-FVector2D UKUIBorderInterfaceComponent::GetPivotPoint() const
+const FVector2D& UKUIBorderInterfaceComponent::GetPivotPoint() const
 {
 	return v2PivotPoint;
 }
@@ -180,7 +180,7 @@ void UKUIBorderInterfaceComponent::SetPivotPoint( float fX, float fY )
 }
 
 
-FVector4 UKUIBorderInterfaceComponent::GetBorderMetrics() const
+const FVector4& UKUIBorderInterfaceComponent::GetBorderMetrics() const
 {
 	return v4BorderMetrics;
 }

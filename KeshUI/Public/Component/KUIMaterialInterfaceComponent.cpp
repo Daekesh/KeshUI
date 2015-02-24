@@ -143,7 +143,7 @@ void UKUIMaterialInterfaceComponent::SetDepth( float fDepth )
 }
 
 
-FVector2D UKUIMaterialInterfaceComponent::GetSize() const
+const FVector2D& UKUIMaterialInterfaceComponent::GetSize() const
 {
 	return v2Size;
 }
@@ -167,7 +167,7 @@ void UKUIMaterialInterfaceComponent::SetSize( float fWidth, float fHeight )
 }
 
 
-FVector2D UKUIMaterialInterfaceComponent::GetMaterialCoords() const
+const FVector2D& UKUIMaterialInterfaceComponent::GetMaterialCoords() const
 {
 	return v2MaterialCoords;
 }
@@ -191,7 +191,7 @@ void UKUIMaterialInterfaceComponent::SetMaterialCoords( float fU, float fV )
 }
 
 
-FVector2D UKUIMaterialInterfaceComponent::GetMaterialSize() const
+const FVector2D& UKUIMaterialInterfaceComponent::GetMaterialSize() const
 {
 	return v2MaterialSize;
 }
@@ -215,7 +215,7 @@ void UKUIMaterialInterfaceComponent::SetMaterialSize( float fUL, float fVL )
 }
 
 
-FRotator UKUIMaterialInterfaceComponent::GetRotation() const
+const FRotator& UKUIMaterialInterfaceComponent::GetRotation() const
 {
 	return rRotation;
 }
@@ -240,7 +240,7 @@ void UKUIMaterialInterfaceComponent::SetRotation( float fPitch, float fYaw, floa
 }
 
 
-FVector2D UKUIMaterialInterfaceComponent::GetPivotPoint() const
+const FVector2D& UKUIMaterialInterfaceComponent::GetPivotPoint() const
 {
 	return v2PivotPoint;
 }

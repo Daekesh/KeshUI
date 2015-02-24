@@ -53,8 +53,10 @@ class AKUIInterface;
 UCLASS(ClassGroup="KeshUI", BlueprintType, Blueprintable)
 class KESHUI_API UKUIInterfaceWidget : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIInterfaceWidget )
+
+	UKUIInterfaceWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

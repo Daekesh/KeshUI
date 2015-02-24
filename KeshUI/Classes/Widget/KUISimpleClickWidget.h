@@ -36,8 +36,10 @@ struct FKUIInterfaceWidgetClickEvent : public FKUIInterfaceEvent
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUISimpleClickWidget : public UKUIInterfaceWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUISimpleClickWidget )
+
+	UKUISimpleClickWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

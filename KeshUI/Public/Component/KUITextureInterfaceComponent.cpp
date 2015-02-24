@@ -87,7 +87,7 @@ void UKUITextureInterfaceComponent::SetDepth( float fDepth )
 }
 
 
-FVector2D UKUITextureInterfaceComponent::GetSize() const
+const FVector2D& UKUITextureInterfaceComponent::GetSize() const
 {
 	return v2Size;
 }
@@ -111,7 +111,7 @@ void UKUITextureInterfaceComponent::SetSize( float fWidth, float fHeight )
 }
 
 
-FVector2D UKUITextureInterfaceComponent::GetTextureCoords() const
+const FVector2D& UKUITextureInterfaceComponent::GetTextureCoords() const
 {
 	return v2TextureCoords;
 }
@@ -135,7 +135,7 @@ void UKUITextureInterfaceComponent::SetTextureCoords( float fU, float fV )
 }
 
 
-FVector2D UKUITextureInterfaceComponent::GetTextureSize() const
+const FVector2D& UKUITextureInterfaceComponent::GetTextureSize() const
 {
 	return v2TextureSize;
 }
@@ -159,7 +159,7 @@ void UKUITextureInterfaceComponent::SetTextureSize( float fUL, float fVL )
 }
 
 
-FRotator UKUITextureInterfaceComponent::GetRotation() const
+const FRotator& UKUITextureInterfaceComponent::GetRotation() const
 {
 	return rRotation;
 }
@@ -184,7 +184,7 @@ void UKUITextureInterfaceComponent::SetRotation( float fPitch, float fYaw, float
 }
 
 
-FVector2D UKUITextureInterfaceComponent::GetPivotPoint() const
+const FVector2D& UKUITextureInterfaceComponent::GetPivotPoint() const
 {
 	return v2PivotPoint;
 }

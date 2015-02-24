@@ -11,11 +11,12 @@ UKUILineInterfaceComponent::UKUILineInterfaceComponent( const class FObjectIniti
 	
 	vOrigin = FVector::ZeroVector;
 	vEnd = FVector::ZeroVector;
+	v2Size = FVector2D::ZeroVector;
 	fThickness = 1.f;
 }
 
 
-FVector UKUILineInterfaceComponent::GetOrigin() const
+const FVector& UKUILineInterfaceComponent::GetOrigin() const
 {
 	return vOrigin;
 }
@@ -36,11 +37,16 @@ void UKUILineInterfaceComponent::SetOrigin( float fX, float fY, float fZ )
 	vOrigin.Y = fY;
 	vOrigin.Z = fZ;
 
+	v2Size = FVector2D(
+		abs( vOrigin.X - vEnd.X ),
+		abs( vOrigin.Y - vEnd.Y )
+	);
+
 	InvalidateRenderCache();
 }
 
 
-FVector UKUILineInterfaceComponent::GetEnd() const
+const FVector& UKUILineInterfaceComponent::GetEnd() const
 {
 	return vEnd;
 }
@@ -60,6 +66,11 @@ void UKUILineInterfaceComponent::SetEnd( float fX, float fY, float fZ )
 	vEnd.X = fX;
 	vEnd.Y = fY;
 	vEnd.Z = fZ;
+
+	v2Size = FVector2D(
+		abs( vOrigin.X - vEnd.X ),
+		abs( vOrigin.Y - vEnd.Y )
+	);
 
 	InvalidateRenderCache();
 }
@@ -82,12 +93,9 @@ void UKUILineInterfaceComponent::SetThickness( float fThickness )
 }
 
 
-FVector2D UKUILineInterfaceComponent::GetSize() const
+const FVector2D& UKUILineInterfaceComponent::GetSize() const
 {
-	return FVector2D(
-		abs( vOrigin.X - vEnd.X ),
-		abs( vOrigin.Y - vEnd.Y )
-	);
+	return v2Size;
 }
 
 

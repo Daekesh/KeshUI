@@ -15,8 +15,10 @@ KUI_DECLARE_DELEGATE_OneParam( FKUISliderValueChange, UKUISliderWidget* );
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUISliderWidget : public UKUIInterfaceWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUISliderWidget )
+
+	UKUISliderWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

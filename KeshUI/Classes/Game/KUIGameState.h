@@ -19,9 +19,11 @@ class AKUITeamInfo;
 UCLASS(ClassGroup="KeshUI | Game", Blueprintable, BlueprintType, NotPlaceable)
 class KESHUI_API AKUIGameState : public AGameState
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( AKUIGameState )
-	
+
+	AKUIGameState( const class FObjectInitializer& oObjectInitializer );
+
 protected:
 
 	virtual void OnRep_MatchState() override;

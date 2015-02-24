@@ -15,8 +15,10 @@ class UKUIInterfaceWidget;
 UCLASS(ClassGroup="KeshUI | Widget | Child Manager", BlueprintType, Blueprintable)
 class KESHUI_API UKUIInterfaceWidgetChildManager : public UObject
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIInterfaceWidgetChildManager )
+
+	UKUIInterfaceWidgetChildManager( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

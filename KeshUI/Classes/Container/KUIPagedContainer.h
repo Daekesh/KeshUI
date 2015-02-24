@@ -38,8 +38,10 @@ struct FKUIInterfaceContainerPageChangeEvent : public FKUIInterfaceEvent
 UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIPagedContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIPagedContainer )
+
+	UKUIPagedContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

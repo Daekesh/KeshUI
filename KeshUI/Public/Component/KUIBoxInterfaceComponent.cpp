@@ -15,7 +15,7 @@ UKUIBoxInterfaceComponent::UKUIBoxInterfaceComponent( const class FObjectInitial
 }
 
 
-FVector2D UKUIBoxInterfaceComponent::GetSize() const
+const FVector2D& UKUIBoxInterfaceComponent::GetSize() const
 {
 	return v2Size;
 }

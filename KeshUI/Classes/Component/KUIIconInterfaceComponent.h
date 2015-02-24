@@ -12,8 +12,10 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIIconInterfaceComponent : public UKUIInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIIconInterfaceComponent )
+
+	UKUIIconInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
@@ -34,7 +36,7 @@ public:
 
 	/* Gets the texture coordinates. */
 	UFUNCTION(Category="KeshUI | Component | Icon", BlueprintCallable)
-	virtual FVector2D GetTextureCoords() const;
+	virtual const FVector2D& GetTextureCoords() const;
 
 	/* Sets the texture coordinates. */
 	UFUNCTION(Category="KeshUI | Component | Icon", BlueprintCallable)
@@ -46,7 +48,7 @@ public:
 
 	/* Gets the texture size.  Texture size is added on to the texture coordinate. */
 	UFUNCTION(Category="KeshUI | Component | Icon", BlueprintCallable)
-	virtual FVector2D GetTextureSize() const;
+	virtual const FVector2D& GetTextureSize() const;
 
 	/* Sets the texture size. */
 	UFUNCTION(Category="KeshUI | Component | Icon", BlueprintCallable)
@@ -65,7 +67,7 @@ public:
 	virtual void SetIconScale( float fScale );
 
 	/* Gets the size of this component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Overrides to disable. */
 	virtual void EnableRenderCache() override;
@@ -80,5 +82,8 @@ protected:
 	FCanvasIcon stIcon;
 	float fScale;
 	UTexture** tTexturePtr;
+	FVector2D v2Size;
+	FVector2D v2TexSize;
+	FVector2D v2TexCoords;
 
 };

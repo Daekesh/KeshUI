@@ -15,8 +15,10 @@
 UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIGridContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIGridContainer )
+
+	UKUIGridContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 		

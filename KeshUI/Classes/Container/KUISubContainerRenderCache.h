@@ -13,8 +13,10 @@
 UCLASS( ClassGroup = "KeshUI | Container", Blueprintable, BlueprintType, NotPlaceable )
 class KESHUI_API UKUISubContainerRenderCache : public UKUIRenderCache
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUISubContainerRenderCache )
+
+	UKUISubContainerRenderCache( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

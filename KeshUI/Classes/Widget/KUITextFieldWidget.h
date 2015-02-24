@@ -35,8 +35,10 @@ namespace EKUITextFilter
 UCLASS(ClassGroup="KeshUI | Widget", BlueprintType, Blueprintable)
 class KESHUI_API UKUITextFieldWidget : public UKUISimpleClickWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUITextFieldWidget )
+
+	UKUITextFieldWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

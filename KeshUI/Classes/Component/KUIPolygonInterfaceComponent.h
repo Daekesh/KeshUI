@@ -12,14 +12,16 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIPolygonInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIPolygonInterfaceComponent )
+
+	UKUIPolygonInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the position of the component. */
 	UFUNCTION(Category="KeshUI | Component | Polygon", BlueprintCallable)
-	virtual FVector2D GetPosition() const;
+	virtual const FVector2D& GetPosition() const;
 
 	/* Sets the position of the component. */
 	UFUNCTION(Category="KeshUI | Component | Polygon", BlueprintCallable)
@@ -31,7 +33,7 @@ public:
 
 	/* Gets the radius of the component. */
 	UFUNCTION(Category="KeshUI | Component | Polygon", BlueprintCallable)
-	virtual FVector2D GetRadius() const;
+	virtual const FVector2D& GetRadius() const;
 
 	/* Sets the radius of the component. */
 	UFUNCTION(Category="KeshUI | Component | Polygon", BlueprintCallable)
@@ -58,7 +60,7 @@ public:
 	virtual void SetTexture( UTexture* tTexture );
 
 	/* Gets the size of this component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Returns true if there's enough information to render. */
 	virtual bool HasValidComponents() const override;
@@ -67,6 +69,7 @@ protected:
 
 	FVector2D v2Position;
 	FVector2D v2Radius;
+	FVector2D v2Size;
 	int32 iSideCount;
 
 	UPROPERTY() // Ensures reference count

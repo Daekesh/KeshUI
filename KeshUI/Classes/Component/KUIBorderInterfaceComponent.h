@@ -35,8 +35,10 @@ namespace EBCBorderTexture
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIBorderInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIBorderInterfaceComponent )
+
+	UKUIBorderInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
@@ -56,7 +58,7 @@ public:
 	virtual void SetTextureName( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, const FName& nTextureName );
 
 	/* Gets the size of the component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
@@ -67,7 +69,7 @@ public:
 
 	/* Gets the rotation of the component. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual FRotator GetRotation() const;
+	virtual const FRotator& GetRotation() const;
 
 	/* Sets the rotation of the component. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
@@ -79,7 +81,7 @@ public:
 
 	/* Gets the pivot point of the component. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
-	virtual FVector2D GetPivotPoint() const;
+	virtual const FVector2D& GetPivotPoint() const;
 
 	/* Sets the pivot point of the component. */
 	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
@@ -90,15 +92,15 @@ public:
 	virtual void SetPivotPoint( float fX, float fY );
 
 	/* Gets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
-	virtual FVector4 GetBorderMetrics() const;
+	//UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	virtual const FVector4& GetBorderMetrics() const;
 
 	/* Sets the border metrics. */
 	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
 	virtual void SetBorderMetrics( float fLeft, float fTop, float fRight, float fBottom );
 
 	/* Sets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	//UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
 	virtual void SetBorderMetricsStruct( const FVector4& v4Metrics );
 
 	/* Returns true if there's enough information to render. */

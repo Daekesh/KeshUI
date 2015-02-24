@@ -28,8 +28,10 @@ namespace EKUIButtonState
 UCLASS( ClassGroup = "KeshUI | UI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIComponentButtonWidget : public UKUIButtonWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIComponentButtonWidget )
+
+	UKUIComponentButtonWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

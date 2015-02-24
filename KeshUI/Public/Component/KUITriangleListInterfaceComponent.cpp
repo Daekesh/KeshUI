@@ -13,6 +13,7 @@ UKUITriangleListInterfaceComponent::UKUITriangleListInterfaceComponent( const cl
 	v4Bounds.Y = 0.f;
 	v4Bounds.Z = 0.f;
 	v4Bounds.W = 0.f;
+	v2Size = FVector2D::ZeroVector;
 	iTriangleCount = 0;
 }
 
@@ -89,12 +90,12 @@ void UKUITriangleListInterfaceComponent::SetTexture( UTexture* tTexture )
 }
 
 
-FVector2D UKUITriangleListInterfaceComponent::GetSize() const
+const FVector2D& UKUITriangleListInterfaceComponent::GetSize() const
 {
 	if ( iTriangleCount == 0 )
 		return FVector2D::ZeroVector;
 	
-	return FVector2D( v4Bounds.Z - v4Bounds.X, v4Bounds.W - v4Bounds.Y );
+	return v2Size;
 }
 
 
@@ -133,6 +134,9 @@ void UKUITriangleListInterfaceComponent::ConstructNewItem()
 		arTriangles,
 		tTexture->Resource
 	) );
+
+	v2Size.X = v4Bounds.X - v4Bounds.Z;
+	v2Size.Y = v4Bounds.Y - v4Bounds.W;
 
 	Super::ConstructNewItem();
 }

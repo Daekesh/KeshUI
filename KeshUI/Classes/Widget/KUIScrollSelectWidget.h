@@ -18,8 +18,10 @@ KUI_DECLARE_DELEGATE_OneParam( FKUIScrollSelectValueChange, UKUIScrollSelectWidg
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIScrollSelectWidget : public UKUISelectWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIScrollSelectWidget )
+
+	UKUIScrollSelectWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

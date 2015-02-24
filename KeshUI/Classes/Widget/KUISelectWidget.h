@@ -18,8 +18,10 @@ KUI_DECLARE_DELEGATE_OneParam( FKUISelectValueChange, UKUISelectWidget* );
 UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUISelectWidget : public UKUIInterfaceWidget
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUISelectWidget )
+
+	UKUISelectWidget( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

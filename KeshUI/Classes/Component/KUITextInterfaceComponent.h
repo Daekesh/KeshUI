@@ -12,18 +12,20 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUITextInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUITextInterfaceComponent )
+
+	UKUITextInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the text. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FText GetText() const;
+	virtual const FText& GetText() const;
 
 	/* Gets the text as a string. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FString GetTextString() const;
+	virtual const FString& GetTextString() const;
 
 	/* Sets the text. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
@@ -66,7 +68,7 @@ public:
 
 	/* Gets the scale of the text. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FVector2D GetScale() const;
+	virtual const FVector2D& GetScale() const;
 
 	/* Sets the scale of the text. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
@@ -94,7 +96,7 @@ public:
 
 	/* Gets the outline color. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FLinearColor GetOutlineColor() const;
+	virtual const FLinearColor& GetOutlineColor() const;
 
 	/* Sets the outline color. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
@@ -102,7 +104,7 @@ public:
 
 	/* Gets the shadow offset. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FVector2D GetShadowOffset() const;
+	virtual const FVector2D& GetShadowOffset() const;
 
 	/* Sets the shadow offset. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
@@ -114,7 +116,7 @@ public:
 
 	/* Gets the shadow color. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FLinearColor GetShadowColor() const;
+	virtual const FLinearColor& GetShadowColor() const;
 
 	/* Sets the shadow color. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
@@ -154,18 +156,18 @@ public:
 
 	/* Returns the font render info. */
 	UFUNCTION(Category="KeshUI | Component | Text", BlueprintCallable)
-	virtual FFontRenderInfo GetFontRenderInfo();
+	virtual FFontRenderInfo& GetFontRenderInfo();
 
 	/* Gets the size of this component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Gets the size of the given string using this text component's settings. */
 	UFUNCTION( Category = "KeshUI | Component | Text", BlueprintCallable )
-	virtual FVector2D GetSizeText( const FText& txText ) const;
+	virtual const FVector2D GetSizeText( const FText& txText ) const;
 
 	/* Gets the size of the given string using this text component's settings. */
 	UFUNCTION( Category = "KeshUI | Component | Text", BlueprintCallable )
-	virtual FVector2D GetSizeString( const FString& strString ) const;
+	virtual const FVector2D GetSizeString( const FString& strString ) const;
 
 	/* Returns true if there's enough information to render. */
 	virtual bool HasValidComponents() const override;
@@ -196,6 +198,7 @@ protected:
 	bool bClipped;
 	float fHorizontalSpacingAdjust;
 	bool bDontCorrectStereoscopic;
+	FVector2D v2Size;
 
 	/* Tries to construct a new FCanvasTextItem! */
 	virtual void ConstructNewItem() override;

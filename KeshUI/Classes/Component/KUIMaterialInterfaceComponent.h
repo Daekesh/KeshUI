@@ -20,8 +20,10 @@ struct FMaterialTextureParameterPointer
 UCLASS( ClassGroup = "KeshUI | Component", Blueprintable, BlueprintType )
 class KESHUI_API UKUIMaterialInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIMaterialInterfaceComponent )
+
+	UKUIMaterialInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
@@ -62,7 +64,7 @@ public:
 	virtual void SetDepth( float fDepth );
 
 	/* Gets the size of material on the screen (at 0 depth.) */
-	FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the material on the screen (at 0 depth.) */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
@@ -73,7 +75,7 @@ public:
 
 	/* Gets the material coordinates. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
-	virtual FVector2D GetMaterialCoords() const;
+	virtual const FVector2D& GetMaterialCoords() const;
 
 	/* Sets the material coordinates. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
@@ -85,7 +87,7 @@ public:
 
 	/* Gets the material size.  Material size is added on to the material coordinate. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
-	virtual FVector2D GetMaterialSize() const;
+	virtual const FVector2D& GetMaterialSize() const;
 
 	/* Sets the material size. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
@@ -97,7 +99,7 @@ public:
 
 	/* Gets the rotation of the component. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
-	virtual FRotator GetRotation() const;
+	virtual const FRotator& GetRotation() const;
 
 	/* Sets the rotation of the component. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
@@ -109,7 +111,7 @@ public:
 
 	/* Gets the pivot point of the component. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )
-	virtual FVector2D GetPivotPoint() const;
+	virtual const FVector2D& GetPivotPoint() const;
 
 	/* Sets the pivot point of the component. */
 	UFUNCTION( Category = "KeshUI | Component | Material", BlueprintCallable )

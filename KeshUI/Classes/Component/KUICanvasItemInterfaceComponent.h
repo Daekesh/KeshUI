@@ -13,8 +13,10 @@
 UCLASS(Abstract, ClassGroup="KeshUI | Component", BlueprintType)
 class KESHUI_API UKUICanvasItemInterfaceComponent : public UKUIInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUICanvasItemInterfaceComponent )
+
+	UKUICanvasItemInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

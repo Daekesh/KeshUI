@@ -14,8 +14,10 @@
 UCLASS(ClassGroup="KeshUI | Widget | Child Manager", BlueprintType, Blueprintable)
 class KESHUI_API UKUIManagedCheckboxWidgetChildManager : public UKUIInterfaceWidgetChildManager
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIManagedCheckboxWidgetChildManager )
+
+	UKUIManagedCheckboxWidgetChildManager( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

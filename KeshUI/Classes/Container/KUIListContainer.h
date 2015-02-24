@@ -24,8 +24,10 @@ KUI_DECLARE_DELEGATE_OneParam( FKUIListRowContainerSelectionChange, UKUIListCont
 UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIListContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIListContainer )
+
+	UKUIListContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

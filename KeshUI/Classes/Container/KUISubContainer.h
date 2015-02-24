@@ -13,14 +13,16 @@
 UCLASS( ClassGroup = "KeshUI | Container", BlueprintType, Blueprintable )
 class KESHUI_API UKUISubContainer : public UKUIInterfaceContainer
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUISubContainer )
+
+	UKUISubContainer( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the distance from the top-left of the container that the visible portion begins. */
 	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
-	virtual FVector2D GetCornerOffset() const;
+	virtual const FVector2D& GetCornerOffset() const;
 
 	/* Sets the distance from the top-left of the container that the visible portion begins. */
 	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
@@ -32,7 +34,7 @@ public:
 
 	/* Gets the total size of the container. */
 	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
-	virtual FVector2D GetTotalSize() const;
+	virtual const FVector2D& GetTotalSize() const;
 
 	/* Sets the total size of the container. */
 	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
@@ -58,7 +60,7 @@ public:
 
 	/* Uses custom cache class. */
 	virtual void EnableRenderCache() override;
-	virtual FVector2D GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const override;
+	virtual const FVector2D GetNestedLocation( UKUIInterfaceContainer* ctRoot ) const override;
 	virtual void BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDown = false ) override;
 	virtual bool IsMouseOver() const override;
 

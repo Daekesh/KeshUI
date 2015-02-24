@@ -12,8 +12,10 @@
 UCLASS(Abstract, Category="KeshUI", BlueprintType, Blueprintable)
 class KESHUI_API UKUIInterfaceComponent : public UKUIInterfaceElement
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIInterfaceComponent )
+
+	UKUIInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 

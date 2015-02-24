@@ -12,13 +12,15 @@
 UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIBoxInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 	KUI_CLASS_HEADER( UKUIBoxInterfaceComponent )
+
+	UKUIBoxInterfaceComponent( const class FObjectInitializer& oObjectInitializer );
 
 public:
 
 	/* Gets the size of the component. */
-	virtual FVector2D GetSize() const override;
+	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
 	UFUNCTION(Category="KeshUI | Component | Box", BlueprintCallable)
