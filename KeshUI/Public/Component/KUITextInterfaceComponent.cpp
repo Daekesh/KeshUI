@@ -46,6 +46,7 @@ void UKUITextInterfaceComponent::SetText( const FText& txText )
 		return;
 
 	this->txText = txText;
+	v2Size = GetSizeText( txText );
 
 	if ( GetContainer() != NULL )
 	{
@@ -76,6 +77,7 @@ void UKUITextInterfaceComponent::SetFont( UFont* foFont )
 		return;
 
 	this->foFont = foFont;
+	v2Size = GetSizeText( txText );
 
 	if ( GetContainer() != NULL )
 	{
@@ -117,6 +119,7 @@ void UKUITextInterfaceComponent::SetCentredHorizontally( bool bCentred )
 		return;
 
 	bCentreX = bCentred;
+
 	if ( GetContainer() != NULL )
 	{
 		FKUIInterfaceContainerElementEvent stContainerEventInfo( EKUIInterfaceContainerEventList::E_ChildLocationChange, this );
@@ -169,6 +172,7 @@ void UKUITextInterfaceComponent::SetScale( float fX, float fY )
 
 	v2Scale.X = fX;
 	v2Scale.Y = fY;
+	v2Size = GetSizeText( txText );
 
 	if ( GetContainer() != NULL )
 	{
@@ -192,6 +196,7 @@ void UKUITextInterfaceComponent::SetDepth( float fDepth )
 		return;
 
 	this->fDepth = fDepth;
+	v2Size = GetSizeText( txText );
 
 	InvalidateRenderCache();
 }
@@ -209,6 +214,7 @@ void UKUITextInterfaceComponent::SetOutlined( bool bOutlined )
 		return;
 
 	this->bOutlined = bOutlined;
+	v2Size = GetSizeText( txText );
 
 	InvalidateRenderCache();
 }
@@ -250,6 +256,7 @@ void UKUITextInterfaceComponent::SetShadowOffset( float fX, float fY )
 
 	v2ShadowOffset.X = fX;
 	v2ShadowOffset.Y = fY;
+	v2Size = GetSizeText( txText );
 
 	bUpdateShadowInfo = true;
 	InvalidateRenderCache();
@@ -268,6 +275,7 @@ void UKUITextInterfaceComponent::SetShadow( bool bShadow )
 		return;
 
 	this->bShadow = bShadow;
+	v2Size = GetSizeText( txText );
 
 	bUpdateShadowInfo = true;
 	InvalidateRenderCache();
@@ -320,6 +328,7 @@ void UKUITextInterfaceComponent::SetHorizontalSpacingAdjustment( float fSpacing 
 		return;
 
 	fHorizontalSpacingAdjust = fSpacing;
+	v2Size = GetSizeText( txText );
 
 	InvalidateRenderCache();
 }
