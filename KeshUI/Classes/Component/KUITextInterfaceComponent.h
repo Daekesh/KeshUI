@@ -198,9 +198,15 @@ protected:
 	bool bClipped;
 	float fHorizontalSpacingAdjust;
 	bool bDontCorrectStereoscopic;
+	bool bValidSize;
 	FVector2D v2Size;
 
 	/* Tries to construct a new FCanvasTextItem! */
 	virtual void ConstructNewItem() override;
+
+private:
+
+	// This makes no sense, override to disable - size is based on text properties.
+	virtual void SetSize( float fWidth, float fHeight ) override;
 
 };

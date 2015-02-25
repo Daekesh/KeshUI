@@ -1,6 +1,7 @@
 // Copyright 2014-2015 Matt Chapman. All Rights Reserved.
 
 #include "KeshUI.h"
+#include "KUIInterfaceContainer.h"
 #include "Component/KUICanvasItemInterfaceComponent.h"
 
 
@@ -102,6 +103,18 @@ void UKUICanvasItemInterfaceComponent::ConstructNewItem()
 
 	stItem->SetColor( GetDrawColor().ReinterpretAsLinear() );
 	Validate();
+
+	for ( int32 i = 0; i < arAlignedToThis.Num(); ++i )
+		if ( arAlignedToThis[ i ].IsValid() )
+			arAlignedToThis[ i ]->InvalidateAlignLocation();
+
+	if ( GetContainer() != NULL )
+	{
+		FKUIInterfaceContainerElementEvent stEventInfo( EKUIInterfaceContainerEventList::E_ChildSizeChange, this );
+		GetContainer()->SendEvent( stEventInfo );
+	}
+
+	InvalidateRenderCache();
 }
 
 

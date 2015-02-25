@@ -24,6 +24,7 @@ UKUITextInterfaceComponent::UKUITextInterfaceComponent( const class FObjectIniti
 	bClipped = false;
 	fHorizontalSpacingAdjust = 0.f;
 	bDontCorrectStereoscopic = true;
+	bValidSize = false;
 	v2Size = FVector2D::ZeroVector;
 }
 
@@ -46,7 +47,7 @@ void UKUITextInterfaceComponent::SetText( const FText& txText )
 		return;
 
 	this->txText = txText;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	if ( GetContainer() != NULL )
 	{
@@ -77,7 +78,7 @@ void UKUITextInterfaceComponent::SetFont( UFont* foFont )
 		return;
 
 	this->foFont = foFont;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	if ( GetContainer() != NULL )
 	{
@@ -172,7 +173,7 @@ void UKUITextInterfaceComponent::SetScale( float fX, float fY )
 
 	v2Scale.X = fX;
 	v2Scale.Y = fY;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	if ( GetContainer() != NULL )
 	{
@@ -196,7 +197,7 @@ void UKUITextInterfaceComponent::SetDepth( float fDepth )
 		return;
 
 	this->fDepth = fDepth;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	InvalidateRenderCache();
 }
@@ -214,7 +215,7 @@ void UKUITextInterfaceComponent::SetOutlined( bool bOutlined )
 		return;
 
 	this->bOutlined = bOutlined;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	InvalidateRenderCache();
 }
@@ -256,7 +257,7 @@ void UKUITextInterfaceComponent::SetShadowOffset( float fX, float fY )
 
 	v2ShadowOffset.X = fX;
 	v2ShadowOffset.Y = fY;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	bUpdateShadowInfo = true;
 	InvalidateRenderCache();
@@ -275,7 +276,7 @@ void UKUITextInterfaceComponent::SetShadow( bool bShadow )
 		return;
 
 	this->bShadow = bShadow;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	bUpdateShadowInfo = true;
 	InvalidateRenderCache();
@@ -328,7 +329,7 @@ void UKUITextInterfaceComponent::SetHorizontalSpacingAdjustment( float fSpacing 
 		return;
 
 	fHorizontalSpacingAdjust = fSpacing;
-	v2Size = GetSizeText( txText );
+	bValidSize = false;
 
 	InvalidateRenderCache();
 }
@@ -364,6 +365,12 @@ FFontRenderInfo& UKUITextInterfaceComponent::GetFontRenderInfo()
 
 const FVector2D& UKUITextInterfaceComponent::GetSize() const
 {
+	if ( !bValidSize )
+	{
+		const_cast<UKUITextInterfaceComponent*>( this )->v2Size = GetSizeText( txText );
+		const_cast<UKUITextInterfaceComponent*>( this )->bValidSize = true;
+	}
+
 	return v2Size;
 }
 
@@ -440,8 +447,6 @@ void UKUITextInterfaceComponent::ConstructNewItem()
 	static_cast<FCanvasTextItem*>(&*stItem)->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
 	static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo.bClipText = bClipped;
 	static_cast<FCanvasTextItem*>(&*stItem)->Text = txText;
-
-	v2Size = GetSizeText( txText );
 
 	Super::ConstructNewItem();
 }
@@ -572,4 +577,9 @@ TArray<FString> UKUITextInterfaceComponent::SplitString( const FString& strStrin
 	}
 
 	return arBrokenUpMessage;
+}
+
+void UKUITextInterfaceComponent::SetSize( float fWidth, float fHeight )
+{
+
 }

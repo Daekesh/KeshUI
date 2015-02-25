@@ -327,7 +327,7 @@ public:
 	virtual void SetAlignLocation( const FVector2D& v2AlignLocation );
 
 	/* Gets the render location of this element (alignloc + loc).  Calculates the align location if necessary. */
-	virtual const FVector2D GetRenderLocation();
+	virtual const FVector2D GetRenderLocation() const;
 
 	/* Gets the Z-Index order for this element. */
 	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)

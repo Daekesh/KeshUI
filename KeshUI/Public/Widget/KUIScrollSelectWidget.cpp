@@ -15,8 +15,6 @@ UKUIScrollSelectWidget::UKUIScrollSelectWidget( const class FObjectInitializer& 
 	v2LargestTextSize = FVector2D::ZeroVector;
 
 	KUICreateDefaultSubobjectAssign( cmText, UKUITextInterfaceComponent, "Text Field" );
-	cmText->SetSize( 0, 0 );
-
 	AddChild( cmText.Get() );
 }
 
@@ -138,7 +136,6 @@ void UKUIScrollSelectWidget::OnRightButtonClick( UKUISimpleClickWidget* cmButton
 void UKUIScrollSelectWidget::DoLayout()
 {
 	UpdateLargestTextSize();
-	cmText->SetSize( v2LargestTextSize.X, v2LargestTextSize.Y );
 
 	if ( cmLeftButton.IsValid() )
 		cmText->SetLocation( cmLeftButton->GetSize().X + cmLeftButton->GetMarginSize().X, 0.f );

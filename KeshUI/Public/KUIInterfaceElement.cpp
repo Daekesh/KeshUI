@@ -355,13 +355,13 @@ void UKUIInterfaceElement::SetAlignLocation( const FVector2D& v2AlignLocation )
 }
 
 
-const FVector2D UKUIInterfaceElement::GetRenderLocation()
+const FVector2D UKUIInterfaceElement::GetRenderLocation() const
 {
 	if ( !bValidAlignLocation )
 	{
 		TArray<UKUIInterfaceElement*> arAlignStack;
 
-		CalculateAlignLocation( arAlignStack );
+		const_cast<UKUIInterfaceElement*>( this )->CalculateAlignLocation( arAlignStack );
 	}
 
 	return ( v2AlignLocation + v2Location );
