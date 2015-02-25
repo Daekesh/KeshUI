@@ -92,7 +92,7 @@ public:
 	virtual void SetPivotPoint( float fX, float fY );
 
 	/* Gets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	//UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
 	virtual const FVector4& GetBorderMetrics() const;
 
 	/* Sets the border metrics. */
@@ -100,7 +100,7 @@ public:
 	virtual void SetBorderMetrics( float fLeft, float fTop, float fRight, float fBottom );
 
 	/* Sets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	//UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
 	virtual void SetBorderMetricsStruct( const FVector4& v4Metrics );
 
 	/* Returns true if there's enough information to render. */

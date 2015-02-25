@@ -261,11 +261,11 @@ public:
 	virtual void SetLocation( float fX, float fY );
 
 	/* Gets the border around an element. */
-	//UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual const FVector4& GetMargin() const;
 
 	/* Sets the border around an element. */
-	//UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual void SetMarginStruct( const FVector4& v2Margin );
 
 	/* Sets the border around an element. */
