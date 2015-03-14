@@ -1,8 +1,7 @@
 KeshUI: A Unreal Engine 4 C++ Based UI Framework
 ================================================
 
-Note: I add to this library as and when I need things. If you use it and find something missing, 
-feel free to add or request it (if it's a feasably small addition.)
+Note: I add to this library as and when I need things. If you use it and find something missing, feel free to add or request it (if it's a feasably small addition.)
 
 Interface Class Hierarchy
 =========================
@@ -13,15 +12,13 @@ KUIInterfaceElement (controls location and z-ordering)
  |
  |- KUIInterfaceComponent (direct rendering calls.)
  |
- \- KUIInterfaceContainer (receives and dispatches all events to children - used to group widgets and 
-     |                     other containers together)
+ \- KUIInterfaceContainer (receives and dispatches all events to children - used to group widgets and other containers together)
      |
      \- KUIInterfaceWidget (selective event receipt - used to implement specific interface elements)
 
 KUIInterfaceWidgetChildManager (links to a component inside a widget for widget-specific child info)
 
-Note: Child managers are an idea I played around with to have state-agnostic generic classes with state
-managers. I don't really use them any more.
+Note: Child managers are an idea I played around with to have state-agnostic generic classes with state managers. I don't really use them any more.
 
 
 Interface Ownership Hierarchy
