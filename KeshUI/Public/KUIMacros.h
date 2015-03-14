@@ -81,6 +81,18 @@
 #define KUILocalPlayerCW( w ) ( ( GEngine && w && w->GetNetMode() != ENetMode::NM_DedicatedServer ) ? GEngine->GetFirstLocalPlayerController( w ) : NULL )
 #define KUILocalPlayer() KUILocalPlayerCW( GetWorld() )
 
+// Console commands (custom world)
+#define KUIConsoleCommandCW( w, c ) KUILocalPlayerCW( w )->ConsoleCommand( c, false )
+#define KUIConsoleCommandParamCW( w, c, p ) KUIConsoleCommandCW( w, FString( c ) + FString( " " ) + FString( p ) )
+#define KUIConsoleCommandLogCW( w, c ) KUILocalPlayerCW( w )->ConsoleCommand( c, true )
+#define KUIConsoleCommandParamLogCW( w, c, p ) KUIConsoleCommandLogCW( w, FString( c ) + FString( " " ) + FString( p ) )
+
+// Console commands
+#define KUIConsoleCommand( c ) KUIConsoleCommandCW( GetWorld(), c )
+#define KUIConsoleCommandParam( c, p ) KUIConsoleCommandParamCW( GetWorld(), c, p )
+#define KUIConsoleCommandLog( c ) KUIConsoleCommandLogCW( GetWorld(), c )
+#define KUIConsoleCommandParamLog( c, p ) KUIConsoleCommandParamLogCW( GetWorld(), c, p )
+
 // Network (custom world)
 #define HasServerCW( w ) ( w == NULL ? true : w->GetNetMode() != ENetMode::NM_Client )
 #define HasClientCW( w ) ( w == NULL ? true : w->GetNetMode() != ENetMode::NM_DedicatedServer )
