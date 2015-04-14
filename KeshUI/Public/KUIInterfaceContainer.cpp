@@ -4,6 +4,7 @@
 #include "KUIInterface.h"
 #include "KUIInterfaceWidgetChildManager.h"
 #include "KUIInterfaceContainer.h"
+#include "KUIInterfaceWidget.h"
 #define _XTGMATH
 #include <functional>
 
@@ -890,7 +891,7 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 void UKUIInterfaceContainer::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDown )
 {
-	if ( bDebug && stEventInfo.iEventID == EKUIInterfaceContainerEventList::E_MouseMove )
+	if ( bDebug && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_Tick && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_MouseMove )
 		bDebug = true;
 
 	bool bResponds = RespondsToEvent( stEventInfo.iEventID );

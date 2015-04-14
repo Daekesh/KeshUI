@@ -458,7 +458,9 @@ void UKUIInterfaceElement::Render( AKUIInterface* aHud, UCanvas* oCanvas, const 
 
 	else
 	{
-		v2LastScreenRenderLocation = v2Origin + GetRenderLocation() + ( oRenderCacheObject != NULL ? oRenderCacheObject->GetLastScreenRenderLocation() : FVector2D::ZeroVector );
+		if ( oRenderCacheObject == NULL )
+			v2LastScreenRenderLocation = v2Origin + GetRenderLocation();
+
 		oCanvas->Reset();
 
 		KUISendEvent( FKUIInterfaceElementRenderEvent, EKUIInterfaceElementEventList::E_Render, oCanvas, v2Origin );
@@ -485,9 +487,6 @@ const FVector2D& UKUIInterfaceElement::GetLastScreenRenderLocation() const
 
 bool UKUIInterfaceElement::IsMouseOver() const
 {
-	if ( v2LastScreenRenderLocation.X == -1.f )
-		return false;
-
 	if ( GetInterface() == NULL )
 	{
 		KUIErrorUO( "Null interface" );

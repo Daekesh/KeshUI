@@ -822,6 +822,42 @@ void UKUIListContainer::RemoveSelectedRowsByIndex( const TArray<uint16>& arRows 
 }
 
 
+uint16 UKUIListContainer::GetSelectedRowIndex() const
+{
+	if ( !arSelectedRows[ 0 ].IsValid() )
+		return KUI_LIST_INDEX_NONE;
+
+	for ( int32 i = 0; i < arRows.Num(); ++i )
+	{
+		if ( !arRows[ i ]->IsSelected() )
+			continue;
+
+		return i;
+	}
+
+	return KUI_LIST_INDEX_NONE;
+}
+
+
+TArray<uint16> UKUIListContainer::GetSelectedRowIndices() const
+{
+	TArray<uint16> arSelectRowIndices;
+	arSelectRowIndices.SetNum( arSelectedRows.Num() );
+	uint16 iRow = 0;
+
+	for ( int32 i = 0; i < arRows.Num(); ++i )
+	{
+		if ( !arRows[ i ]->IsSelected() )
+			continue;
+
+		arSelectRowIndices[ iRow ] = i;
+		++iRow;
+	}
+
+	return arSelectRowIndices;
+}
+
+
 void UKUIListContainer::OnClick( UKUISimpleClickWidget* oWidget, const FVector2D& v2CursorOffset )
 {
 	if ( !IsSelectEnabled() )

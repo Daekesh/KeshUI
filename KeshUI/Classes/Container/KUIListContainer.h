@@ -199,6 +199,14 @@ public:
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
 	virtual void RemoveSelectedRowsByIndex( const TArray<uint16>& arRows );
 
+	/* Returns the index of the first selected row. */
+	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	virtual uint16 GetSelectedRowIndex() const;
+
+	/* Returns an array of the selected indices. */
+	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	virtual TArray<uint16> GetSelectedRowIndices() const;
+
 	/* Triggers when the list container is clicked. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
 	virtual void OnClick( UKUISimpleClickWidget* oWidget, const FVector2D& v2CursorOffset );
