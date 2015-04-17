@@ -153,11 +153,14 @@ bool UKUIInterfaceContainer::RemoveChild( UKUIInterfaceElement* oChild )
 		arChildren[ iIndex ] = arChildren[ iHighestIndex ];
 
 		// Re-sort the array for z-index.	
+		arChildren.SetNum( iHighestIndex );
 		SortChildren();
 	}
 
+	else
+		arChildren.SetNum( iIndex );
+
 	// Reduce the size of the array by 1.
-	arChildren.SetNum( iIndex );
 
 	// Run the child event to set up containers.
 	KUISendSubEventObj( FKUIInterfaceElementContainerEvent, oChild, EKUIInterfaceElementEventList::E_RemovedFromContainer, this );
