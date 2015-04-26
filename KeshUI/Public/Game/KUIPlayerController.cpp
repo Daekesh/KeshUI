@@ -8,13 +8,16 @@
 AKUIPlayerController::AKUIPlayerController( const class FObjectInitializer& oObjectInitializer )
 	: Super( oObjectInitializer )
 {
-
+	bHasPlayEnded = false;
 }
 
 
 void AKUIPlayerController::PlayerTick( float fDeltaTime )
 {
 	Super::PlayerTick( fDeltaTime );
+
+	if ( bHasPlayEnded )
+		return;
 
 	ProcessInput();
 }
@@ -47,6 +50,9 @@ bool AKUIPlayerController::InputKey( FKey Key, EInputEvent EventType, float Amou
 {
 	//KUILog( "Key Event: %s %s", (*Key.ToString()), *FString( EventType == EInputEvent::IE_Pressed ? "\\/" : ( EventType == EInputEvent::IE_Released ? "/\\" : "++" ) ) );
 
+	if ( bHasPlayEnded )
+		return true;
+
 	if ( InputKeyEvent( Key, EventType ) )
 	{
 		//KUILog( "True" );
@@ -61,6 +67,9 @@ bool AKUIPlayerController::InputKey( FKey Key, EInputEvent EventType, float Amou
 
 bool AKUIPlayerController::InputKeyEvent( FKey eKey, EInputEvent eEventType )
 {
+	if ( bHasPlayEnded )
+		return true;
+
 	AKUIInterface* const aInterface = Cast<AKUIInterface>( GetHUD() );
 
 	if ( aInterface == NULL )
@@ -101,6 +110,9 @@ bool AKUIPlayerController::InputKeyEvent( FKey eKey, EInputEvent eEventType )
 
 bool AKUIPlayerController::InputCharEvent( TCHAR chChar )
 {
+	if ( bHasPlayEnded )
+		return true;
+
 	AKUIInterface* const aInterface = Cast<AKUIInterface>( GetHUD() );
 
 	//KUILog( "Char event: %s", *FString::Chr( chChar ) );
@@ -109,4 +121,12 @@ bool AKUIPlayerController::InputCharEvent( TCHAR chChar )
 		return false;
 
 	return aInterface->OnKeyChar( chChar );
+}
+
+
+void AKUIPlayerController::EndPlay( const EEndPlayReason::Type eEndPlayReason )
+{
+	bHasPlayEnded = true;
+
+	Super::EndPlay( eEndPlayReason );
 }

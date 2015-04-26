@@ -40,4 +40,11 @@ public:
 	/* Triggers text input for the ui. */
 	virtual bool InputCharEvent( TCHAR chChar );
 
+	// Stops input processing after play has ended.
+	virtual void EndPlay( const EEndPlayReason::Type eEndPlayReason ) override;
+
+protected:
+
+	bool bHasPlayEnded;
+
 };
