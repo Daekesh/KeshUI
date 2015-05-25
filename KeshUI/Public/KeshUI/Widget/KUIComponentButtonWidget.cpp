@@ -66,7 +66,8 @@ void UKUIComponentButtonWidget::SetElementComponent( EKUIButtonState::State eSta
 
 	arElementComponents[ eState ] = oComponent;
 
-	AddChild( arElementComponents[ eState ] );
+	if ( oComponent->GetContainer() != this )
+		AddChild( arElementComponents[ eState ] );
 
 	arElementComponents[ eState ]->SetZIndex( 1 );
 	arElementComponents[ eState ]->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Centre );

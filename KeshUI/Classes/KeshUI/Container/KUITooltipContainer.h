@@ -21,7 +21,7 @@ class KESHUI_API UKUITooltipContainer : public UKUIRootContainer
 
 public:
 
-	/* Overriden to false. */
+	/* Overridden to false. */
 	virtual bool CanReceieveKeyEvents() const;
 
 };

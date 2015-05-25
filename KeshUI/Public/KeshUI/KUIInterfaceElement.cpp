@@ -58,6 +58,26 @@ UKUIInterfaceContainer* UKUIInterfaceElement::GetContainer() const
 }
 
 
+void UKUIInterfaceElement::SetContainer( UKUIInterfaceContainer* ctContainer )
+{
+	if ( ctContainer == this->ctContainer )
+		return;
+
+	if ( this->ctContainer.IsValid() )
+	{
+		KUISendSubEvent( FKUIInterfaceElementContainerEvent, EKUIInterfaceElementEventList::E_RemovedFromContainer, this->ctContainer.Get() );
+	}
+
+	this->ctContainer = ctContainer;
+
+	// Run the child event to set up containers.
+	if ( this->ctContainer != NULL )
+	{
+		KUISendSubEvent( FKUIInterfaceElementContainerEvent, EKUIInterfaceElementEventList::E_AddedToContainer, this->ctContainer.Get() );
+	}
+}
+
+
 UObject** UKUIInterfaceElement::GetAsset( const FName& nName ) const
 {
 	if ( IsTemplate() )

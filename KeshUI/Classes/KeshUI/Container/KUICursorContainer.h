@@ -21,7 +21,7 @@ class KESHUI_API UKUICursorContainer : public UKUIRootContainer
 
 public:
 
-	/* Overriden to false. */
+	/* Overridden to false. */
 	virtual bool CanReceieveKeyEvents() const;
 
 };

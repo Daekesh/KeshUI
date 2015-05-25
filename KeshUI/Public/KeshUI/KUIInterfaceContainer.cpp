@@ -82,8 +82,7 @@ void UKUIInterfaceContainer::AddChild( UKUIInterfaceElement* oChild )
 	// Add the child to our array.
 	arChildren.Add( oChild );
 
-	// Run the child event to set up containers.
-	KUISendSubEventObj( FKUIInterfaceElementContainerEvent, oChild, EKUIInterfaceElementEventList::E_AddedToContainer, this );
+	oChild->SetContainer( this );
 
 	if ( oChild->IsA<UKUIInterfaceContainer>() )
 	{
@@ -157,14 +156,13 @@ bool UKUIInterfaceContainer::RemoveChild( UKUIInterfaceElement* oChild )
 		SortChildren();
 	}
 
+	// Reduce the size of the array by 1.
 	else
 		arChildren.SetNum( iIndex );
 
-	// Reduce the size of the array by 1.
+	oChild->SetContainer( NULL );
 
 	// Run the child event to set up containers.
-	KUISendSubEventObj( FKUIInterfaceElementContainerEvent, oChild, EKUIInterfaceElementEventList::E_RemovedFromContainer, this );
-
 	if ( oChild->IsA<UKUIInterfaceContainer>() )
 	{
 		UKUIInterfaceContainer* const ctContainer = Cast<UKUIInterfaceContainer>( oChild );
@@ -175,7 +173,6 @@ bool UKUIInterfaceContainer::RemoveChild( UKUIInterfaceElement* oChild )
 	}
 
 	KUISendEvent( FKUIInterfaceContainerElementEvent, EKUIInterfaceContainerEventList::E_ChildRemoved, oChild );
-
 	InvalidateRenderCache();
 	return true;
 }
@@ -563,7 +560,9 @@ void UKUIInterfaceContainer::AddChildManager( UKUIInterfaceWidgetChildManager* o
 		return;
 
 	arChildManagers.Add( oChildManager );
-	oChildManager->Update();
+	
+	if ( !IsTemplate() )
+		oChildManager->Update();
 }
 
 

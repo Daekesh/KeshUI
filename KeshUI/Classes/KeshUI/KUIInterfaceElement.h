@@ -217,6 +217,9 @@ public:
 	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
 	virtual UKUIInterfaceContainer* GetContainer() const;
 
+	/* Sets the container this component is in. Do not call manually. */
+	virtual void SetContainer( UKUIInterfaceContainer* ctContainer );
+
 	/* Returns the asset identified by the given FName from the asset libraries. */
 	virtual FORCEINLINE UObject** GetAsset( const FName& nName ) const;
 
