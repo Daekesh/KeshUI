@@ -286,10 +286,10 @@ bool UKUISliderWidget::OnMouseButtonDown( const FKUIInterfaceContainerMouseButto
 	if ( oHandle.IsValid() && oHandle->IsMouseOver() )
 	{
 		if ( bHorizontal )
-			fMouseDownOffset = stEventInfo.v2Location.X - oHandle->GetLastScreenRenderLocation().X - oHandle->GetSize().X / 2.f;
+			fMouseDownOffset = stEventInfo.v2Location.X - oHandle->GetScreenLocation().X - oHandle->GetSize().X / 2.f;
 
 		else
-			fMouseDownOffset = stEventInfo.v2Location.Y - oHandle->GetLastScreenRenderLocation().Y - oHandle->GetSize().Y / 2.f;
+			fMouseDownOffset = stEventInfo.v2Location.Y - oHandle->GetScreenLocation().Y - oHandle->GetSize().Y / 2.f;
 	}
 
 	else
@@ -337,10 +337,10 @@ void UKUISliderWidget::OnDrag( float fLocation )
 	float fValue = 0.f;
 
 	if ( bHorizontal )
-		fValue = fLocation - v2LastScreenRenderLocation.X - fEndSize - fMouseDownOffset - ( oHandle.IsValid() ? oHandle->GetSize().X / 2.f : 0.f );
+		fValue = fLocation - GetScreenLocation().X - fEndSize - fMouseDownOffset - ( oHandle.IsValid() ? oHandle->GetSize().X / 2.f : 0.f );
 
 	else
-		fValue = fLocation - v2LastScreenRenderLocation.Y - fEndSize - fMouseDownOffset - ( oHandle.IsValid() ? oHandle->GetSize().Y / 2.f : 0.f );
+		fValue = fLocation - GetScreenLocation().Y - fEndSize - fMouseDownOffset - ( oHandle.IsValid() ? oHandle->GetSize().Y / 2.f : 0.f );
 
 	fValue = clamp( fValue, 0.f, fTravelDistance ) / fTravelDistance;
 
