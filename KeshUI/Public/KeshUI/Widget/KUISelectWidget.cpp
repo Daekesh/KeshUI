@@ -11,6 +11,7 @@ UKUISelectWidget::UKUISelectWidget( const class FObjectInitializer& oObjectIniti
 	iSelectedValue = KUI_SELECT_WIDGET_NO_VALUE;
 	arValues.SetNum( 0 );
 	dgSelectValueChangeDelegate.BindUObject( this, &UKUISelectWidget::OnSliderValueChange );
+	bCyclic = false;
 }
 
 
@@ -37,7 +38,10 @@ uint8 UKUISelectWidget::GetSelectedIndex() const
 
 bool UKUISelectWidget::SetValueByIndex( uint8 iIndex )
 {
-	if ( iIndex == KUI_SELECT_WIDGET_NO_VALUE || arValues.IsValidIndex( iIndex ) )
+	if ( iSelectedValue == iIndex )
+		return true;
+	
+	if ( arValues.IsValidIndex( iIndex ) )
 	{
 		iSelectedValue = iIndex;
 		KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceWidgetEventList::E_ValueChange );
@@ -64,6 +68,8 @@ uint8 UKUISelectWidget::AddValue( const FText& txValue )
 
 	arValues.Add( txValue );
 
+	KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceWidgetEventList::E_StateChange );
+
 	return arValues.Num() - 1;
 }
 
@@ -78,8 +84,15 @@ bool UKUISelectWidget::RemoveValueByIndex( uint8 iIndex )
 
 	arValues.SetNum( arValues.Num() - 1 );
 
+	KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceWidgetEventList::E_StateChange );
+		
 	if ( iSelectedValue == arValues.Num() )
 		SetValueByIndex( KUI_SELECT_WIDGET_NO_VALUE );
+
+	else if ( iSelectedValue == iIndex )
+	{
+		KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceWidgetEventList::E_ValueChange );
+	}
 
 	return true;
 }
@@ -103,8 +116,19 @@ uint8 UKUISelectWidget::GetIndexOf( const FText& txValue ) const
 
 bool UKUISelectWidget::NextValue()
 {
+	if ( arValues.Num() == 0 )
+		return false;
+	
 	if ( iSelectedValue == KUI_SELECT_WIDGET_NO_VALUE )
 		return SetValueByIndex( 0 );
+
+	if ( iSelectedValue == ( arValues.Num() - 1 ) )
+	{
+		if ( !bCyclic )
+			return false;
+
+		return SetValueByIndex( 0 );
+	}
 
 	return SetValueByIndex( iSelectedValue + 1 );
 }
@@ -112,7 +136,28 @@ bool UKUISelectWidget::NextValue()
 
 bool UKUISelectWidget::PreviousValue()
 {
-	return SetValueByIndex( iSelectedValue - 1 );
+	switch ( arValues.Num() )
+	{
+		case 0:
+			return false;
+
+		case 1:
+			if ( iSelectedValue != KUI_SELECT_WIDGET_NO_VALUE )
+				return false;
+
+			return SetValueByIndex( 0 );
+
+		default:
+			if ( iSelectedValue == 0 )
+			{
+				if ( !bCyclic )
+					return false;
+
+				return SetValueByIndex( arValues.Num() - 1 );
+			}
+
+			return SetValueByIndex( iSelectedValue - 1 );
+	}
 }
 
 
@@ -163,4 +208,34 @@ void UKUISelectWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		dgSelectValueChangeDelegate.ExecuteIfBound( this );
 		OnSelectValueStateChangeBP( this );
 	}
+}
+
+
+uint8 UKUISelectWidget::GetValueCount() const
+{
+	return arValues.Num();
+}
+
+
+void UKUISelectWidget::ClearValues()
+{
+	arValues.SetNum( 0 );
+	SetValueByIndex( KUI_SELECT_WIDGET_NO_VALUE );
+}
+
+
+bool UKUISelectWidget::IsCyclic() const
+{
+	return bCyclic;
+}
+
+
+void UKUISelectWidget::SetCyclic( bool bCyclic )
+{
+	if ( this->bCyclic == bCyclic )
+		return;
+
+	this->bCyclic = bCyclic;
+
+	KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceWidgetEventList::E_StateChange );
 }

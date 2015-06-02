@@ -312,6 +312,8 @@ void UKUIGridContainer::DoLayout()
 				if ( v2ChildLocation.Y <= 0.f )
 					v2ChildLocation.Y = 0.f;
 
+				v2ChildLocation += ar2Elements[ iRow ][ iColumn ]->GetLocation();
+
 				ar2Elements[ iRow ][ iColumn ]->SetLocation( v2ChildLocation.X, v2ChildLocation.Y );
 				ar2Elements[ iRow ][ iColumn ]->SetVisible( true );
 			}

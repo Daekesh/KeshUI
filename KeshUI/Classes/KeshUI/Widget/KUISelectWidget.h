@@ -73,6 +73,22 @@ public:
 	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
 	virtual uint8 GetIndexByValue( const FText& txValue ) const;
 
+	/* Returns the number of values. */
+	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	virtual uint8 GetValueCount() const;
+
+	/* Clears all values. */
+	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	virtual void ClearValues();
+
+	/* Returns true if this is a cyclic selection. */
+	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	virtual bool IsCyclic() const;
+
+	/* Sets whether this is cyclic or not. */
+	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	virtual void SetCyclic( bool bCyclic );
+
 	/* Sets the value change delegate. By default it is the internal OnSliderValueChange function. */
 	virtual void SetValueChangeDelegate( UObject* oObject, FKUISelectValueChangePrototype fnValueChangeCallback );
 
@@ -85,6 +101,7 @@ protected:
 	uint8 iSelectedValue;
 	TArray<FText> arValues;
 	FKUISelectValueChangeDelegate dgSelectValueChangeDelegate;
+	bool bCyclic;
 
 	/* Default on-state-change delegate. */
 	virtual void OnSliderValueChange( UKUISelectWidget* cmSelect );

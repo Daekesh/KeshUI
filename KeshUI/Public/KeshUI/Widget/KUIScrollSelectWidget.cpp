@@ -183,7 +183,7 @@ void UKUIScrollSelectWidget::UpdateDisabledStates()
 {
 	if ( cmLeftButton.IsValid() )
 	{
-		if ( IsDisabled() || iSelectedValue == KUI_SELECT_WIDGET_NO_VALUE || !arValues.IsValidIndex( iSelectedValue - 1 ) )
+		if ( !IsCyclic() && ( IsDisabled() || iSelectedValue == KUI_SELECT_WIDGET_NO_VALUE || !arValues.IsValidIndex( iSelectedValue - 1 ) ) )
 			cmLeftButton->SetDisabled( EKUIBool::SV_True );
 
 		else
@@ -192,7 +192,7 @@ void UKUIScrollSelectWidget::UpdateDisabledStates()
 
 	if ( cmRightButton.IsValid() )
 	{
-		if ( IsDisabled() || arValues.Num() == 0 || ( iSelectedValue < KUI_SELECT_WIDGET_MAX_VALUE && !arValues.IsValidIndex( iSelectedValue + 1 ) ) )
+		if ( !IsCyclic() && ( IsDisabled() || arValues.Num() == 0 || ( iSelectedValue < KUI_SELECT_WIDGET_MAX_VALUE && !arValues.IsValidIndex( iSelectedValue + 1 ) ) ) )
 			cmRightButton->SetDisabled( EKUIBool::SV_True );
 
 		else

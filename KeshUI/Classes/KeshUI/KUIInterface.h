@@ -221,9 +221,6 @@ protected:
 	UPROPERTY()
 	TArray<UKUIRootContainer*> ctRootContainers;
 
-	UPROPERTY( Category = "KeshUI | Interface", EditAnywhere, BlueprintReadWrite, Instanced, Meta = ( DisplayName = "Asset Libraries" ) )
-	TArray<UKUIAssetLibrary*> arAssetLibraries;
-
 #if KUI_INTERFACE_MOUSEOVER_DEBUG
 	UPROPERTY()
 	UKUIBoxInterfaceComponent* cmDebugMouseOverTestBox;

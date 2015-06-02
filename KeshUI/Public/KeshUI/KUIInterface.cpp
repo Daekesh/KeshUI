@@ -10,6 +10,7 @@
 #include "KeshUI/Component/KUIBoxInterfaceComponent.h"
 #include "KeshUI/KUICancellable.h"
 #include "KeshUI/KUIAssetLibrary.h"
+#include "KeshUI/Game/KUIGameInstance.h"
 #include "KeshUI/KUIInterface.h"
 
 
@@ -32,7 +33,6 @@ AKUIInterface::AKUIInterface( const class FObjectInitializer& oObjectInitializer
 	v2CursorVector = FVector2D::ZeroVector;
 	arCancellables.SetNum( 0 );
 	ctFocused = NULL;
-	arAssetLibraries.SetNum( 0 );
 
 	ctRootContainers.SetNum( 4 );
 
@@ -453,25 +453,15 @@ void AKUIInterface::OnCancel( UObject* oCancellable )
 
 UObject** AKUIInterface::GetAsset( const FName& nName ) const
 {
-	if ( IsTemplate() )
+	if ( GetWorld() == NULL )
+		return NULL;
+	
+	UKUIGameInstance* oGameInstance = Cast<UKUIGameInstance>( GetWorld()->GetGameInstance() );
+
+	if ( oGameInstance == NULL )
 		return NULL;
 
-	UObject** oAsset = NULL;
-
-	for ( int32 i = 0; i < arAssetLibraries.Num(); ++i )
-	{
-		if ( arAssetLibraries[ i ] == NULL )
-			continue;
-
-		oAsset = arAssetLibraries[ i ]->GetAsset( nName );
-
-		if ( oAsset != NULL )
-			return oAsset;
-	}
-
-	KUIErrorUO( "Failed to load asset: %s", *( nName.ToString() ) );
-
-	return NULL;
+	return oGameInstance->GetAsset( nName );
 }
 
 
