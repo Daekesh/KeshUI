@@ -51,6 +51,22 @@ public:
 	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
 	virtual void SetTileInsteadOfStretchTrack( bool bValue );
 
+	/* Returns true if the handle scales to the size of the visible / total size. */
+	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
+	virtual bool IsHandleScaling() const;
+
+	/* Sets whether the handle scales to the size of the visible / total size. */
+	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
+	virtual void SetHandleScaling( bool bScaling );
+
+	/* Returns the minimum size of the handle for scaling. */
+	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
+	virtual float GetMinimumHandleSize() const;
+
+	/* Sets the minimum size of the handle for scaling. Minimum is 1.f */
+	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
+	virtual void SetMinimumHandleSize( float fSize );
+
 	/* Gets the scroll container to move when this is changed. */
 	UFUNCTION( Category = "KeshUI | Widget | Scroll Bar", BlueprintCallable )
 	virtual UKUIScrollContainer* GetScrollContainer() const;
@@ -70,6 +86,8 @@ protected:
 	TWeakObjectPtr<UKUIInterfaceElement> oCentral;
 	bool bTileInsteadOfStretchTrack;
 	TWeakObjectPtr<UKUIScrollContainer> ctScrollContainer;
+	bool bScaleHandle;
+	float fMinimumHandleSize;
 
 	/* Updates the components elements. */
 	virtual void UpdateScrollbarComponents();

@@ -15,6 +15,8 @@ UKUIScrollBarWidget::UKUIScrollBarWidget( const class FObjectInitializer& oObjec
 	oCentral = NULL;
 	bTileInsteadOfStretchTrack = false;
 	ctScrollContainer = NULL;
+	bScaleHandle = true;
+	fMinimumHandleSize = 8.f;
 }
 
 
@@ -172,6 +174,17 @@ void UKUIScrollBarWidget::UpdateScrollbarComponents()
 				}
 			}
 		}
+
+		if ( bScaleHandle && ctScrollContainer.IsValid() && ctScrollContainer->GetScrollArea() != NULL && oHandle.IsValid() )
+		{
+			float fFraction = ctScrollContainer->GetScrollArea()->GetSize().X / max( 1.f, ctScrollContainer->GetScrollArea()->GetTotalSize().X );
+			float fSize = max( 1.f, ( fTotalLength - ( fEndSize * 2.f ) ) * fFraction );
+
+			if ( fSize < fMinimumHandleSize )
+				fSize = fMinimumHandleSize;
+
+			oHandle->SetSize( fSize, oHandle->GetSize().Y );
+		}
 	}
 
 	else
@@ -223,6 +236,17 @@ void UKUIScrollBarWidget::UpdateScrollbarComponents()
 				}
 			}
 		}
+
+		if ( bScaleHandle && ctScrollContainer.IsValid() && ctScrollContainer->GetScrollArea() != NULL && oHandle.IsValid() )
+		{
+			float fFraction = ctScrollContainer->GetScrollArea()->GetSize().Y / max( 1.f, ctScrollContainer->GetScrollArea()->GetTotalSize().Y );
+			float fSize = max( 1.f, ( fTotalLength - ( fEndSize * 2.f ) ) * fFraction );
+
+			if ( fSize < fMinimumHandleSize )
+				fSize = fMinimumHandleSize;
+
+			oHandle->SetSize( oHandle->GetSize().X, fSize );
+		}
 	}
 }
 
@@ -249,6 +273,42 @@ void UKUIScrollBarWidget::SetSize( float fWidth, float fHeight )
 		return;
 
 	Super::SetSize( fWidth, fHeight );
+
+	UpdateScrollbarComponents();
+}
+
+
+bool UKUIScrollBarWidget::IsHandleScaling() const
+{
+	return bScaleHandle;
+}
+
+
+void UKUIScrollBarWidget::SetHandleScaling( bool bScaling )
+{
+	if ( bScaleHandle == bScaling )
+		return;
+
+	bScaleHandle = bScaling;
+
+	UpdateScrollbarComponents();
+}
+
+
+float UKUIScrollBarWidget::GetMinimumHandleSize() const
+{
+	return fMinimumHandleSize;
+}
+
+
+void UKUIScrollBarWidget::SetMinimumHandleSize( float fSize )
+{
+	fSize = min( fSize, 1.f );
+
+	if ( fMinimumHandleSize == fSize )
+		return;
+
+	fMinimumHandleSize = fSize;
 
 	UpdateScrollbarComponents();
 }
