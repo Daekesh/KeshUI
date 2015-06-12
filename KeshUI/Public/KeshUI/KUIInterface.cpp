@@ -408,6 +408,8 @@ void AKUIInterface::RemoveCancellable( UObject* oCancellable )
 	for ( int32 i = iIndex + 1; i < arCancellables.Num(); ++i )
 		arCancellables[ i - 1 ] = arCancellables[ i ];
 
+	arCancellables[ arCancellables.Num() - 1 ] = NULL;
+
 	if ( !IsTemplate() )
 		OnCancellableRemovedBP( oCancellable );
 }
