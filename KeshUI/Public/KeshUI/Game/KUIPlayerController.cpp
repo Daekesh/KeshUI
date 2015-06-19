@@ -9,6 +9,10 @@ AKUIPlayerController::AKUIPlayerController( const class FObjectInitializer& oObj
 	: Super( oObjectInitializer )
 {
 	bHasPlayEnded = false;
+
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bTickEvenWhenPaused = true;
+	SetActorTickEnabled( true );
 }
 
 
