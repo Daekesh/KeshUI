@@ -103,7 +103,7 @@ void UKUIScrollContainer::UpdateScrollbarMetrics()
 
 	const FVector2D v2Size = GetSize();
 
-	if ( v2ScrollContainerSize.X == v2Size.X && v2ScrollContainerSize.Y == v2Size.Y )
+	if ( v2ScrollContainerSize.X >= v2Size.X && v2ScrollContainerSize.Y >= v2Size.Y )
 	{
 		if ( cmHorizontalScrollBar.IsValid() )
 			cmHorizontalScrollBar->SetVisible( false );
@@ -115,7 +115,7 @@ void UKUIScrollContainer::UpdateScrollbarMetrics()
 			oCornerComponent->SetVisible( false );
 	}
 
-	else if ( v2ScrollContainerSize.Y == v2Size.Y )
+	else if ( v2ScrollContainerSize.Y >= v2Size.Y )
 	{
 		if ( cmHorizontalScrollBar.IsValid() )
 		{
@@ -130,7 +130,7 @@ void UKUIScrollContainer::UpdateScrollbarMetrics()
 			oCornerComponent->SetVisible( false );
 	}
 
-	else if ( v2ScrollContainerSize.X == v2Size.X )
+	else if ( v2ScrollContainerSize.X >= v2Size.X )
 	{
 		if ( cmHorizontalScrollBar.IsValid() )
 			cmHorizontalScrollBar->SetVisible( false );

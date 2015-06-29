@@ -281,6 +281,8 @@ public:
 	/* Sets the delegate called when a selection change is made. */
 	virtual void SetSelectionChangeDelegate( UObject* oObject, FKUIListRowContainerSelectionChangePrototype fnSelectionChangeDelegate );
 
+	virtual bool IsChildsLayoutManaged( UKUIInterfaceElement* oChild ) const override;
+
 protected:
 
 	TArray<TWeakObjectPtr<UKUIListRowContainer>> arRows;

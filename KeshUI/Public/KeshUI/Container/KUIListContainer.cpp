@@ -330,13 +330,21 @@ void UKUIListContainer::DoLayout()
 
 		v2SlotLocation.Y -= fSpacing;
 		SetSize( GetSize().X, v2SlotLocation.Y );
+		InvalidateRenderCache();
 	}
 }
 
 
-void UKUIListContainer::Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject /* = NULL */ )
+bool UKUIListContainer::IsChildsLayoutManaged( UKUIInterfaceElement* oChild ) const
 {
-	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
+	if ( oChild == NULL )
+		return false;
+
+	for ( int32 i = 0; i < arRows.Num(); ++i )
+		if ( arRows[ i ].Get() == oChild )
+			return true;
+
+	return false;
 }
 
 

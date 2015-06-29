@@ -183,6 +183,7 @@ void UKUIScrollBarWidget::UpdateScrollbarComponents()
 			if ( fSize < fMinimumHandleSize )
 				fSize = fMinimumHandleSize;
 
+			oHandle->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_None );
 			oHandle->SetSize( fSize, oHandle->GetSize().Y );
 		}
 	}
@@ -245,6 +246,7 @@ void UKUIScrollBarWidget::UpdateScrollbarComponents()
 			if ( fSize < fMinimumHandleSize )
 				fSize = fMinimumHandleSize;
 
+			oHandle->SetVerticalAlignment( EKUIInterfaceVAlign::VA_None );
 			oHandle->SetSize( oHandle->GetSize().X, fSize );
 		}
 	}

@@ -229,7 +229,11 @@ void UKUIListRowContainer::DoLayout()
 	if ( ctList != NULL )
 		fMaxHeight = min( fMaxHeight, ctList->GetMaximumRowHeight() );
 
-	SetSize( GetSize().X, fMaxHeight );
+	if ( GetContainer() == NULL )
+		SetSize( GetSize().X, fMaxHeight );
+
+	else
+		SetSize( GetContainer()->GetSize().X, fMaxHeight );
 
 	Super::DoLayout();
 }
