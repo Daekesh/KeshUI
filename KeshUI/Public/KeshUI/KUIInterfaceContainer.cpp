@@ -336,6 +336,9 @@ void UKUIInterfaceContainer::DoLayout()
 		if ( arChildren[ i ] == NULL )
 			continue;
 
+		if ( IsChildsLayoutManaged( arChildren[ i ] ) )
+			continue;
+
 		arChildren[ i ]->InvalidateAlignLocation();
 	}
 
@@ -347,6 +350,9 @@ void UKUIInterfaceContainer::DoLayout()
 			continue;
 
 		if ( arChildren[ i ]->HasValidAlignLocation() )
+			continue;
+
+		if ( IsChildsLayoutManaged( arChildren[ i ] ) )
 			continue;
 
 		arChildren[ i ]->CalculateAlignLocation( arAlignStack );

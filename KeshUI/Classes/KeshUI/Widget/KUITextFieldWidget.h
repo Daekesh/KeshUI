@@ -67,18 +67,22 @@ public:
 
 	/* Returns the max length of the string. KUI_TEXT_FIELD_NO_MAX_LENGTH for no max. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	int32 GetMaxLengthBP() const { return GetMaxLength(); }
 	virtual uint16 GetMaxLength() const;
 
 	/* Sets the max length of the string. KUI_TEXT_FIELD_NO_MAX_LENGTH for no max. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	void SetMaxLengthBP( int32 iMaxLength ) { SetMaxLength( iMaxLength ); }
 	virtual void SetMaxLength( uint16 iMaxLength );
 
 	/* Gets the current caret position as an offset from the start of the string. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	int32 GetCaretPositionBP() const { return GetCaretPosition(); }
 	virtual uint16 GetCaretPosition() const;
 
 	/* Sets the current caret position as an offset from the star of the string. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	void SetCaretPositionBP( int32 iIndex ) { SetCaretPosition( iIndex ); }
 	virtual void SetCaretPosition( uint16 iIndex );
 
 	/* Gets the filter used to accept characters while typing.  Not applied to manually set strings. */

@@ -87,17 +87,18 @@ namespace EKUIInterfaceElementEventList
 {
 	enum Event
 	{
-		E_AddedToContainer = 0         UMETA( DisplayName = "Added To Container" ),
-		E_RemovedFromContainer = 1     UMETA( DisplayName = "Removed From Container" ),
-		E_Render = 2                   UMETA( DisplayName = "Render" ),
-		E_AlignLocationInvalidated = 3 UMETA( DisplayName = "Align Location Invalidated" ),
-		E_AlignLocationCalculated = 4  UMETA( DisplayName = "Align Location Calculated" ),
-		E_LocationChange = 5           UMETA( DisplayName = "Location Change" ),
-		E_SizeChange = 6               UMETA( DisplayName = "Size Change" ),
+		E_Initialize = 1               UMETA( DisplayName = "Initialize" ),
+		E_AddedToContainer = 2         UMETA( DisplayName = "Added To Container" ),
+		E_RemovedFromContainer = 3     UMETA( DisplayName = "Removed From Container" ),
+		E_Render = 4                   UMETA( DisplayName = "Render" ),
+		E_AlignLocationInvalidated = 5 UMETA( DisplayName = "Align Location Invalidated" ),
+		E_AlignLocationCalculated = 6  UMETA( DisplayName = "Align Location Calculated" ),
+		E_LocationChange = 7           UMETA( DisplayName = "Location Change" ),
+		E_SizeChange = 8               UMETA( DisplayName = "Size Change" ),
 	};
 }
 
-#define KUI_BASE_EVENT_FIRST EKUIInterfaceElementEventList::E_AddedToContainer
+#define KUI_BASE_EVENT_FIRST EKUIInterfaceElementEventList::E_Initialize
 #define KUI_BASE_EVENT_LAST EKUIInterfaceElementEventList::E_SizeChange
 
 USTRUCT( BlueprintType )
@@ -333,11 +334,15 @@ public:
 	virtual const FVector2D GetRenderLocation() const;
 
 	/* Gets the Z-Index order for this element. */
-	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	UFUNCTION( Category = "KeshUI | Element", BlueprintCallable )
+	int32 GetZIndexBP() const { return GetZIndex(); }
+
 	virtual uint16 GetZIndex() const;
 
 	/* Sets the Z-Index order for this element. */
 	UFUNCTION(Category="KeshUI | Element", BlueprintCallable)
+	void SetZIndexBP( int32 iZIndex ) { SetZIndex( iZIndex ); }
+
 	virtual void SetZIndex( uint16 iZIndex );
 
 	/* Returns whether the mouse is over this element. */
@@ -408,10 +413,13 @@ public:
 
 	virtual bool HasTag( const FString& strTag ) const;
 
+	virtual bool IsInitialized() const;
+
 	bool bDebug;
 
 protected:
 
+	bool bInitialized;
 	bool bVisible;
 	FVector2D v2Location;
 	FVector4 v4Margin;
@@ -433,6 +441,9 @@ protected:
 	virtual void InvalidateRenderCache();
 	virtual void InvalidateContainerRenderCache();
 
+	/* Called when this item is first added to a container which is part of an interface. */
+	virtual void OnInitialize( const FKUIInterfaceEvent& stEventInfo );
+
 	/* Called when this elements location is changed. */
 	virtual void OnLocationChange( const FKUIInterfaceContainerLocationChangeEvent& stEventInfo );
 
@@ -453,6 +464,9 @@ protected:
 
 	/* Called before this element is rendered. */
 	virtual void OnRender( const FKUIInterfaceElementRenderEvent& stEventInfo );
+
+	UFUNCTION( Category = "KeshUI | Element", BlueprintImplementableEvent )
+	virtual void OnInitializeBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Called when this elements location is changed. */
 	UFUNCTION(Category="KeshUI | Element", BlueprintImplementableEvent)

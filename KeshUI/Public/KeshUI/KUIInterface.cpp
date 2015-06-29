@@ -740,6 +740,8 @@ void AKUIInterface::PostInitializeComponents()
 
 	AddElement( EKUIInterfaceRoot::R_Root, cmDebugMouseOverTestBox );
 #endif // KUI_INTERFACE_MOUSEOVER_DEBUG
+
+	KUIBroadcastEvent( FKUIInterfaceEvent, EKUIInterfaceElementEventList::E_Initialize );
 }
 
 

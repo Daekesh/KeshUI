@@ -62,8 +62,8 @@ void UKUISubContainerRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElem
 	UCanvas* uoCanvas = Cast<UCanvas>( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Sub Container Render Cache Canvas" ) ) ) );
 
 	if ( uoCanvas == NULL )
-	{
-		uoCanvas = ConstructObject<UCanvas>( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Sub Container Render Cache Canvas" ) ) );
+	{	
+		uoCanvas = NewObject<UCanvas>( GetTransientPackage(), FName( TEXT( "Sub Container Render Cache Canvas" ) ) );
 		uoCanvas->AddToRoot();
 	}
 

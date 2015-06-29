@@ -186,7 +186,7 @@ float UKUIListRowColumnContainer::GetColumnWidth( uint16 iColumn ) const
 }
 
 
-void UKUIListRowColumnContainer::SetColumnWidth( uint16 iColumn, float fHeight )
+void UKUIListRowColumnContainer::SetColumnWidth( uint16 iColumn, float fWidth )
 {
 	if ( iColumn >= iColumnCount )
 	{
@@ -194,7 +194,7 @@ void UKUIListRowColumnContainer::SetColumnWidth( uint16 iColumn, float fHeight )
 		return;
 	}
 
-	arColumnWidths[ iColumn ] = fHeight;
+	arColumnWidths[ iColumn ] = fWidth;
 	
 	InvalidateLayout();
 }
@@ -304,9 +304,8 @@ void UKUIListRowColumnContainer::DoLayout()
 				if ( v2ChildLocation.Y <= 0.f )
 					v2ChildLocation.Y = 0.f;
 
-				arColumnElements[ iColumn ]->SetLocation( v2ChildLocation.X, v2ChildLocation.Y );
-
-				//arColumnElements[ iColumn ]->SetLocationStruct( v2SlotLocation );
+				arColumnElements[ iColumn ]->SetAlignedTo( NULL );
+				arColumnElements[ iColumn ]->SetAlignLocation( v2ChildLocation );
 			}
 		}
 	}

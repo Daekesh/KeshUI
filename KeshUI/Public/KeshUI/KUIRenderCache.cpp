@@ -82,7 +82,7 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 
 	if ( uoCanvas == NULL )
 	{
-		uoCanvas = ConstructObject<UCanvas>( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Render Cache Canvas" ) ) );
+		uoCanvas = NewObject<UCanvas>( GetTransientPackage(), FName( TEXT( "Render Cache Canvas" ) ) );
 		uoCanvas->AddToRoot();
 	}
 

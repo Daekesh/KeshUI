@@ -41,10 +41,12 @@ public:
 	
 	/* Gets an element at a specific list location. */
 	UFUNCTION(Category = "KeshUI | Container | List", BlueprintCallable)
+	UKUIListRowContainer* GetRowBP( int32 iRow ) const { return GetRow( iRow ); }
 	virtual UKUIListRowContainer* GetRow( uint16 iRow ) const;
 
 	/* Adds an element at a specific list location.  Adds to container if necessary. */
 	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	void SetRowBP( int32 iRow, UKUIListRowContainer* ctRow ) { SetRow( iRow, ctRow ); }
 	virtual void SetRow( uint16 iRow, UKUIListRowContainer* ctRow );
 
 	/* Removes an element from the list slot.  Does not remove it from the container. */
@@ -53,6 +55,7 @@ public:
 
 	/* Removes an element from the list slot.  Does not remove it from the container. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	void RemoveRowByIndexBP( int32 iRow ) { RemoveRowByIndex( iRow ); }
 	virtual void RemoveRowByIndex( uint16 iRow );
 
 	virtual void AddChild( UKUIInterfaceElement* oChild ) override;
@@ -62,6 +65,7 @@ public:
 
 	/* Gets the number of rows contained in this list. */
 	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	int32 GetRowCountBP() const { return GetRowCount(); }
 	virtual uint16 GetRowCount() const;
 
 	/* Adds 1 to the row count. */
@@ -74,10 +78,12 @@ public:
 
 	/* Sets the number of rows in this list. Deletes the elements in removed rows. */
 	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	void SetRowCountBP( int32 iRowCount ) { SetRowCount( iRowCount ); }
 	virtual void SetRowCount( uint16 iRowCount );
 
 	/* Removes the given number of rows from the start position.  Removes the elements in those rows from the container */
 	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	void RemoveRowsBP( int32 iStart, int32 iCount ) { RemoveRows( iStart, iCount ); }
 	virtual void RemoveRows( uint16 iStart, uint16 iCount );
 
 	/* Gets the minimum row height. */
@@ -141,6 +147,7 @@ public:
 
 	/* Returns true if the row is selected. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	bool IsRowSelectedByIndexBP( int32 iRow ) const { return IsRowSelectedByIndex( iRow ); }
 	virtual bool IsRowSelectedByIndex( uint16 iRow ) const;
 
 	/* Returns true if the rows are selected. */
@@ -149,6 +156,17 @@ public:
 
 	/* Returns true if the rows are selected. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	bool AreRowsSelectedByIndexBP( const TArray<int32>& arRows ) const
+	{
+		TArray<uint16> arNewArray;
+		arNewArray.SetNum( arRows.Num() );
+
+		for ( int32 i = 0; i < arRows.Num(); ++i )
+			arNewArray[ i ] = arRows[ i ];
+
+		return AreRowsSelectedByIndex( arNewArray );
+	}
+
 	virtual bool AreRowsSelectedByIndex( const TArray<uint16>& arRows ) const;
 
 	/* Sets the selected row. */
@@ -157,6 +175,7 @@ public:
 
 	/* Sets the selected row by index. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	void SetSelectedRowByIndexBP( int32 iRow ) { SetSelectedRowByIndex( iRow ); }
 	virtual void SetSelectedRowByIndex( uint16 iRow );
 
 	/* Sets the selected rows by reference. */
@@ -165,6 +184,17 @@ public:
 
 	/* Sets the selected rows by index. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	void SetSelectedRowsByIndexBP( const TArray<int32>& arRows )
+	{
+		TArray<uint16> arNewArray;
+		arNewArray.SetNum( arRows.Num() );
+
+		for ( int32 i = 0; i < arRows.Num(); ++i )
+			arNewArray[ i ] = arRows[ i ];
+
+		SetSelectedRowsByIndex( arNewArray );
+	}
+
 	virtual void SetSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Adds row to selection. If multi select not allowed, sets if none selected. Return true if added. */
@@ -173,6 +203,7 @@ public:
 
 	/* Adds row to selection by index. If multi select not allowed, sets if none selected. Return true if added. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	bool AddSelectedRowByIndexBP( int32 iRow ) { return AddSelectedRowByIndex( iRow ); }
 	virtual bool AddSelectedRowByIndex( uint16 iRow );
 
 	/* Adds rows to selection. If multi select not allowed, sets to first if none selected. Return true if at least 1 row was added or was already selected. */
@@ -181,6 +212,17 @@ public:
 
 	/* Adds rows to selection by index. If multi select not allowed, sets to first if none selected. Return true if at least 1 row was added or was already selected. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	bool AddSelectedRowsByIndexBP( const TArray<int32>& arRows )
+	{
+		TArray<uint16> arNewArray;
+		arNewArray.SetNum( arRows.Num() );
+
+		for ( int32 i = 0; i < arRows.Num(); ++i )
+			arNewArray[ i ] = arRows[ i ];
+
+		return AddSelectedRowsByIndex( arNewArray );
+	}
+
 	virtual bool AddSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Removes row to selection. */
@@ -189,6 +231,7 @@ public:
 
 	/* Removes row to selection by index. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	void RemoveSelectedRowByIndexBP( int32 iRow ) { RemoveSelectedRowByIndex( iRow ); }
 	virtual void RemoveSelectedRowByIndex( uint16 iRow );
 
 	/* Removes rows to selection. */
@@ -197,14 +240,38 @@ public:
 
 	/* Removes rows to selection by index. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	void RemoveSelectedRowsByIndexBP( const TArray<int32>& arRows )
+	{
+		TArray<uint16> arNewArray;
+		arNewArray.SetNum( arRows.Num() );
+
+		for ( int32 i = 0; i < arRows.Num(); ++i )
+			arNewArray[ i ] = arRows[ i ];
+
+		RemoveSelectedRowsByIndex( arNewArray );
+	}
+
 	virtual void RemoveSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Returns the index of the first selected row. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	int32 GetSelectedRowIndexBP() const { return GetSelectedRowIndex(); }
 	virtual uint16 GetSelectedRowIndex() const;
 
 	/* Returns an array of the selected indices. */
 	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	TArray<int32> GetSelectedRowIndicesBP() const
+	{
+		TArray<uint16> arOldArray = GetSelectedRowIndices();		
+		TArray<int32> arNewArray;
+		arNewArray.SetNum( arOldArray.Num() );
+
+		for ( int32 i = 0; i < arOldArray.Num(); ++i )
+			arNewArray[ i ] = arOldArray[ i ];
+
+		return arNewArray;
+	}
+
 	virtual TArray<uint16> GetSelectedRowIndices() const;
 
 	/* Triggers when the list container is clicked. */

@@ -21,14 +21,20 @@ public:
 
 	/* Gets the current number of triangles. */
 	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	int32 GetTriangleCountBP() const { return GetTriangleCount(); }
+
 	virtual int16 GetTriangleCount() const;
 
 	/* Gets the array capacity. */
 	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	int32 GetArrayCapacityBP() const { return GetArrayCapacity(); }
+
 	virtual int16 GetArrayCapacity() const;
 
 	/* Sets the array capacity. */
 	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	void SetArrayCapacityBP( int32 iCapacity ) { SetArrayCapacity( iCapacity ); }
+
 	virtual void SetArrayCapacity( int16 iCapacity );
 
 	/* Adds a triangle. */

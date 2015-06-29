@@ -31,18 +31,18 @@ struct FKUIInterfaceWidgetInlineValueChangeEvent : public FKUIInterfaceEvent
 
 	FKUIInterfaceWidgetInlineValueChangeEvent() : FKUIInterfaceEvent() { }
 
-	FKUIInterfaceWidgetInlineValueChangeEvent( uint8 iEventID, int64 oOldValue, int64 oNewValue )
+	FKUIInterfaceWidgetInlineValueChangeEvent( uint8 iEventID, void* oOldValue, void* oNewValue )
 		: FKUIInterfaceEvent( iEventID )
 	{
 		this->oOldValue = oOldValue;
 		this->oNewValue = oNewValue;
 	}
 
-	UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "Old Value Pointer (sort of)" ) )
-	int64 oOldValue;
+	//UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "Old Value Pointer (sort of)" ) )
+	void* oOldValue;
 
-	UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "New Value Pointer (sort of)" ) )
-	int64 oNewValue;
+	//UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "New Value Pointer (sort of)" ) )
+	void* oNewValue;
 };
 
 class AKUIInterface;

@@ -97,7 +97,7 @@ void UKUITextFieldWidget::SetString( const FString& strString )
 	if ( strFullString.Equals( strString ) )
 		return;
 
-	KUISendEvent( FKUIInterfaceWidgetInlineValueChangeEvent, EKUIInterfaceWidgetEventList::E_InlineValueChange, ( int64 ) &strFullString, ( int64 ) &strString );
+	KUISendEvent( FKUIInterfaceWidgetInlineValueChangeEvent, EKUIInterfaceWidgetEventList::E_InlineValueChange, ( void* ) &strFullString, ( void* ) &strString );
 
 	iUndoCaretPosition = iCaretPosition;
 	strUndo = strFullString;

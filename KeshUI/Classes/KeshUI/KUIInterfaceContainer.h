@@ -196,9 +196,9 @@ struct FKUIInterfaceContainerPlayerEvent : public FKUIInterfaceEvent
 	{
 		this->iPlayerId = iPlayerId;
 	}
-
+	
 	UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "Player ID" ) )
-	uint32 iPlayerId;
+	int32 iPlayerId;
 };
 
 USTRUCT( BlueprintType )

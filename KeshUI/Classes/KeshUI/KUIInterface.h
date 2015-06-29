@@ -292,16 +292,16 @@ protected:
 	virtual void OnMatchStartBP();
 
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
-	virtual void OnMatchPausedBP( uint32 iPlayerId );
+	virtual void OnMatchPausedBP( int32 iPlayerId );
 
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
-	virtual void OnMatchUnpauseBP( uint32 iPlayerId );
+	virtual void OnMatchUnpauseBP( int32 iPlayerId );
 
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
 	virtual void OnMatchEndBP();
 
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
-	virtual void OnPlayerDeathBP( uint32 iPlayerId );
+	virtual void OnPlayerDeathBP( int32 iPlayerId );
 
 	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
 	virtual void OnMatchStateChangeBP( FName nMatchState );

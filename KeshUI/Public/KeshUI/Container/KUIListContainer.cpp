@@ -320,7 +320,10 @@ void UKUIListContainer::DoLayout()
 				fRowHeight = fMaxHeight;
 
 			if ( arRows[ iRow ].IsValid() )
-				arRows[ iRow ]->SetLocationStruct( v2SlotLocation );
+			{
+				arRows[ iRow ]->SetAlignedTo( NULL );
+				arRows[ iRow ]->SetAlignLocation( v2SlotLocation );
+			}
 
 			v2SlotLocation.Y += fRowHeight + fSpacing;
 		}
@@ -328,8 +331,12 @@ void UKUIListContainer::DoLayout()
 		v2SlotLocation.Y -= fSpacing;
 		SetSize( GetSize().X, v2SlotLocation.Y );
 	}
+}
 
-	Super::DoLayout();
+
+void UKUIListContainer::Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject /* = NULL */ )
+{
+	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
 }
 
 

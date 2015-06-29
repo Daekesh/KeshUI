@@ -15,6 +15,7 @@ UKUIInterfaceElement::UKUIInterfaceElement( const class FObjectInitializer& oObj
 {
 	KUI_UO_INIT_DEBUG()
 
+	bInitialized = false;
 	bVisible = true;
 	v2Location = FVector2D::ZeroVector;
 	v4Margin = FVector4( 0.f, 0.f, 0.f, 0.f );
@@ -628,7 +629,7 @@ void UKUIInterfaceElement::CalculateAlignLocation( TArray<UKUIInterfaceElement*>
 	
 	if ( GetContainer() != NULL && GetContainer()->IsChildsLayoutManaged( this ) )
 	{
-		SetAlignLocation( FVector2D::ZeroVector );
+		//SetAlignLocation( FVector2D::ZeroVector );
 
 		// Caused circular layout dependencies.
 		//if ( !GetContainer()->HasValidLayout() )
@@ -840,6 +841,13 @@ void UKUIInterfaceElement::SendEvent( FKUIInterfaceEvent& stEventInfo )
 		// Can't use UStruct pointers... so this.
 #pragma warning( disable : 4946 )
 
+		arDispatchers[ EKUIInterfaceElementEventList::E_Initialize - KUI_BASE_EVENT_FIRST ] =
+			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
+		{
+			oElement->OnInitialize( *reinterpret_cast< FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
+			oElement->OnInitializeBP( *reinterpret_cast< FKUIInterfaceElementContainerEvent* >( &stEventInfo ) );
+		};
+
 		arDispatchers[ EKUIInterfaceElementEventList::E_AddedToContainer - KUI_BASE_EVENT_FIRST ] =
 			[] ( UKUIInterfaceElement* oElement, FKUIInterfaceEvent& stEventInfo )
 		{
@@ -898,6 +906,18 @@ void UKUIInterfaceElement::SendEvent( FKUIInterfaceEvent& stEventInfo )
 }
 
 
+bool UKUIInterfaceElement::IsInitialized() const
+{
+	return bInitialized;
+}
+
+
+void UKUIInterfaceElement::OnInitialize( const FKUIInterfaceEvent& stEventInfo )
+{
+	bInitialized = true;
+}
+
+
 void UKUIInterfaceElement::OnLocationChange( const FKUIInterfaceContainerLocationChangeEvent& stEventInfo )
 {
 
@@ -925,6 +945,21 @@ void UKUIInterfaceElement::OnAlignmentLocationCalculated( const FKUIInterfaceEve
 void UKUIInterfaceElement::OnAddedToContainer( const FKUIInterfaceElementContainerEvent& stEventInfo )
 {
 	this->ctContainer = stEventInfo.ctContainer;
+
+	if ( this->ctContainer != NULL && this->ctContainer->IsInitialized() && !bInitialized )
+	{
+		UKUIInterfaceContainer* ctContainer = Cast<UKUIInterfaceContainer>( this );
+
+		if ( ctContainer != NULL )
+		{
+			KUIBroadcastSubEventObj( ctContainer, FKUIInterfaceEvent, EKUIInterfaceElementEventList::E_Initialize );
+		}
+
+		else
+		{
+			KUISendSubEvent( FKUIInterfaceEvent, EKUIInterfaceElementEventList::E_Initialize );
+		}
+	}
 
 	InvalidateAlignLocation();
 	InvalidateContainerRenderCache();
