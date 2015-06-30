@@ -63,10 +63,10 @@
 // New objects
 #define KUICreateDefaultSubobjectAssign( V, T, N ) V = oObjectInitializer.CreateDefaultSubobject<T>( this, N, false )
 #define KUICreateDefaultSubobject( V, T, N ) T* KUICreateDefaultSubobjectAssign( V, T, N )
-#define KUINewNamedObjectAssign( V, T, N ) V = NewNamedObject<T>( this, N, this->GetFlags(), NULL )
+#define KUINewNamedObjectAssign( V, T, N ) V = NewObject<T>( this, N, this->GetFlags(), NULL )
 #define KUINewNamedObject( V, T, N ) T* KUINewNamedObjectAssign( V, T, N )
 #define KUINewObjectAssign( V, T ) V = NewObject<T>( this )
-#define KUINewObject( V, T ) T* KUINewObjectAssign( V, T )
+#define KUINewObject( V, T ) T* KUINewObjectAssign( V, T ); if ( V != NULL && V->IsA<UKUIInterfaceElement>() ) { Cast<UKUIInterfaceElement>( V )->InitializeElement(); }
 
 // Construction helpers
 #define KUIFindObjText( N, T, P ) \

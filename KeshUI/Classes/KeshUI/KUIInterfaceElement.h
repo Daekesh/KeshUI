@@ -413,6 +413,7 @@ public:
 
 	virtual bool HasTag( const FString& strTag ) const;
 
+	void InitializeElement();
 	virtual bool IsInitialized() const;
 
 	bool bDebug;

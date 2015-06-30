@@ -906,6 +906,12 @@ void UKUIInterfaceElement::SendEvent( FKUIInterfaceEvent& stEventInfo )
 }
 
 
+void UKUIInterfaceElement::InitializeElement()
+{
+	KUISendEvent( FKUIInterfaceEvent, EKUIInterfaceElementEventList::E_Initialize );
+}
+
+
 bool UKUIInterfaceElement::IsInitialized() const
 {
 	return bInitialized;
