@@ -50,6 +50,9 @@ void UKUISimpleClickWidget::OnMouseMove( const FKUIInterfaceContainerMouseLocati
 
 bool UKUISimpleClickWidget::OnMouseButtonDown( const FKUIInterfaceContainerMouseButtonEvent& stEventInfo )
 {
+	if ( stEventInfo.bHandled )
+		return true;
+
 	if ( !CanReceieveMouseEvents() )
 		return Super::OnMouseButtonDown( stEventInfo );
 
@@ -77,6 +80,9 @@ bool UKUISimpleClickWidget::OnMouseButtonDown( const FKUIInterfaceContainerMouse
 
 bool UKUISimpleClickWidget::OnMouseButtonUp( const FKUIInterfaceContainerMouseButtonEvent& stEventInfo )
 {
+	if ( stEventInfo.bHandled )
+		return true;
+
 	if ( !CanReceieveMouseEvents() )
 		return Super::OnMouseButtonUp( stEventInfo );
 

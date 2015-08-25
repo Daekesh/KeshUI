@@ -5,7 +5,7 @@
 #include "KeshUI/KUIMacros.h"
 #include "KUIPlayerController.generated.h"
 
-class AKUIPlayerActor;
+class AKUISpectatorPawn;
 class AKUIPlayerState;
 
 /**
