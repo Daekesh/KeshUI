@@ -48,11 +48,19 @@ public:
 	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
 	virtual void AddRow( float fHeight );
 
+	/* Gets the width of a column. */
+	UFUNCTION( Category = "KeshUI | Container | Grid", BlueprintCallable )
+	virtual float GetColumnWidth( uint8 iColumn );
+
 	/* Changes the width of a column. */
 	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
 	virtual void SetColumnWidth( uint8 iColumn, float fWidth );
 
-	/* changes the height of a row. */
+	/* Gets the height of a row. */
+	UFUNCTION( Category = "KeshUI | Container | Grid", BlueprintCallable )
+	virtual float GetRowHeight( uint8 iRow );
+
+	/* Changes the height of a row. */
 	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
 	virtual void SetRowHeight( uint8 iRow, float fHeight );
 

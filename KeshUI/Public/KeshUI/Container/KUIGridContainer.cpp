@@ -153,6 +153,18 @@ void UKUIGridContainer::AddRow( float fHeight )
 }
 
 
+float UKUIGridContainer::GetColumnWidth( uint8 iColumn )
+{
+	if ( !arColumns.IsValidIndex( iColumn ) )
+	{
+		KUIErrorUO( "Invalid column: %d", iColumn );
+		return 0.f;
+	}
+
+	return arColumns[ iColumn ];
+}
+
+
 void UKUIGridContainer::SetColumnWidth( uint8 iColumn, float fWidth )
 {
 	if ( !arColumns.IsValidIndex( iColumn ) )
@@ -164,6 +176,18 @@ void UKUIGridContainer::SetColumnWidth( uint8 iColumn, float fWidth )
 	arColumns[ iColumn ] = fWidth;
 
 	InvalidateLayout();
+}
+
+
+float UKUIGridContainer::GetRowHeight( uint8 iRow )
+{
+	if ( !arRows.IsValidIndex( iRow ) )
+	{
+		KUIErrorUO( "Invalid row: %d", iRow );
+		return 0.f;
+	}
+
+	return arRows[ iRow ];
 }
 
 
