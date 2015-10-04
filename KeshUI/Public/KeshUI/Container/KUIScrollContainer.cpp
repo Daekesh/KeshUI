@@ -18,6 +18,7 @@ UKUIScrollContainer::UKUIScrollContainer( const class FObjectInitializer& oObjec
 	cmVerticalScrollBar = NULL;
 	oCornerComponent = NULL;
 	v2LastScrollAreaSize = FVector2D::ZeroVector;
+	bMouseWheelScroll = false;
 }
 
 
@@ -351,4 +352,121 @@ void UKUIScrollContainer::Render( AKUIInterface* aHud, UCanvas* oCanvas, const F
 	}
 
 	Super::Render( aHud, oCanvas, v2Origin, oRenderCacheObject );
+}
+
+
+bool UKUIScrollContainer::CanReceieveKeyEvents() const
+{
+	return bMouseWheelScroll;
+}
+
+
+bool UKUIScrollContainer::OnKeyDown( const FKUIInterfaceContainerKeyEvent& stEventInfo )
+{
+	if ( !bMouseWheelScroll )
+		return Super::OnKeyDown( stEventInfo );
+
+	if ( !ctScrollArea.IsValid() )
+		return Super::OnKeyDown( stEventInfo );
+
+	if ( stEventInfo.eKey != EKeys::MouseScrollDown && stEventInfo.eKey != EKeys::MouseScrollUp )
+		return Super::OnKeyDown( stEventInfo );
+
+	if ( stEventInfo.bHandled )
+		return Super::OnKeyDown( stEventInfo );
+
+	FVector2D v2TotalSize = GetScrollableSize();
+
+	if ( v2TotalSize.X == 0.f || v2TotalSize.Y == 0.f )
+		return Super::OnKeyDown( stEventInfo );
+
+	FVector2D v2Size = GetSize();
+
+	if ( v2Size.X == 0.f || v2Size.Y == 0.f )
+		return Super::OnKeyDown( stEventInfo );
+
+	FVector2D v2ScrollableSize = v2TotalSize - v2Size;
+	FVector2D v2CornerOffset = ctScrollArea->GetCornerOffset();
+	FVector2D v2NewCornerOffset = v2CornerOffset;
+
+
+
+	if ( stEventInfo.eKey == EKeys::MouseScrollDown )
+	{
+		if ( v2CornerOffset.Y < v2ScrollableSize.Y )
+			v2NewCornerOffset.Y = min( v2CornerOffset.Y + KUI_SCROLL_FACTOR, v2ScrollableSize.Y );
+
+		else if ( v2CornerOffset.X < v2ScrollableSize.X )
+			v2NewCornerOffset.X = min( v2CornerOffset.X + KUI_SCROLL_FACTOR, v2ScrollableSize.X );
+
+		else
+			return Super::OnKeyDown( stEventInfo );
+	}
+
+	else
+	{
+		if ( v2CornerOffset.Y > 0.f )
+			v2NewCornerOffset.Y = max( v2CornerOffset.Y - KUI_SCROLL_FACTOR, 0.f );
+
+		else if ( v2CornerOffset.X > 0.f )
+			v2NewCornerOffset.X = max( v2CornerOffset.X - KUI_SCROLL_FACTOR, 0.f );
+
+		else
+			return Super::OnKeyDown( stEventInfo );
+	}
+	
+	SetScrollPositionStruct( v2NewCornerOffset );
+
+	return true;
+}
+
+
+void UKUIScrollContainer::SetScrollPosition( float fVertical, float fHorizontal )
+{
+	if ( !ctScrollArea.IsValid() )
+		return;
+
+	ctScrollArea->SetCornerOffset( fVertical, fHorizontal );
+
+	FVector2D v2ScrollableSize = GetScrollableSize() - GetSize();
+	v2ScrollableSize.X = max( 0.f, v2ScrollableSize.X );
+	v2ScrollableSize.Y = max( 0.f, v2ScrollableSize.Y );
+
+	fHorizontal = min( fHorizontal, v2ScrollableSize.X );
+	fVertical = min( fVertical, v2ScrollableSize.Y );
+
+	if ( cmHorizontalScrollBar.IsValid() )
+		cmHorizontalScrollBar->SetValue( fHorizontal / v2ScrollableSize.X );
+
+	if ( cmVerticalScrollBar.IsValid() )
+		cmVerticalScrollBar->SetValue( fVertical / v2ScrollableSize.Y );
+
+	UpdateScrollbarMetrics();
+}
+
+
+void UKUIScrollContainer::SetScrollPositionStruct( FVector2D v2ScrollPosition )
+{
+	SetScrollPosition( v2ScrollPosition.Y, v2ScrollPosition.X );
+}
+
+
+bool UKUIScrollContainer::IsUsingMouseWheelScroll() const
+{
+	return bMouseWheelScroll;
+}
+
+
+void UKUIScrollContainer::SetUsingMouseWheelScroll( bool bUseMouseWheel )
+{
+	if ( bMouseWheelScroll == bUseMouseWheel )
+		return;
+
+	if ( GetContainer() != NULL )
+	{
+		KUIErrorUO( "Trying to enable mouse wheel on a scroll container that is already part in a container." );
+		return;
+	}
+
+	bMouseWheelScroll = bUseMouseWheel;
 }

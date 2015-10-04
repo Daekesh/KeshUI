@@ -10,6 +10,7 @@
 class UKUISliderWidget;
 
 #define KUI_SCROLL_CONTAINER_NO_SCROLL -1.f
+#define KUI_SCROLL_FACTOR 50.f
 
 /**
 * General container that renders a portion of its total area.
@@ -88,11 +89,29 @@ public:
 	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
 	virtual void SetVisibleAreaByFraction( float fVertical, float fHorizontal = 0.f );
 
+	/* Sets the currently visible portion of the sub container by value. */
+	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	virtual void SetScrollPosition( float fVertical, float fHorizontal = 0.f );
+
+	/* Sets the currently visible portion of the sub container by value. */
+	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	virtual void SetScrollPositionStruct( FVector2D v2ScrollPosition );
+
 	/* Returns the scroll area, if required. */
 	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
 	virtual UKUISubContainer* GetScrollArea() const;
 
 	virtual void Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject = NULL ) override;
+
+	virtual bool CanReceieveKeyEvents() const override;
+
+	/* Returns true if this container is using mouse wheel scroll. */
+	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	virtual bool IsUsingMouseWheelScroll() const;
+
+	/* Sets whether this container is using mouse wheel scroll. Will not work and error if set when container is not null. */
+	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	virtual void SetUsingMouseWheelScroll( bool bUseMouseWheel );
 
 protected:
 
@@ -102,7 +121,10 @@ protected:
 	TWeakObjectPtr<UKUISliderWidget> cmVerticalScrollBar;
 	TWeakObjectPtr<UKUIInterfaceElement> oCornerComponent;
 	FVector2D v2LastScrollAreaSize;
+	bool bMouseWheelScroll; // do not change after instantiation
 
 	virtual void UpdateScrollbarMetrics();
+
+	virtual bool OnKeyDown( const FKUIInterfaceContainerKeyEvent& stEventInfo ) override;
 
 };

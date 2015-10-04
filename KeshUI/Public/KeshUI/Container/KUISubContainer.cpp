@@ -4,6 +4,7 @@
 #include "KeshUI/KeshUI.h"
 #include "KeshUI/Container/KUISubContainerRenderCache.h"
 #include "KeshUI/KUIInterface.h"
+#include "KUIMacros.h"
 #include "KeshUI/Container/KUISubContainer.h"
 
 
