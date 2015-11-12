@@ -77,9 +77,9 @@ void UKUIComponentButtonWidget::SetElementComponent( EKUIButtonState::State eSta
 }
 
 
-void UKUIComponentButtonWidget::OnWidgetStateChange()
+void UKUIComponentButtonWidget::OnWidgetStateChange_Implementation()
 {
-	Super::OnWidgetStateChange();
+	Super::OnWidgetStateChange_Implementation();
 
 	iButtonComponentIndex = EKUIButtonState::S_Default;
 

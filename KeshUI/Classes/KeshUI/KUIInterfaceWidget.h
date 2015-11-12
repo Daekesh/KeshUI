@@ -79,10 +79,8 @@ protected:
 	bool bDisabled;
 
 	/* Triggers when something changes. */
-	virtual void OnWidgetStateChange();
-
-	/* Called when something changes. */
-	UFUNCTION(Category="KeshUI | Widget", BlueprintImplementableEvent)
-	virtual void OnWidgetStateChangeBP();
+	UFUNCTION( Category = "KeshUI | Widget", BlueprintNativeEvent )
+	void OnWidgetStateChange();
+	virtual void OnWidgetStateChange_Implementation();
 
 };

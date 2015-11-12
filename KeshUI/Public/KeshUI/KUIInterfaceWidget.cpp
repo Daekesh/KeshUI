@@ -50,7 +50,7 @@ void UKUIInterfaceWidget::SetDisabled( TEnumAsByte<EKUIBool::SetValue> eValue )
 }
 
 
-void UKUIInterfaceWidget::OnWidgetStateChange()
+void UKUIInterfaceWidget::OnWidgetStateChange_Implementation()
 {
 	UpdateChildManagers();
 }
@@ -83,21 +83,10 @@ void UKUIInterfaceWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 	Super::SendEvent( stEventInfo );
 
-	if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_StateChange )
+	if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_StateChange || 
+		stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_ValueChange  ||
+		stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_InlineValueChange )
 	{
 		OnWidgetStateChange();
-		OnWidgetStateChangeBP();
-	}
-
-	else if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_ValueChange )
-	{
-		OnWidgetStateChange();
-		OnWidgetStateChangeBP();
-	}
-
-	else if ( stEventInfo.iEventID == EKUIInterfaceWidgetEventList::E_InlineValueChange )
-	{
-		OnWidgetStateChange();
-		OnWidgetStateChangeBP();
 	}
 }

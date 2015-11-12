@@ -91,6 +91,8 @@ void AKUIInterface::SetVisible( bool bVisible )
 
 	this->bVisible = bVisible;
 
+	OnVisibilityChangeBP();
+
 	KUIBroadcastEvent( FKUIInterfaceContainerVisibilityEvent, EKUIInterfaceContainerEventList::E_VisibilityChange, bVisible );
 }
 

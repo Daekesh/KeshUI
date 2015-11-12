@@ -186,9 +186,9 @@ float UKUISliderWidget::GetStepSize() const
 }
 
 
-void UKUISliderWidget::OnWidgetStateChange()
+void UKUISliderWidget::OnWidgetStateChange_Implementation()
 {
-	Super::OnWidgetStateChange();
+	Super::OnWidgetStateChange_Implementation();
 
 	if ( !oHandle.IsValid() )
 		return;
@@ -207,7 +207,7 @@ void UKUISliderWidget::OnWidgetStateChange()
 	else
 		fOffset = ( fValue / ( float ) iStepCount ) * fTravelDistance;
 
-	//KUILogUO( "OnWidgetStateChange Offset %f %f", fOffset, fEndSize );
+	//KUILogUO( "OnWidgetStateChange_Implementation Offset %f %f", fOffset, fEndSize );
 
 	fOffset += fEndSize;
 
@@ -215,14 +215,14 @@ void UKUISliderWidget::OnWidgetStateChange()
 	{
 		//fOffset -= oHandle->GetSize().X / 2.f;
 		oHandle->SetLocation( v2HandleOffset.X + fOffset, v2HandleOffset.Y );
-		//KUILogUO( "OnWidgetStateChange Horizontal: %f", v2HandleOffset.X + fOffset );
+		//KUILogUO( "OnWidgetStateChange_Implementation Horizontal: %f", v2HandleOffset.X + fOffset );
 	}
 
 	else
 	{
 		//fOffset -= oHandle->GetSize().Y / 2.f;
 		oHandle->SetLocation( v2HandleOffset.X, v2HandleOffset.Y + fOffset );
-		//KUILogUO( "OnWidgetStateChange Vertical: %f", v2HandleOffset.Y + fOffset );
+		//KUILogUO( "OnWidgetStateChange_Implementation Vertical: %f", v2HandleOffset.Y + fOffset );
 	}
 }
 

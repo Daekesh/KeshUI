@@ -25,17 +25,17 @@ public:
 
 	virtual int16 GetTriangleCount() const;
 
-	/* Gets the array capacity. */
+	/* Sets the current number of triangles. */
 	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
-	int32 GetArrayCapacityBP() const { return GetArrayCapacity(); }
+	void SetTriangleCountBP( int32 iTriangleCount ) { SetTriangleCount( iTriangleCount ); }
 
-	virtual int16 GetArrayCapacity() const;
+	virtual void SetTriangleCount( int16 );
 
-	/* Sets the array capacity. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
-	void SetArrayCapacityBP( int32 iCapacity ) { SetArrayCapacity( iCapacity ); }
+	/* Gets a triangle. */
+	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	virtual const FCanvasUVTri& GetTriangleBP( int32 iIndex ) const { return GetTriangle( iIndex ); }
 
-	virtual void SetArrayCapacity( int16 iCapacity );
+	virtual const FCanvasUVTri& GetTriangle( int32 iIndex ) const;
 
 	/* Adds a triangle. */
 	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
@@ -46,6 +46,21 @@ public:
 	virtual void AddTriangle( FVector2D v2ScreenPointA, FVector2D v2ScreenPointB, FVector2D v2ScreenPointC, 
 		FVector2D v2TexturePointA = FVector2D::ZeroVector, 
 		FVector2D v2TexturePointB = FVector2D::ZeroVector, 
+		FVector2D v2TexturePointC = FVector2D::ZeroVector,
+		FLinearColor lcPointA = FLinearColor::White,
+		FLinearColor lcPointB = FLinearColor::White,
+		FLinearColor lcPointC = FLinearColor::White );
+
+	/* Sets a triangle. */
+	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	virtual void SetTriangleStruct( int32 iIndex, const FCanvasUVTri& stTriangle );
+
+	/* Sets a triangle. */
+	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	virtual void SetTriangle( int32 iIndex, 
+		FVector2D v2ScreenPointA, FVector2D v2ScreenPointB, FVector2D v2ScreenPointC,
+		FVector2D v2TexturePointA = FVector2D::ZeroVector,
+		FVector2D v2TexturePointB = FVector2D::ZeroVector,
 		FVector2D v2TexturePointC = FVector2D::ZeroVector,
 		FLinearColor lcPointA = FLinearColor::White,
 		FLinearColor lcPointB = FLinearColor::White,
@@ -70,7 +85,6 @@ public:
 
 protected:
 
-	int16 iTriangleCount;
 	FVector4 v4Bounds;
 	FVector2D v2Size;
 	TArray<FCanvasUVTri> arTriangles;

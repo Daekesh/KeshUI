@@ -75,7 +75,7 @@ protected:
 	UPROPERTY( Category = "KeshUI | UI | Widget | Component Button", VisibleInstanceOnly, BlueprintReadOnly )
 	uint8 iElementComponentIndex;
 
-	virtual void OnWidgetStateChange() override;
+	virtual void OnWidgetStateChange_Implementation() override;
 
 	virtual EKUIButtonState::State GetComponentIndex( const TArray<UKUIInterfaceElement*>& arComponents, EKUIButtonState::State eState ) const;
 

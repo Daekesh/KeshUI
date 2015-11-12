@@ -21,7 +21,7 @@ void UKUISubContainerRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElem
 		return;
 	}
 
-	KUILogUO( "Updating Render Cache" );
+	//KUILogUO( "Updating Render Cache" );
 
 	UKUISubContainer* const ctSub = Cast<UKUISubContainer>( oElement );
 	const FVector2D v2ElemSize = ctSub->GetTotalSize();
@@ -56,8 +56,8 @@ void UKUISubContainerRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElem
 	}
 
 	UTextureRenderTarget2D* const tRenderTarget = Cast<UTextureRenderTarget2D>( GetTexture() );
-	tRenderTarget->UpdateResource();
-	tRenderTarget->UpdateResourceImmediate();
+	//tRenderTarget->UpdateResource();
+	//tRenderTarget->UpdateResourceImmediate();
 
 	UCanvas* uoCanvas = Cast<UCanvas>( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Sub Container Render Cache Canvas" ) ) ) );
 

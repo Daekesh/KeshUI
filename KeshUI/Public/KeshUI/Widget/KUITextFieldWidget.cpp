@@ -561,11 +561,11 @@ void UKUITextFieldWidget::RemoveChars( uint16 iIndex, uint16 iCount )
 }
 
 
-void UKUITextFieldWidget::OnWidgetStateChange()
+void UKUITextFieldWidget::OnWidgetStateChange_Implementation()
 {
-	Super::OnWidgetStateChange();
+	Super::OnWidgetStateChange_Implementation();
 
-	//KUILogUO( "OnWidgetStateChange() %s", *strFullString );
+	//KUILogUO( "OnWidgetStateChange_Implementation() %s", *strFullString );
 
 	if ( iCaretPosition < 0 )
 		iCaretPosition = 0;

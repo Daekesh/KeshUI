@@ -19,7 +19,7 @@ UKUITextInterfaceComponent::UKUITextInterfaceComponent( const class FObjectIniti
 	lcOutlineColor = FLinearColor::Black;
 	bShadow = false;
 	bUpdateShadowInfo = false;
-	v2ShadowOffset = FVector2D::ZeroVector;
+	v2ShadowOffset = FVector2D( 1.f, 1.f );
 	lcShadowColor = FLinearColor::Black;
 	bClipped = false;
 	fHorizontalSpacingAdjust = 0.f;

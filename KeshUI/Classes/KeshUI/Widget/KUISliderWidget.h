@@ -122,7 +122,7 @@ protected:
 	virtual float GetStepSize() const;
 
 	/* Updates the components. */
-	virtual void OnWidgetStateChange() override;
+	virtual void OnWidgetStateChange_Implementation() override;
 
 	/* Called when the value changes. */
 	virtual void OnSliderValueChange( UKUISliderWidget* cmSlider );

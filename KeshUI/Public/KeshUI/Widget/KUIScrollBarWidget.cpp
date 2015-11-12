@@ -253,9 +253,9 @@ void UKUIScrollBarWidget::UpdateScrollbarComponents()
 }
 
 
-void UKUIScrollBarWidget::OnWidgetStateChange()
+void UKUIScrollBarWidget::OnWidgetStateChange_Implementation()
 {
-	Super::OnWidgetStateChange();
+	Super::OnWidgetStateChange_Implementation();
 
 	if ( !ctScrollContainer.IsValid() )
 		return;

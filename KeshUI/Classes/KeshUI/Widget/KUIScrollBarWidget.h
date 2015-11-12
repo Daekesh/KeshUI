@@ -92,6 +92,6 @@ protected:
 	/* Updates the components elements. */
 	virtual void UpdateScrollbarComponents();
 
-	virtual void OnWidgetStateChange() override;
+	virtual void OnWidgetStateChange_Implementation() override;
 
 };

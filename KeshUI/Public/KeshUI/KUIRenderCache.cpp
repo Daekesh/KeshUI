@@ -27,6 +27,8 @@ void UKUIRenderCache::CreateRenderCache( const FVector2D& v2Size )
 	tRenderTarget->bNeedsTwoCopies = false;
 	tRenderTarget->InitAutoFormat( floor( v2Size.X ), floor( v2Size.Y ) );
 	tRenderTarget->ClearColor = FLinearColor::Transparent;
+	tRenderTarget->bHDR = false;
+	tRenderTarget->UpdateResourceImmediate();
 
 	SetTexture( tRenderTarget );
 }
@@ -75,8 +77,8 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 	}
 
 	UTextureRenderTarget2D* const tRenderTarget = Cast<UTextureRenderTarget2D>( GetTexture() );
-	tRenderTarget->UpdateResource();
-	tRenderTarget->UpdateResourceImmediate();
+	//tRenderTarget->UpdateResource();
+	//tRenderTarget->UpdateResourceImmediate();
 
 	UCanvas* uoCanvas = Cast<UCanvas>( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Render Cache Canvas" ) ) ) );
 
@@ -105,7 +107,7 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 	uoCanvas->Canvas = &oCanvas;
 	oCanvas.Clear( tRenderTarget->ClearColor );
 
-	KUILogDebugUO( "Updating render cache" );
+	//KUILogDebugUO( "Updating render cache" );
 	oElement->Render( GetInterface(), uoCanvas, FVector2D::ZeroVector, oElement );
 
 	uoCanvas->Canvas = NULL;

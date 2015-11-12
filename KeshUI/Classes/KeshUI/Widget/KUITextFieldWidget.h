@@ -159,7 +159,7 @@ protected:
 	virtual bool OnKeyChar( const FKUIInterfaceContainerCharEvent& stEventInfo );
 
 	/* Updates stuff. */
-	virtual void OnWidgetStateChange() override;
+	virtual void OnWidgetStateChange_Implementation() override;
 
 	/* Adds a string at the caret position. */
 	virtual void AddString( const FString& strString );
