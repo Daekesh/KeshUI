@@ -59,7 +59,7 @@ public:
 
 	/* Returns the string in the component. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
-	virtual FString GetText() const;
+	virtual const FString& GetString() const;
 
 	/* Sets the text in the component. */
 	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)

@@ -86,7 +86,7 @@ void UKUITextFieldWidget::SetCaretOffset( const FVector2D& v2Offset )
 }
 
 
-FString UKUITextFieldWidget::GetText() const
+const FString& UKUITextFieldWidget::GetString() const
 {
 	return strFullString;
 }
