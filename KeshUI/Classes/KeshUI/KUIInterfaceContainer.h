@@ -269,37 +269,37 @@ public:
 	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void SetSizeStruct( const FVector2D& v2Size );
 
 	/* Sets the size of the component. */
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Adds a child to this container. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void AddChild( UKUIInterfaceElement* oChild );
 
 	/* Removes a child from this container. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual bool RemoveChild( UKUIInterfaceElement* oChild );
 
 	/* Returns the child at the given index. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetChildAtIndex( int32 iIndex ) const;
 
 	/* Returns an iterator for the child components. */
 	virtual TArray<UKUIInterfaceElement*>::TIterator GetChildIterator();
 
 	/* Re-order the components according to Z-Index. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void SortChildren();
 
 	/* Returns whether this container can receive mouse events. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual bool CanReceieveMouseEvents() const;
 
 	/* Returns whether this container can receive key events. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual bool CanReceieveKeyEvents() const;
 
 	/* Sets whether this element is visible. */
@@ -318,31 +318,31 @@ public:
 	virtual int16 GetKeyInputRequests() const;
 
 	/* Adds a child Manager. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void AddChildManager( UKUIInterfaceWidgetChildManager* oChildManager );
 
 	/* Removes a child Manager. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void RemoveChildManager( UKUIInterfaceWidgetChildManager* oChildManager );
 		
 	/* Calls update on all child Managers. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual void UpdateChildManagers();
 
 	/* Returns true if this manages the given child's layout. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container", BlueprintCallable)
 	virtual bool IsChildsLayoutManaged( UKUIInterfaceElement* oChild ) const;
 
 	/* Returns true if the layout is valid and up to date. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintCallable )
 	virtual bool HasValidLayout() const;
 
 	/* Invalidates the layout, so it can be reconstructed at the next render. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintCallable )
 	virtual void InvalidateLayout();
 
 	/* Lays out the elements in this container. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintCallable )
 	virtual void DoLayout();
 
 	/* Returns true if we respond to this event. */
@@ -469,75 +469,75 @@ protected:
 	virtual void OnMatchStateChange( const FKUIInterfaceContainerMatchStateEvent& stEventInfo );
 
 	/* Called when the layout is invalidated. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnLayoutInvalidatedBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Called when the layout is complete. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnLayoutCompleteBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Calls after the child managers are updated. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintImplementableEvent )
 	virtual void OnChildManagersUpdatedBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Called when a child is added. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnChildAddedBP( const FKUIInterfaceContainerElementEvent& stEventInfo );
 
 	/* Called when a child is removed. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnChildRemovedBP( const FKUIInterfaceContainerElementEvent& stEventInfo );
 
 	/* Triggers when the screen resolution changes. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnScreenResolutionChangeBP( const FKUIInterfaceContainerScreenResolutionEvent& stEventInfo );
 
 	/* Triggers when the match starts. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnMatchStartBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Triggers when the match starts. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintImplementableEvent )
 	virtual void OnMatchEndBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Triggers when the match is paused. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnMatchPausedBP( const FKUIInterfaceContainerPlayerEvent& stEventInfo );
 
 	/* Triggers when the match is unpaused. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnMatchUnpausedBP( const FKUIInterfaceContainerPlayerEvent& stEventInfo );
 
 	/* Triggers when a player dies. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnPlayerDeathBP( const FKUIInterfaceContainerPlayerEvent& stEventInfo );
 
 	/* Triggers when the visibility of this element changes. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnVisibilityChangeBP( const FKUIInterfaceContainerVisibilityEvent& stEventInfo );
 
 	/* Triggers when this element is focused. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnFocusBP( const FKUIInterfaceEvent& stEventInfo );
 	
 	/* Triggers when this element loses focus.*/
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnBlurBP( const FKUIInterfaceEvent& stEventInfo );
 
 	/* Triggers when the interface focus changes.*/
-	UFUNCTION( Category = "KeshUI | Container", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintImplementableEvent )
 	virtual void OnFocusChangeBP( const FKUIInterfaceContainerElementEvent& stEventInfo );
 
 	/* Triggers when a child element changes size. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnChildSizeChangeBP( const FKUIInterfaceContainerElementEvent& stEventInfo );
 
 	/* Triggers when a child element changes location. */
-	UFUNCTION(Category="KeshUI | Container", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Container", BlueprintImplementableEvent)
 	virtual void OnChildLocationChangeBP( const FKUIInterfaceContainerElementEvent& stEventInfo );
 
 	/* Triggers when the game stage changes. */
-	UFUNCTION( Category = "KeshUI | Container", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Container", BlueprintImplementableEvent )
 	virtual void OnMatchStateChangeBP( const FKUIInterfaceContainerMatchStateEvent& stEventInfo );
 
 };

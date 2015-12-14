@@ -286,8 +286,7 @@ void UKUIInterfaceContainer::Render( AKUIInterface* aHud, UCanvas* oCanvas, cons
 
 	for ( int32 i = 0; i < arChildren.Num(); ++i )
 	{
-		if ( arChildren[ i ] 
-			== NULL )
+		if ( arChildren[ i ] == NULL )
 			continue;
 
 		if ( !arChildren[ i ]->IsVisible() )
@@ -900,8 +899,8 @@ void UKUIInterfaceContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 void UKUIInterfaceContainer::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDown )
 {
-	if ( bDebug && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_Tick && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_MouseMove )
-		bDebug = true;
+	//if ( bDebug && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_Tick && stEventInfo.iEventID != EKUIInterfaceContainerEventList::E_MouseMove )
+		//bDebug = true;
 
 	bool bResponds = RespondsToEvent( stEventInfo.iEventID );
 

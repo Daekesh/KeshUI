@@ -11,7 +11,7 @@ class AKUIInterface;
 /**
  * The root container used in the interface.
  */
-UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIRootContainer : public UKUIInterfaceContainer
 {
 	GENERATED_BODY()
@@ -25,7 +25,7 @@ public:
 	virtual AKUIInterface* GetInterface() const override;
 
 	/* Sets the base interface this container is in. */
-	UFUNCTION(Category="KeshUI | Container | Root", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Root", BlueprintCallable)
 	virtual void SetInterface( AKUIInterface* aInterface );
 
 	/* Returns true if this is visible. */

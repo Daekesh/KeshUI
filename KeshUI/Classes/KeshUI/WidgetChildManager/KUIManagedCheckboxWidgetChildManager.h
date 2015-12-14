@@ -11,7 +11,7 @@
 /**
  * Used by buttons to filter when this component is visible.
  */
-UCLASS(ClassGroup="KeshUI | Widget | Child Manager", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Widget|Child Manager", BlueprintType, Blueprintable)
 class KESHUI_API UKUIManagedCheckboxWidgetChildManager : public UKUIInterfaceWidgetChildManager
 {
 	GENERATED_BODY()
@@ -22,11 +22,11 @@ class KESHUI_API UKUIManagedCheckboxWidgetChildManager : public UKUIInterfaceWid
 public:
 
 	/* Returns the button widget. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual UKUICheckboxWidget* GetCheckbox() const;
 
 	/* Sets the display of this component. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual void SetStates( TEnumAsByte<EKUIBoolMatch::Value> eDisabled, TEnumAsByte<EKUIBoolMatch::Value> eMouseOver, 
 	                        TEnumAsByte<EKUICheckboxState::State> eState );
 

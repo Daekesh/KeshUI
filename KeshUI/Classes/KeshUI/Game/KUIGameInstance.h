@@ -11,7 +11,7 @@ class UKUIAssetLibrary;
 /**
 * Game instance for various misc functions.
 */
-UCLASS( ClassGroup = "KeshUI | Game", Blueprintable, BlueprintType )
+UCLASS( ClassGroup = "KeshUI|Game", Blueprintable, BlueprintType )
 class KESHUI_API UKUIGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
@@ -32,7 +32,7 @@ public:
 
 protected:
 
-	UPROPERTY( Category = "KeshUI | Interface", EditAnywhere, BlueprintReadWrite, Instanced, Meta = ( DisplayName = "Asset Libraries" ) )
+	UPROPERTY( Category = "KeshUI|Interface", EditAnywhere, BlueprintReadWrite, Instanced, Meta = ( DisplayName = "Asset Libraries" ) )
 	TArray<UKUIAssetLibrary*> arAssetLibraries;
 
 };

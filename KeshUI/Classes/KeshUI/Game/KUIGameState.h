@@ -16,7 +16,7 @@ class AKUITeamInfo;
 /**
  * The base game state class for KeshUI.
  */
-UCLASS(ClassGroup="KeshUI | Game", Blueprintable, BlueprintType, NotPlaceable)
+UCLASS(ClassGroup="KeshUI|Game", Blueprintable, BlueprintType, NotPlaceable)
 class KESHUI_API AKUIGameState : public AGameState
 {
 	GENERATED_BODY()

@@ -21,7 +21,7 @@ KUI_DECLARE_DELEGATE_OneParam( FKUIListRowContainerSelectionChange, UKUIListCont
 /**
  * General container that has list layout (defined columns with a list of elements of fixed/varying size.)
  **/
-UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIListContainer : public UKUIInterfaceContainer
 {
 	GENERATED_BODY()
@@ -32,29 +32,29 @@ class KESHUI_API UKUIListContainer : public UKUIInterfaceContainer
 public:
 
 	/* Returns true if selection is enable. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool IsSelectEnabled() const;
 
 	/* Sets whether selection is enabled. If set to false, all rows are unselected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetSelectEnabled( bool bEnabled );
 	
 	/* Gets an element at a specific list location. */
-	UFUNCTION(Category = "KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Container|List", BlueprintCallable)
 	UKUIListRowContainer* GetRowBP( int32 iRow ) const { return GetRow( iRow ); }
 	virtual UKUIListRowContainer* GetRow( uint16 iRow ) const;
 
 	/* Adds an element at a specific list location.  Adds to container if necessary. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	void SetRowBP( int32 iRow, UKUIListRowContainer* ctRow ) { SetRow( iRow, ctRow ); }
 	virtual void SetRow( uint16 iRow, UKUIListRowContainer* ctRow );
 
 	/* Removes an element from the list slot.  Does not remove it from the container. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual void RemoveRowByRef( UKUIListRowContainer* ctRow );
 
 	/* Removes an element from the list slot.  Does not remove it from the container. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	void RemoveRowByIndexBP( int32 iRow ) { RemoveRowByIndex( iRow ); }
 	virtual void RemoveRowByIndex( uint16 iRow );
 
@@ -64,98 +64,98 @@ public:
 	virtual bool RemoveChild( UKUIInterfaceElement* oChild ) override;
 
 	/* Gets the number of rows contained in this list. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	int32 GetRowCountBP() const { return GetRowCount(); }
 	virtual uint16 GetRowCount() const;
 
 	/* Adds 1 to the row count. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual uint8 AddRow( UKUIListRowContainer* ctRow = NULL );
 
 	/* Adds a Column list row with the given widths. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual UKUIListRowColumnContainer* AddRowColumns( const TArray<float>& arWidths );
 
 	/* Sets the number of rows in this list. Deletes the elements in removed rows. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	void SetRowCountBP( int32 iRowCount ) { SetRowCount( iRowCount ); }
 	virtual void SetRowCount( uint16 iRowCount );
 
 	/* Removes the given number of rows from the start position.  Removes the elements in those rows from the container */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	void RemoveRowsBP( int32 iStart, int32 iCount ) { RemoveRows( iStart, iCount ); }
 	virtual void RemoveRows( uint16 iStart, uint16 iCount );
 
 	/* Gets the minimum row height. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual float GetMinimumRowHeight() const;
 
 	/* Sets the minimum row height. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual void SetMinimumRowHeight( float fHeight );
 
 	/* Gets the maximum row height.  Default is 0.f, which removes the minimum limit.  Rows with no elements will be gaps. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual float GetMaximumRowHeight() const;
 
 	/* Sets the maximum row height. Default is 0.f, which removes the height limitation. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual void SetMaximumRowHeight( float fHeight );
 
 	/* Sets both the minimum and maximum row height. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetRowHeight( float fHeight );
 
 	/* Gets the space between rows.  Default is 0.f. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual float GetRowSpacing() const;
 
 	/* Sets the space between rows. */
-	UFUNCTION(Category="KeshUI | Container | List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|List", BlueprintCallable)
 	virtual void SetRowSpacing( float fSpacing );
 
 	/* Updates the layout of this container. */
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Returns true if the given row is selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool IsRowSelected( UKUIListRowContainer* ctRow ) const;
 
 	/* Incoming click event from a row being selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void OnRowSelectionClick( UKUIListRowContainer* ctRow );
 
 	/* Returns true if multi select is enabled. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool IsMultiSelectEnabled() const;
 
 	/* Sets whether multi select is enabled. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetMultiSelectEnabled( bool bEnabled );
 
 	/* Returns the first selected row. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual UKUIListRowContainer* GetSelectedRow() const;
 
 	/* Returns the list of selected rows. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual const TArray<TWeakObjectPtr<UKUIListRowContainer>>& GetSelectedRows() const;
 
 	/* Returns true if the row is selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool IsRowSelectedByRef( UKUIListRowContainer* ctRow ) const;
 
 	/* Returns true if the row is selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	bool IsRowSelectedByIndexBP( int32 iRow ) const { return IsRowSelectedByIndex( iRow ); }
 	virtual bool IsRowSelectedByIndex( uint16 iRow ) const;
 
 	/* Returns true if the rows are selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool AreRowsSelectedByRef( const TArray<UKUIListRowContainer*>& arRows ) const;
 
 	/* Returns true if the rows are selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	bool AreRowsSelectedByIndexBP( const TArray<int32>& arRows ) const
 	{
 		TArray<uint16> arNewArray;
@@ -170,20 +170,20 @@ public:
 	virtual bool AreRowsSelectedByIndex( const TArray<uint16>& arRows ) const;
 
 	/* Sets the selected row. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetSelectedRowByRef( UKUIListRowContainer* ctRow );
 
 	/* Sets the selected row by index. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	void SetSelectedRowByIndexBP( int32 iRow ) { SetSelectedRowByIndex( iRow ); }
 	virtual void SetSelectedRowByIndex( uint16 iRow );
 
 	/* Sets the selected rows by reference. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetSelectedRowsByRef( const TArray<UKUIListRowContainer*>& arRows );
 
 	/* Sets the selected rows by index. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	void SetSelectedRowsByIndexBP( const TArray<int32>& arRows )
 	{
 		TArray<uint16> arNewArray;
@@ -198,20 +198,20 @@ public:
 	virtual void SetSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Adds row to selection. If multi select not allowed, sets if none selected. Return true if added. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool AddSelectedRowByRef( UKUIListRowContainer* ctRow );
 
 	/* Adds row to selection by index. If multi select not allowed, sets if none selected. Return true if added. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	bool AddSelectedRowByIndexBP( int32 iRow ) { return AddSelectedRowByIndex( iRow ); }
 	virtual bool AddSelectedRowByIndex( uint16 iRow );
 
 	/* Adds rows to selection. If multi select not allowed, sets to first if none selected. Return true if at least 1 row was added or was already selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool AddSelectedRowsByRef( const TArray<UKUIListRowContainer*>& arRows );
 
 	/* Adds rows to selection by index. If multi select not allowed, sets to first if none selected. Return true if at least 1 row was added or was already selected. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	bool AddSelectedRowsByIndexBP( const TArray<int32>& arRows )
 	{
 		TArray<uint16> arNewArray;
@@ -226,20 +226,20 @@ public:
 	virtual bool AddSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Removes row to selection. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void RemoveSelectedRowByRef( UKUIListRowContainer* ctRow );
 
 	/* Removes row to selection by index. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	void RemoveSelectedRowByIndexBP( int32 iRow ) { RemoveSelectedRowByIndex( iRow ); }
 	virtual void RemoveSelectedRowByIndex( uint16 iRow );
 
 	/* Removes rows to selection. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void RemoveSelectedRowsByRef( const TArray<UKUIListRowContainer*>& arRows );
 
 	/* Removes rows to selection by index. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	void RemoveSelectedRowsByIndexBP( const TArray<int32>& arRows )
 	{
 		TArray<uint16> arNewArray;
@@ -254,12 +254,12 @@ public:
 	virtual void RemoveSelectedRowsByIndex( const TArray<uint16>& arRows );
 
 	/* Returns the index of the first selected row. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	int32 GetSelectedRowIndexBP() const { return GetSelectedRowIndex(); }
 	virtual uint16 GetSelectedRowIndex() const;
 
 	/* Returns an array of the selected indices. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	TArray<int32> GetSelectedRowIndicesBP() const
 	{
 		TArray<uint16> arOldArray = GetSelectedRowIndices();		
@@ -275,7 +275,7 @@ public:
 	virtual TArray<uint16> GetSelectedRowIndices() const;
 
 	/* Triggers when the list container is clicked. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void OnClick( UKUISimpleClickWidget* oWidget, const FVector2D& v2CursorOffset );
 
 	/* Sets the delegate called when a selection change is made. */

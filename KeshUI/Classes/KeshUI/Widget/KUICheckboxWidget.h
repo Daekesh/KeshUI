@@ -24,7 +24,7 @@ namespace EKUICheckboxState
 }
 
 /* Base class KESHUI_API for checkboxes. */
-UCLASS(Abstract, Category="KeshUI | Widget", BlueprintType, Blueprintable)
+UCLASS(Abstract, Category="KeshUI|Widget", BlueprintType, Blueprintable)
 class KESHUI_API UKUICheckboxWidget : public UKUISimpleClickWidget
 {
 	GENERATED_BODY()
@@ -35,23 +35,23 @@ class KESHUI_API UKUICheckboxWidget : public UKUISimpleClickWidget
 public:
 
 	/* Returns true if the no value state is enabled. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual bool IsNoValueStateEnabled() const;
 
 	/* Sets whether the no value state is enabled. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual void SetNoValueStateEnabled( bool bEnabled );
 
 	/* Gets the current state of the checkbox. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual TEnumAsByte<EKUICheckboxState::State> GetValue() const;
 
 	/* Sets the value of the checkbox. */
-	UFUNCTION( Category = "KeshUI | Widget | Checkbox", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Checkbox", BlueprintCallable )
 	virtual void SetValue( const TEnumAsByte<EKUICheckboxState::State> eValue );
 
 	/* Returns true if the checkbox is currently checked. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintCallable)
 	virtual bool IsChecked() const;
 
 	/* Overrides to true. */
@@ -79,7 +79,7 @@ protected:
 	virtual void OnCheckboxStateChange( UKUICheckboxWidget* cmCheckbox );
 
 	/* Called when the checkbox's state is changed. */
-	UFUNCTION(Category="KeshUI | Widget | Checkbox", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Widget|Checkbox", BlueprintImplementableEvent)
 	virtual void OnCheckboxStateChangeBP( UKUICheckboxWidget* cmCheckbox );
 
 };

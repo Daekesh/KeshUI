@@ -11,7 +11,7 @@ class AKUIPlayerState;
 /**
 * Exmaple Player Controller for Kesh UI
 */
-UCLASS( ClassGroup = "KeshUI | Game", Blueprintable, BlueprintType )
+UCLASS( ClassGroup = "KeshUI|Game", Blueprintable, BlueprintType )
 class KESHUI_API AKUIPlayerController : public APlayerController
 {
 	GENERATED_BODY()
@@ -28,7 +28,7 @@ public:
 	virtual void ProcessInput();
 
 	/* Gets mouse movement */
-	UFUNCTION( Category = "KeshUI | Game | Player Controller", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Game|Player Controller", BlueprintCallable )
 	virtual void OnMouseMoved( const FVector2D& v2Delta );
 
 	/* Triggers key events for the UI. */

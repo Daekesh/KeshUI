@@ -8,7 +8,7 @@
 
 
 /* Base class for KeshUI buttons. */
-UCLASS(ClassGroup="KeshUI | Widget", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Widget", BlueprintType, Blueprintable)
 class KESHUI_API UKUIButtonWidget : public UKUISimpleClickWidget
 {
 	GENERATED_BODY()

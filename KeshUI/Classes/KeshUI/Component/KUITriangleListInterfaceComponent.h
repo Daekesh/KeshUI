@@ -9,7 +9,7 @@
 /**
  * KeshUI UI Framework (KUI) TriangleList render component.
  */
-UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
+UCLASS(ClassGroup="KeshUI|Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUITriangleListInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
 	GENERATED_BODY()
@@ -20,29 +20,29 @@ class KESHUI_API UKUITriangleListInterfaceComponent : public UKUICanvasItemInter
 public:
 
 	/* Gets the current number of triangles. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	int32 GetTriangleCountBP() const { return GetTriangleCount(); }
 
 	virtual int16 GetTriangleCount() const;
 
 	/* Sets the current number of triangles. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	void SetTriangleCountBP( int32 iTriangleCount ) { SetTriangleCount( iTriangleCount ); }
 
 	virtual void SetTriangleCount( int16 );
 
 	/* Gets a triangle. */
-	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Triangle List", BlueprintCallable )
 	virtual const FCanvasUVTri& GetTriangleBP( int32 iIndex ) const { return GetTriangle( iIndex ); }
 
 	virtual const FCanvasUVTri& GetTriangle( int32 iIndex ) const;
 
 	/* Adds a triangle. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	virtual void AddTriangleStruct( const FCanvasUVTri& stTriangle );
 
 	/* Adds a triangle. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	virtual void AddTriangle( FVector2D v2ScreenPointA, FVector2D v2ScreenPointB, FVector2D v2ScreenPointC, 
 		FVector2D v2TexturePointA = FVector2D::ZeroVector, 
 		FVector2D v2TexturePointB = FVector2D::ZeroVector, 
@@ -52,11 +52,11 @@ public:
 		FLinearColor lcPointC = FLinearColor::White );
 
 	/* Sets a triangle. */
-	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Triangle List", BlueprintCallable )
 	virtual void SetTriangleStruct( int32 iIndex, const FCanvasUVTri& stTriangle );
 
 	/* Sets a triangle. */
-	UFUNCTION( Category = "KeshUI | Component | Triangle List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Triangle List", BlueprintCallable )
 	virtual void SetTriangle( int32 iIndex, 
 		FVector2D v2ScreenPointA, FVector2D v2ScreenPointB, FVector2D v2ScreenPointC,
 		FVector2D v2TexturePointA = FVector2D::ZeroVector,
@@ -67,11 +67,11 @@ public:
 		FLinearColor lcPointC = FLinearColor::White );
 
 	/* Gets the texture. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	virtual UTexture* GetTexture() const;
 
 	/* Sets the texture. Sets the screen size to match this if it's zero. */
-	UFUNCTION(Category="KeshUI | Component | Triangle List", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Triangle List", BlueprintCallable)
 	virtual void SetTexture( UTexture* tTexture );
 
 	/* Gets the size of this component. */

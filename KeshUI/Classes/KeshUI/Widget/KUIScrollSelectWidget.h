@@ -15,7 +15,7 @@ KUI_DECLARE_DELEGATE_OneParam( FKUIScrollSelectValueChange, UKUIScrollSelectWidg
 
 
 /* Scrollable select widget base class. */
-UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIScrollSelectWidget : public UKUISelectWidget
 {
 	GENERATED_BODY()
@@ -26,11 +26,11 @@ class KESHUI_API UKUIScrollSelectWidget : public UKUISelectWidget
 public:
 
 	/* Sets the left button. */
-	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Select", BlueprintCallable )
 	virtual void SetLeftButton( UKUIButtonWidget* cmLeftButton );
 
 	/* Sets the right button. */
-	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Select", BlueprintCallable )
 	virtual void SetRightButton( UKUIButtonWidget* cmRightButton );
 
 	/* Disables the buttons. */
@@ -46,7 +46,7 @@ public:
 	virtual bool RemoveValueByIndex( uint8 iIndex ) override;
 
 	/* Returns the text component so it can be styled.*/
-	UFUNCTION( Category = "KeshUI | Widget | Select", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Select", BlueprintCallable )
 	virtual UKUITextInterfaceComponent* GetTextComponent();
 
 protected:

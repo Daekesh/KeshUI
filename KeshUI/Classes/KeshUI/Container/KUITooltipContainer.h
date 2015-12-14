@@ -11,7 +11,7 @@ class AKUIInterface;
 /**
  * The container used for cursors.
  */
-UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUITooltipContainer : public UKUIRootContainer
 {
 	GENERATED_BODY()

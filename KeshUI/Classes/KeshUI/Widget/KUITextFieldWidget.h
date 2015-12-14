@@ -32,7 +32,7 @@ namespace EKUITextFilter
 }
 
 /* Text field, for user text input. */
-UCLASS(ClassGroup="KeshUI | Widget", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Widget", BlueprintType, Blueprintable)
 class KESHUI_API UKUITextFieldWidget : public UKUISimpleClickWidget
 {
 	GENERATED_BODY()
@@ -43,54 +43,54 @@ class KESHUI_API UKUITextFieldWidget : public UKUISimpleClickWidget
 public:
 
 	/* Returns the text component so it can be styled.*/
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	virtual UKUITextInterfaceComponent* GetTextComponent() const;
 
 	/* Sets the caret texture. */
 	virtual void SetCaretTexture( const TCHAR* tcCaretTexture );
 
 	/* Sets the caret texture. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	virtual void SetCaretTexture( UTexture* tCaretTexture );	
 
 	/* Sets the caret texture offset from the current character. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	virtual void SetCaretOffset( const FVector2D& v2Offset );
 
 	/* Returns the string in the component. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	virtual const FString& GetString() const;
 
 	/* Sets the text in the component. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	virtual void SetString( const FString& strString );
 
 	/* Returns the max length of the string. KUI_TEXT_FIELD_NO_MAX_LENGTH for no max. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	int32 GetMaxLengthBP() const { return GetMaxLength(); }
 	virtual uint16 GetMaxLength() const;
 
 	/* Sets the max length of the string. KUI_TEXT_FIELD_NO_MAX_LENGTH for no max. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	void SetMaxLengthBP( int32 iMaxLength ) { SetMaxLength( iMaxLength ); }
 	virtual void SetMaxLength( uint16 iMaxLength );
 
 	/* Gets the current caret position as an offset from the start of the string. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	int32 GetCaretPositionBP() const { return GetCaretPosition(); }
 	virtual uint16 GetCaretPosition() const;
 
 	/* Sets the current caret position as an offset from the star of the string. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintCallable)
 	void SetCaretPositionBP( int32 iIndex ) { SetCaretPosition( iIndex ); }
 	virtual void SetCaretPosition( uint16 iIndex );
 
 	/* Gets the filter used to accept characters while typing.  Not applied to manually set strings. */
-	UFUNCTION( Category = "KeshUI | Widget | Text Field", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Text Field", BlueprintCallable )
 	virtual uint8 GetCharacterFilter() const;
 
 	/* Sets the filter used to accept characters while typing.  Not applied to manually set strings. */
-	UFUNCTION( Category = "KeshUI | Widget | Text Field", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Text Field", BlueprintCallable )
 	virtual void SetCharacterFilter( uint8 iFilter );
 
 	/* Overrides to true. */
@@ -177,11 +177,11 @@ protected:
 	virtual void OnValueChange( UKUIInterfaceWidget* cmWidget );
 
 	/* Called when the text in the component is saved. */
-	UFUNCTION(Category="KeshUI | Widget | Text Field", BlueprintImplementableEvent)
+	UFUNCTION(Category="KeshUI|Widget|Text Field", BlueprintImplementableEvent)
 	virtual void OnInlineValueChangeBP( const FString& strOld, const FString& strNew );
 
 	/* Called when the text in the component is changed, without saving its value. */
-	UFUNCTION( Category = "KeshUI | Widget | Text Field", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Widget|Text Field", BlueprintImplementableEvent )
 	virtual void OnValueChangeBP();
 
 	virtual bool IsPunctuation( TCHAR chChar );

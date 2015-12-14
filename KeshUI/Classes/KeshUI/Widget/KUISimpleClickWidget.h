@@ -33,7 +33,7 @@ struct FKUIInterfaceWidgetClickEvent : public FKUIInterfaceEvent
 /**
 * The base click widget class.  For handling clicks.
 */
-UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUISimpleClickWidget : public UKUIInterfaceWidget
 {
 	GENERATED_BODY()
@@ -44,7 +44,7 @@ class KESHUI_API UKUISimpleClickWidget : public UKUIInterfaceWidget
 public:
 
 	/* Returns true if the left mouse button was pressed down over this component. */
-	UFUNCTION( Category = "KeshUI | Widget", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget", BlueprintCallable )
 	virtual bool IsDown() const;
 
 	/* Sets the slider value change delegate. By default it is the internal OnSliderValueChange function. */
@@ -77,7 +77,7 @@ protected:
 	virtual void OnClick( UKUISimpleClickWidget* cmClicked, const FVector2D& v2ClickOffset );
 
 	/* Triggers when this widget is clicked. Must enable mouse events for this to trigger. */
-	UFUNCTION( Category = "KeshUI | Widget", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Widget", BlueprintImplementableEvent )
 	virtual void OnClickBP( const FKUIInterfaceWidgetClickEvent& stEventInfo );
 
 };

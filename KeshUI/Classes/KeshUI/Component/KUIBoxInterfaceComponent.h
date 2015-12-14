@@ -9,7 +9,7 @@
 /**
  * KeshUI UI Framework (KUI) Box render component.
  */
-UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
+UCLASS(ClassGroup="KeshUI|Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIBoxInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
 	GENERATED_BODY()
@@ -23,18 +23,18 @@ public:
 	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
-	UFUNCTION(Category="KeshUI | Component | Box", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Box", BlueprintCallable)
 	virtual void SetSizeStruct( const FVector2D& v2Size );
 
 	/* Sets the size of the component. */
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Gets the thickness of the texture from the screen. */
-	UFUNCTION(Category="KeshUI | Component | Box", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Box", BlueprintCallable)
 	virtual float GetThickness() const;
 
 	/* Sets the texture location. */
-	UFUNCTION(Category="KeshUI | Component | Box", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Box", BlueprintCallable)
 	virtual void SetThickness( float fThickness );
 
 	/* Returns true if there's enough information to render. */

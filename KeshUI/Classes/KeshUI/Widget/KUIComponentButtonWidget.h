@@ -25,7 +25,7 @@ namespace EKUIButtonState
 
 
 /* Button component using standard textures. */
-UCLASS( ClassGroup = "KeshUI | UI | Widget", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|UI|Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIComponentButtonWidget : public UKUIButtonWidget
 {
 	GENERATED_BODY()
@@ -36,27 +36,27 @@ class KESHUI_API UKUIComponentButtonWidget : public UKUIButtonWidget
 public:
 
 	/* Sets a button component. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetButtonComponent( EKUIButtonState::State eState ) const;
 
 	/* Sets a button component. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual void SetButtonComponent( EKUIButtonState::State eState, UKUIInterfaceElement* oComponent );
 
 	/* Sets the sizes of button components. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual void SetButtonComponentSize( float fX, float fY );
 
 	/* Sets the sizes of button components. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual void SetButtonComponentSizeStruct( FVector2D v2Size );
 
 	/* Sets an element component. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetElementComponent( EKUIButtonState::State eState ) const;
 
 	/* Sets an element component. */
-	UFUNCTION( Category = "KeshUI | Widget | Button", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Widget|Button", BlueprintCallable )
 	virtual void SetElementComponent( EKUIButtonState::State eState, UKUIInterfaceElement* oComponent );
 
 protected:
@@ -69,10 +69,10 @@ protected:
 
 	FVector2D v2ClickedElementOffset;
 
-	UPROPERTY( Category = "KeshUI | UI | Widget | Component Button", VisibleInstanceOnly, BlueprintReadOnly )
+	UPROPERTY( Category = "KeshUI|UI|Widget|Component Button", VisibleInstanceOnly, BlueprintReadOnly )
 	uint8 iButtonComponentIndex;
 
-	UPROPERTY( Category = "KeshUI | UI | Widget | Component Button", VisibleInstanceOnly, BlueprintReadOnly )
+	UPROPERTY( Category = "KeshUI|UI|Widget|Component Button", VisibleInstanceOnly, BlueprintReadOnly )
 	uint8 iElementComponentIndex;
 
 	virtual void OnWidgetStateChange_Implementation() override;

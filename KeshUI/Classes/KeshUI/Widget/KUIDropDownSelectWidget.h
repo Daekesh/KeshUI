@@ -8,7 +8,7 @@
 
 
 /* Combo box widget base class. */
-UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIDropDownSelectWidget : public UKUISelectWidget
 {
 	GENERATED_BODY()

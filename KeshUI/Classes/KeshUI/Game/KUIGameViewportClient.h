@@ -8,7 +8,7 @@
 /**
 * Overloads the InputChar method to grab actual characters for text input.
 */
-UCLASS( ClassGroup = "KeshUI | Game", Blueprintable, BlueprintType )
+UCLASS( ClassGroup = "KeshUI|Game", Blueprintable, BlueprintType )
 class KESHUI_API UKUIGameViewportClient : public UGameViewportClient
 {
 	GENERATED_BODY()

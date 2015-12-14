@@ -58,7 +58,7 @@ class KESHUI_API AKUIInterface : public AHUD
 public:
 
 	/* Returns the latest created instance of this class. */
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
 	static AKUIInterface* GetLatestInstance();
 
 	/* Returns the asset identified by the given FName from the asset libraries. */
@@ -71,62 +71,62 @@ public:
 	}
 
 	/* Returns the player controller that owns this interface. */
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
 	virtual APlayerController* GetPlayerController() const;
 
 	/* Returns one of the root containers. */
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
 	virtual UKUIInterfaceContainer* GetRootContainer( uint8 iContainerId ) const;
 
 	/* Returns true if the UI is visible (except the cursor.) */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual bool IsVisible() const;
 
 	/* Sets whether the UI is visible (except the cursor.) */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual void SetVisible( bool bVisible );
 
 	/* Returns true if the cursor is visible. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual bool IsCursorVisible() const;
 
 	/* Sets whether the cursor is visible. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual void SetCursorVisible( bool bVisible );
 
 	/* Gets the screen resolution. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual FVector2D GetScreenResolution() const;
 
 	/* Gets the cursor location. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual FVector2D GetCursorLocation() const;
 
 	/* Gets the cursor vector in the last tick. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual FVector2D GetCursorVector() const;
 
 	/* Gets the location where the given mouse button was pressed. */
 	virtual FVector2D GetMouseButtonDownLocation( EMouseButtons::Type eButton ) const;
 
 	/* Gets the location where the given mouse button was pressed. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual FVector2D GetMouseButtonDownLocationBP( uint8 eButton ) const;
 
 	/* Gets whether a certain key is pressed. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual bool IsInputDown( FKey eKey ) const;
 
 	/* Gets the time when the given key was pressed (game time, not real.) */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual float GetInputDownTime( FKey eKey ) const;
 
 	/* Returns the currently focused element. */
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetFocus() const;
 
 	/* Sets the currently focused element. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual void SetFocus( UKUIInterfaceContainer* ctNewFocus );
 
 	/* Ticks the UI. */
@@ -138,7 +138,7 @@ public:
 	virtual void Render( UCanvas* oCanvas );
 
 	/* Adds an interface element to one of the root containers. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual void AddElement( uint8 iContainer, UKUIInterfaceElement* oElement );
 
 	/* Adds an object to the cancel stack (pressing escape.) */
@@ -151,7 +151,7 @@ public:
 	virtual void OnCancel( UObject* oCancellable );
 
 	/* Cancels the top item on the cancel stack. */
-	UFUNCTION(Category = "KeshUI | Interface", BlueprintCallable)
+	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual bool Cancel();
 
 	/* Returns the appropriate mouse button for the key, or invalid. */
@@ -191,7 +191,7 @@ public:
 	virtual void OnMatchStateChange( FName nMatchState );
 
 	/* Returns true if the currently focused element consumes key events. */
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
 	virtual bool IsConsumingInputEvents() const;
 
 	virtual void PostInitializeComponents() override;
@@ -237,73 +237,73 @@ protected:
 	/* Triggers when the match has ended. */
 	virtual void OnMatchEnd();
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnVisibilityChangeBP();
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnInputKeyBP( FKey eKey, EInputEvent eEventType, float fAmountDepressed, bool bGamepad );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnScreenResolutionChangeBP( const FVector2D& v2OldRes, const FVector2D& v2NewRes );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnFocusChangeBP( UKUIInterfaceContainer* ctOldFocus, UKUIInterfaceContainer* ctNewFocus );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnTickBP( float fDeltaTime );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnRenderBP( UCanvas* oCanvas );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnElementAddedBP( uint8 iContainer, UKUIInterfaceElement* oElement );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnCancellableAddedBP( UObject* oCancellable );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnCancellableRemovedBP( UObject* oCancellable );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnCancelBP( UObject* oCancellable );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMouseMoveBP( const FVector2D& v2OldLocation, const FVector2D& v2NewLocation );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual bool OnMouseButtonDownBP( uint8 eButton, const FVector2D& v2Location );
 	
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual bool OnMouseButtonUpBP( uint8 eButton, const FVector2D& v2Location );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnKeyDownBP( FKey eKey );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnKeyUpBP( FKey eKey );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnKeyRepeatBP( FKey eKey );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnKeyCharBP( const FString& strChar );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMatchStartBP();
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMatchPausedBP( int32 iPlayerId );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMatchUnpauseBP( int32 iPlayerId );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMatchEndBP();
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnPlayerDeathBP( int32 iPlayerId );
 
-	UFUNCTION( Category = "KeshUI | Interface", BlueprintImplementableEvent )
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintImplementableEvent )
 	virtual void OnMatchStateChangeBP( FName nMatchState );
 
 };

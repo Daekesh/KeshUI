@@ -10,7 +10,7 @@
 /**
 * Wrapper for the render to texture stuff.
 */
-UCLASS( ClassGroup = "KeshUI | Container", Blueprintable, BlueprintType, NotPlaceable )
+UCLASS( ClassGroup = "KeshUI|Container", Blueprintable, BlueprintType, NotPlaceable )
 class KESHUI_API UKUISubContainerRenderCache : public UKUIRenderCache
 {
 	GENERATED_BODY()

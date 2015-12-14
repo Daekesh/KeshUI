@@ -626,7 +626,7 @@ void UKUIInterfaceElement::CalculateAlignLocation( TArray<UKUIInterfaceElement*>
 	// Avoid recursive layout dependencies.
 	if ( arAlignStack.Contains( this ) )
 		return;
-	
+
 	if ( GetContainer() != NULL && GetContainer()->IsChildsLayoutManaged( this ) )
 	{
 		//SetAlignLocation( FVector2D::ZeroVector );

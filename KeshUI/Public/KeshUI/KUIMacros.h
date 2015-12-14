@@ -61,7 +61,7 @@
 #define KUI_UO_INIT_DEBUG() KUILogDebug( "Init class: %s", *GetClass()->GetName() );
 
 // New objects
-#define KUICreateDefaultSubobjectAssign( V, T, N ) V = oObjectInitializer.CreateDefaultSubobject<T>( this, N, false )
+#define KUICreateDefaultSubobjectAssign( V, T, N ) V = FObjectInitializer::Get().CreateDefaultSubobject<T>( this, N, false )
 #define KUICreateDefaultSubobject( V, T, N ) T* KUICreateDefaultSubobjectAssign( V, T, N )
 #define KUINewNamedObjectAssign( V, T, N ) V = NewObject<T>( this, N, this->GetFlags(), NULL )
 #define KUINewNamedObject( V, T, N ) T* KUINewNamedObjectAssign( V, T, N )

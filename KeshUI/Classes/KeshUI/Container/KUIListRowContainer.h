@@ -23,43 +23,43 @@ class KESHUI_API UKUIListRowContainer : public UKUIInterfaceContainer
 public:
 
 	/* Gets whether this row is selected or not. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual bool IsSelected() const;
 
 	/* Called when the selection value of this row is changed. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void UpdateSelected( bool bSelected );
 
 	/* Gets the unselected foreground colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual FColor GetUnselectedForegroundColor() const;
 
 	/* Sets the unselected foreground colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetUnselectedForegroundColor( const FColor& stColor );
 
 	/* Gets the selected foreground colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual FColor GetSelectedForegroundColor() const;
 
 	/* Sets the selected foreground colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetSelectedForegroundColor( const FColor& stColor );
 
 	/* Gets the unselected background colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual FColor GetUnselectedBackgroundColor() const;
 
 	/* Sets the unselected background colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetUnselectedBackgroundColor( const FColor& stColor );
 
 	/* Gets the selected background colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual FColor GetSelectedBackgroundColor() const;
 
 	/* Sets the selected background colour. */
-	UFUNCTION( Category = "KeshUI | Container | List", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|List", BlueprintCallable )
 	virtual void SetSelectedBackgroundColor( const FColor& stColor );
 
 	/* Updates selected status. */

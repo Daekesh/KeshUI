@@ -13,7 +13,7 @@ KUI_DECLARE_DELEGATE_OneParam( FKUIKeyInterceptCancelled, UKUIKeyPressInterceptW
 
 
 /* Intercepts a single key press with modifiers (ctrl/alt/shift/cmd). */
-UCLASS( ClassGroup = "KeshUI | Widget", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Widget", BlueprintType, Blueprintable )
 class KESHUI_API UKUIKeyPressInterceptWidget : public UKUISelectWidget
 {
 	GENERATED_BODY()
@@ -24,19 +24,19 @@ class KESHUI_API UKUIKeyPressInterceptWidget : public UKUISelectWidget
 public:
 
 	/* Gets whether this key intercept will allow the scape key to stop the key intercept and trigger the canceled delegate. */
-	UFUNCTION( Category = "KeshUI | Wigdet | Key Intercept", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Wigdet|Key Intercept", BlueprintCallable )
 	virtual bool IsCancellable() const;
 
 	/* Sets whether this key intercept will allow the scape key to stop the key intercept and trigger the canceled delegate. */
-	UFUNCTION( Category = "KeshUI | Wigdet | Key Intercept", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Wigdet|Key Intercept", BlueprintCallable )
 	virtual void SetCancellable( bool bCancellable );
 
 	/* Returns true if this widget will intercept the next key press. */
-	UFUNCTION( Category = "KeshUI | Wigdet | Key Intercept", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Wigdet|Key Intercept", BlueprintCallable )
 	virtual bool WillInterceptNextKeyPress() const;
 
 	/* Initiate this widget to accept the next key press. */
-	UFUNCTION( Category = "KeshUI | Wigdet | Key Intercept", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Wigdet|Key Intercept", BlueprintCallable )
 	virtual void InterceptNextKeyPress();
 
 	/* Sets the callback executed when a key press is intercepted. */

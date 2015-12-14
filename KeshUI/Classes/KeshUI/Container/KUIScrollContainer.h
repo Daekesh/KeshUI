@@ -15,7 +15,7 @@ class UKUISliderWidget;
 /**
 * General container that renders a portion of its total area.
 **/
-UCLASS( ClassGroup = "KeshUI | Container", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Container", BlueprintType, Blueprintable )
 class KESHUI_API UKUIScrollContainer : public UKUIInterfaceContainer
 {
 	GENERATED_BODY()
@@ -35,70 +35,70 @@ public:
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Returns the total size of the sub container. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual FVector2D GetScrollableSize() const;
 
 	/* Sets the total size of the sub container. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetScrollableSize( float fWidth, float fHeight );
 
 	/* Sets the total size of the sub container. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetScrollableSizeStruct( const FVector2D& v2ScrollSize );
 
 	/* Returns the size of the scrollbar corner. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual FVector2D GetCornerSize() const;
 
 	/* Sets the size of the scrollbar corner. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetCornerSize( float fWidth, float fHeight );
 
 	/* Sets the size of the scrollbar corner. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetCornerSizeStruct( const FVector2D& v2ScrollSize );
 
 	/* Gets the horizontal scrollbar component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual UKUISliderWidget* GetHorizontalScrollbar() const;
 
 	/* Sets the horizontal scrollbar component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetHorizontalScrollbar( UKUISliderWidget* cmScrollbar );
 
 	/* Gets the vertical scrollbar component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual UKUISliderWidget* GetVerticalScrollbar() const;
 
 	/* Sets the vertical scrollbar component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetVerticalScrollbar( UKUISliderWidget* cmScrollbar );
 
 	/* Gets the corner component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetCornerComponent() const;
 
 	/* Sets the corner component. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetCornerComponent( UKUIInterfaceElement* oCorner );
 
 	/* Updates the scrollable area. */
 	virtual void OnScrollbarScrolled( UKUISliderWidget* cmSlider );
 
 	/* Sets the corner size by fraction of over-space. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetVisibleAreaByFraction( float fVertical, float fHorizontal = 0.f );
 
 	/* Sets the currently visible portion of the sub container by value. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetScrollPosition( float fVertical, float fHorizontal = 0.f );
 
 	/* Sets the currently visible portion of the sub container by value. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetScrollPositionStruct( FVector2D v2ScrollPosition );
 
 	/* Returns the scroll area, if required. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual UKUISubContainer* GetScrollArea() const;
 
 	virtual void Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject = NULL ) override;
@@ -106,11 +106,11 @@ public:
 	virtual bool CanReceieveKeyEvents() const override;
 
 	/* Returns true if this container is using mouse wheel scroll. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual bool IsUsingMouseWheelScroll() const;
 
 	/* Sets whether this container is using mouse wheel scroll. Will not work and error if set when container is not null. */
-	UFUNCTION( Category = "KeshUI | Container | Scroll", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Scroll", BlueprintCallable )
 	virtual void SetUsingMouseWheelScroll( bool bUseMouseWheel );
 
 protected:

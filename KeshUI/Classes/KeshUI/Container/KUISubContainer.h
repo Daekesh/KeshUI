@@ -10,7 +10,7 @@
 /**
 * General container that renders a portion of its total area.
 **/
-UCLASS( ClassGroup = "KeshUI | Container", BlueprintType, Blueprintable )
+UCLASS( ClassGroup = "KeshUI|Container", BlueprintType, Blueprintable )
 class KESHUI_API UKUISubContainer : public UKUIInterfaceContainer
 {
 	GENERATED_BODY()
@@ -21,38 +21,38 @@ class KESHUI_API UKUISubContainer : public UKUIInterfaceContainer
 public:
 
 	/* Gets the distance from the top-left of the container that the visible portion begins. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual const FVector2D& GetCornerOffset() const;
 
 	/* Sets the distance from the top-left of the container that the visible portion begins. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual void SetCornerOffsetStruct( const FVector2D& v2CornerOffset );
 
 	/* Sets the distance from the top-left of the container that the visible portion begins. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual void SetCornerOffset( float fX, float fY );
 
 	/* Gets the total size of the container. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual const FVector2D& GetTotalSize() const;
 
 	/* Sets the total size of the container. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual void SetTotalSizeStruct( const FVector2D& v2TotalSize );
 
 	/* Sets the total size of the container. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual void SetTotalSize( float fWidth, float fHeight );
 
 	/* Overrides to update render cache. */
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Gets the element that this is a container for.  Updates total size to contain it. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual UKUIInterfaceElement* GetContainerFor() const;
 
 	/* Sets the element that this is a container for.  Updates total size to encompass it. */
-	UFUNCTION( Category = "KeshUI | Container | Sub", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Sub", BlueprintCallable )
 	virtual void SetContainerFor( UKUIInterfaceElement* oContainerFor );
 
 	/* Called to render the element on the screen. */

@@ -13,7 +13,7 @@ class UKUIButtonWidget;
 /**
  * Used by buttons to filter when this component is visible.
  */
-UCLASS(ClassGroup="KeshUI | Widget | Child Manager", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Widget|Child Manager", BlueprintType, Blueprintable)
 class KESHUI_API UKUIManagedButtonWidgetChildManager : public UKUIInterfaceWidgetChildManager
 {
 	GENERATED_BODY()
@@ -24,11 +24,11 @@ class KESHUI_API UKUIManagedButtonWidgetChildManager : public UKUIInterfaceWidge
 public:
 
 	/* Returns the button widget. */
-	UFUNCTION(Category="KeshUI | Widget | Button", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Button", BlueprintCallable)
 	virtual UKUIButtonWidget* GetButton() const;
 
 	/* Sets the display of this component. */
-	UFUNCTION(Category="KeshUI | Widget | Button", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget|Button", BlueprintCallable)
 	virtual void SetStates( TEnumAsByte<EKUIBoolMatch::Value> eDisabled, TEnumAsByte<EKUIBoolMatch::Value> eMouseOver, TEnumAsByte<EKUIBoolMatch::Value> eDown );
 
 	/* Sets the offset of the specific state conditions. */

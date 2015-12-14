@@ -64,7 +64,7 @@ public:
 	virtual bool IsDisabled() const override;
 
 	/* Sets the disabled state of this button.  Returns true if the value was changed. */
-	UFUNCTION(Category="KeshUI | Widget", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Widget", BlueprintCallable)
 	virtual void SetDisabled( const TEnumAsByte<EKUIBool::SetValue> eValue );
 
 	/* Calls the state change. */
@@ -79,7 +79,7 @@ protected:
 	bool bDisabled;
 
 	/* Triggers when something changes. */
-	UFUNCTION( Category = "KeshUI | Widget", BlueprintNativeEvent )
+	UFUNCTION( Category = "KeshUI|Widget", BlueprintNativeEvent )
 	void OnWidgetStateChange();
 	virtual void OnWidgetStateChange_Implementation();
 

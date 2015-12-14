@@ -132,7 +132,7 @@ void UKUISubContainer::SetContainerFor( UKUIInterfaceElement* oContainerFor )
 void UKUISubContainer::Render( AKUIInterface* aHud, UCanvas* oCanvas, const FVector2D& v2Origin, UKUIInterfaceElement* oRenderCacheObject )
 {
 	if ( oContainerFor != NULL )
-		SetTotalSizeStruct( oContainerFor->GetSize() );
+		SetTotalSizeStruct( oContainerFor->GetSize() + oContainerFor->GetMarginSize() );
 
 	if ( !HasValidLayout() )
 		DoLayout();

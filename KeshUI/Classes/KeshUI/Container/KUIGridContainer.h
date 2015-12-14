@@ -12,7 +12,7 @@
  * Width/heights of the grid can be either < 1.0 (fractional) or >= 1.0 (pixel) - can be mixed.  
  * E.g. [ 5.0, 0.5, 0.5, 5.0 ] would be a 2 column grid of equal size with a 5 pixel border.
  **/
-UCLASS(ClassGroup="KeshUI | Container", BlueprintType, Blueprintable)
+UCLASS(ClassGroup="KeshUI|Container", BlueprintType, Blueprintable)
 class KESHUI_API UKUIGridContainer : public UKUIInterfaceContainer
 {
 	GENERATED_BODY()
@@ -23,15 +23,15 @@ class KESHUI_API UKUIGridContainer : public UKUIInterfaceContainer
 public:
 		
 	/* Adds an element at a specific grid location.  Adds to container if necessary. */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void SetGridSlot( uint8 iRow, uint8 iColumn, UKUIInterfaceElement* oChild );
 
 	/* Gets the element at the given grid slot. */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual UKUIInterfaceElement* GetGridSlot( uint8 iRow, uint8 iColumn ) const;
 
 	/* Removes an element from the grid slot.  Does not remove it from the container. */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void RemoveGridSlot( UKUIInterfaceElement* oChild );
 
 	/* Removes a child from this container and from the grid layout. */
@@ -41,27 +41,33 @@ public:
 	virtual bool IsChildsLayoutManaged( UKUIInterfaceElement* oChild ) const override;
 
 	/* Adds a column with the given size. Can be either relative (<1.0) or specific (>=1.0) */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void AddColumn( float fWidth );
 
 	/* Adds a row with the given size. Can be either relative (<1.0) or specific (>=1.0) */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void AddRow( float fHeight );
 
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
+	virtual int32 GetRowCount() { return arRows.Num(); }
+
 	/* Gets the width of a column. */
-	UFUNCTION( Category = "KeshUI | Container | Grid", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
 	virtual float GetColumnWidth( uint8 iColumn );
 
 	/* Changes the width of a column. */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void SetColumnWidth( uint8 iColumn, float fWidth );
 
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
+	virtual int32 GetColumnCount() { return arColumns.Num(); }
+
 	/* Gets the height of a row. */
-	UFUNCTION( Category = "KeshUI | Container | Grid", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
 	virtual float GetRowHeight( uint8 iRow );
 
 	/* Changes the height of a row. */
-	UFUNCTION(Category="KeshUI | Container | Grid", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void SetRowHeight( uint8 iRow, float fHeight );
 
 	/* Updates the layout of this container. */

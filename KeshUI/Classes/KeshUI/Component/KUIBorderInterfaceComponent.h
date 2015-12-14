@@ -32,7 +32,7 @@ namespace EBCBorderTexture
 /**
  * KeshUI UI Framework (KUI) Border render component.
  */
-UCLASS(ClassGroup="KeshUI | Component", Blueprintable, BlueprintType)
+UCLASS(ClassGroup="KeshUI|Component", Blueprintable, BlueprintType)
 class KESHUI_API UKUIBorderInterfaceComponent : public UKUICanvasItemInterfaceComponent
 {
 	GENERATED_BODY()
@@ -43,64 +43,64 @@ class KESHUI_API UKUIBorderInterfaceComponent : public UKUICanvasItemInterfaceCo
 public:
 
 	/* Gets the indexed texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual UTexture2D* GetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex ) const;
 
 	/* Sets the indexed texture. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetTexture( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D* tTexture );
 
 	/* Sets the indexed texture pointer. */
 	virtual void SetTexturePointer( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, UTexture2D** tTexturePtr );
 
 	/* Sets the indexed texture name. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Border", BlueprintCallable )
 	virtual void SetTextureName( TEnumAsByte<EBCBorderTexture::TextureIndex> eIndex, const FName& nTextureName );
 
 	/* Gets the size of the component. */
 	virtual const FVector2D& GetSize() const override;
 
 	/* Sets the size of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetSizeStruct( const FVector2D& v2Size );
 
 	/* Sets the size of the component. */
 	virtual void SetSize( float fWidth, float fHeight ) override;
 
 	/* Gets the rotation of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual const FRotator& GetRotation() const;
 
 	/* Sets the rotation of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetRotationStruct( const FRotator& rRotation );
 
 	/* Sets the rotation of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetRotation( float fPitch, float fYaw, float fRoll = 0.f );
 
 	/* Gets the pivot point of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual const FVector2D& GetPivotPoint() const;
 
 	/* Sets the pivot point of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetPivotPointStruct( const FVector2D& v2PivotPoint );
 
 	/* Sets the pivot point of the component. */
-	UFUNCTION(Category="KeshUI | Component | Border", BlueprintCallable)
+	UFUNCTION(Category="KeshUI|Component|Border", BlueprintCallable)
 	virtual void SetPivotPoint( float fX, float fY );
 
 	/* Gets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Border", BlueprintCallable )
 	virtual const FVector4& GetBorderMetrics() const;
 
 	/* Sets the border metrics. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Border", BlueprintCallable )
 	virtual void SetBorderMetrics( float fLeft, float fTop, float fRight, float fBottom );
 
 	/* Sets the border metrics. X = Left, Y = Right, Z = Top, W = Bottom. */
-	UFUNCTION( Category = "KeshUI | Component | Border", BlueprintCallable )
+	UFUNCTION( Category = "KeshUI|Component|Border", BlueprintCallable )
 	virtual void SetBorderMetricsStruct( const FVector4& v4Metrics );
 
 	/* Returns true if there's enough information to render. */
