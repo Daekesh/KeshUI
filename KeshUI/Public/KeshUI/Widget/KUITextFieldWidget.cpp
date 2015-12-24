@@ -18,6 +18,9 @@ UKUITextFieldWidget::UKUITextFieldWidget( const class FObjectInitializer& oObjec
 
 	KUICreateDefaultSubobjectAssign( cmCaret, UKUITextureInterfaceComponent, "Caret" );
 	cmCaret->SetVisible( false );
+	cmCaret->SetAlignedTo( cmTextComponent );
+	cmCaret->SetHorizontalAlignment( EKUIInterfaceHAlign::HA_Left );
+	cmCaret->SetVerticalAlignment( EKUIInterfaceVAlign::VA_Top );
 	
 	AddChild( cmCaret );	
 
@@ -709,10 +712,10 @@ void UKUITextFieldWidget::OnWidgetStateChange_Implementation()
 	//KUILogUO( "iCaretPosition: %d, iCaretRenderOffset: %d", iCaretPosition, iCaretRenderOffset );
 
 	if ( iCaretRenderOffset == 0 )
-		cmCaret->SetLocation( v2CaretOffset.X, v2CaretOffset.Y );
+		cmCaret->SetLocation( v2CaretOffset.X + cmTextComponent->GetMargin().X, v2CaretOffset.Y + cmTextComponent->GetMargin().Y );
 
 	else
-		cmCaret->SetLocation( v2CaretOffset.X + cmTextComponent->GetSizeString( strFullString.Mid( iRenderStringStart, iCaretRenderOffset ) ).X, v2CaretOffset.Y );
+		cmCaret->SetLocation( v2CaretOffset.X + cmTextComponent->GetMargin().X + cmTextComponent->GetSizeString( strFullString.Mid( iRenderStringStart, iCaretRenderOffset ) ).X, v2CaretOffset.Y + cmTextComponent->GetMargin().Y );
 
 	//KUILogUO( "-----------" );
 	//KUILogUO( "--" );

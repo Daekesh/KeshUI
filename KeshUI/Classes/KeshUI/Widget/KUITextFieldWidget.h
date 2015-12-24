@@ -102,7 +102,7 @@ public:
 	/* Sets the text change delegate. By default it is the internal OnInlineValueChange function. */
 	virtual void SetInlineValueChangeDelegate( UObject* oObject, FKUIInterfaceWidgetInlineValueChangePrototype fnTextEditedCallback );
 
-	/* Sets the text change delegate. By default it is the internal OnInlineValueChange function. */
+	/* Sets the text change delegate. By default it is the internal OnValueChange function. */
 	virtual void SetValueChangeDelegate( UObject* oObject, FKUIInterfaceWidgetValueChangePrototype fnTextUpdatedCallback );
 
 	/* Overrides to return true. */

@@ -42,13 +42,9 @@ void UKUIRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElement )
 		return;
 	}
 
-	const FVector2D v2ElemSize = oElement->GetSize();
-
-	if ( v2ElemSize.X < 1.f || v2ElemSize.Y < 1.f )
-	{
-		KUIErrorUO( "Trying to update render cache of 0 size element" );
-		return;
-	}
+	FVector2D v2ElemSize = oElement->GetSize();
+	v2ElemSize.X = max( v2ElemSize.X, 1.f );
+	v2ElemSize.Y = max( v2ElemSize.Y, 1.f );
 
 	const FVector2D v2MySize = GetSize();
 
