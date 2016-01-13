@@ -35,7 +35,7 @@ public:
 	virtual void SetOffset( FVector2D v2Offset, TEnumAsByte<EKUIBoolMatch::Value> eDisabled = EKUIBoolMatch::V_Any, TEnumAsByte<EKUIBoolMatch::Value> eMouseOver = EKUIBoolMatch::V_Any, TEnumAsByte<EKUIBoolMatch::Value> eDown = EKUIBoolMatch::V_Any );
 
 	/* Updates the visibility of the components. */
-	void Update() override;
+	virtual void Update() override;
 
 protected:
 

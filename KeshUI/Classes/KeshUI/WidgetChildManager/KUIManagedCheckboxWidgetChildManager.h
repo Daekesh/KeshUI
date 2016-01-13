@@ -36,7 +36,7 @@ public:
 		                    TEnumAsByte<EKUICheckboxState::State> eState = EKUICheckboxState::S_Max );
 
 	/* Updates the visibility of the components. */
-	void Update() override;
+	virtual void Update() override;
 
 protected:
 
