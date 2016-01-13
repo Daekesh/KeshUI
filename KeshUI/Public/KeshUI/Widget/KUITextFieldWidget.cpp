@@ -100,7 +100,7 @@ void UKUITextFieldWidget::SetString( const FString& strString )
 	if ( strFullString.Equals( strString ) )
 		return;
 
-	KUISendEvent( FKUIInterfaceWidgetInlineValueChangeEvent, EKUIInterfaceWidgetEventList::E_InlineValueChange, ( void* ) &strFullString, ( void* ) &strString );
+	KUISendEvent( FKUIInterfaceWidgetInlineValueChangeEvent, EKUIInterfaceWidgetEventList::E_InlineValueChange, static_cast< const void* >( &strFullString ), static_cast< const void* >( &strString ) );
 
 	iUndoCaretPosition = iCaretPosition;
 	strUndo = strFullString;
@@ -497,7 +497,7 @@ bool UKUITextFieldWidget::OnKeyRepeat( const FKUIInterfaceContainerKeyEvent& stE
 }
 
 
-void UKUITextFieldWidget::OnInlineValueChange( UKUIInterfaceWidget* cmWidget, void* oOldValue, void* oNewValue )
+void UKUITextFieldWidget::OnInlineValueChange( UKUIInterfaceWidget* cmWidget, const void* oOldValue, const void* oNewValue )
 {
 	KUILogDebugUO( "Text edited!" );
 }
@@ -785,8 +785,8 @@ void UKUITextFieldWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 		FKUIInterfaceWidgetInlineValueChangeEvent& stInlineValueChangeInfo = *reinterpret_cast<FKUIInterfaceWidgetInlineValueChangeEvent*>( &stEventInfo );
 
-		dgInlineValueChange.ExecuteIfBound( this, reinterpret_cast<void*>( stInlineValueChangeInfo.oOldValue ), reinterpret_cast<void*>( stInlineValueChangeInfo.oNewValue ) );
-		OnInlineValueChangeBP( *reinterpret_cast<FString*>( stInlineValueChangeInfo.oOldValue ), *reinterpret_cast<FString*>( stInlineValueChangeInfo.oNewValue ) );
+		dgInlineValueChange.ExecuteIfBound( this, reinterpret_cast<const void*>( stInlineValueChangeInfo.oOldValue ), reinterpret_cast<const void*>( stInlineValueChangeInfo.oNewValue ) );
+		OnInlineValueChangeBP( *reinterpret_cast<const FString*>( stInlineValueChangeInfo.oOldValue ), *reinterpret_cast<const FString*>( stInlineValueChangeInfo.oNewValue ) );
 
 #pragma warning( default : 4946 )
 

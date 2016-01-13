@@ -212,7 +212,7 @@ void UKUIPagedContainer::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 	if ( stEventInfo.iEventID == EKUIInterfaceContainerEventList::E_PageChanged )
 	{
-		OnActivePageChange( ( ( FKUIInterfaceContainerPageChangeEvent * ) &stEventInfo )->iOldPageIndex, ( ( FKUIInterfaceContainerPageChangeEvent * ) &stEventInfo )->iNewPageIndex );
-		OnActivePageChangeBP( ( ( FKUIInterfaceContainerPageChangeEvent * ) &stEventInfo )->iOldPageIndex, ( ( FKUIInterfaceContainerPageChangeEvent * ) &stEventInfo )->iNewPageIndex );
+		OnActivePageChange( static_cast< FKUIInterfaceContainerPageChangeEvent* >( &stEventInfo )->iOldPageIndex, static_cast< FKUIInterfaceContainerPageChangeEvent* > ( &stEventInfo )->iNewPageIndex );
+		OnActivePageChangeBP( static_cast< FKUIInterfaceContainerPageChangeEvent* > ( &stEventInfo )->iOldPageIndex, static_cast< FKUIInterfaceContainerPageChangeEvent* >( &stEventInfo )->iNewPageIndex );
 	}
 }

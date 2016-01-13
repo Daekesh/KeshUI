@@ -146,7 +146,7 @@ void UKUISliderWidget::SetValue( float fValue )
 		fValue = clamp( fValue, 0.f, 1.f );
 
 	else
-		fValue = round( clamp( fValue, 0.f, ( float ) iStepCount ) );
+		fValue = round( clamp( fValue, 0.f, static_cast< float >( iStepCount ) ) );
 
 	if ( this->fValue == fValue )
 		return;
@@ -182,7 +182,7 @@ float UKUISliderWidget::GetStepSize() const
 	if ( iStepCount == 0 )
 		return 0.f;
 
-	return ( GetTravelDistance() / ( float ) iStepCount );
+	return ( GetTravelDistance() / static_cast< float >( iStepCount ) );
 }
 
 
@@ -205,7 +205,7 @@ void UKUISliderWidget::OnWidgetStateChange_Implementation()
 		fOffset = fValue * fTravelDistance;
 
 	else
-		fOffset = ( fValue / ( float ) iStepCount ) * fTravelDistance;
+		fOffset = ( fValue / static_cast< float >( iStepCount ) ) * fTravelDistance;
 
 	//KUILogUO( "OnWidgetStateChange_Implementation Offset %f %f", fOffset, fEndSize );
 
@@ -348,7 +348,7 @@ void UKUISliderWidget::OnDrag( float fLocation )
 		SetValue( fValue );
 
 	else
-		SetValue( fValue * ( float ) iStepCount );
+		SetValue( fValue * static_cast< float >( iStepCount ) );
 }
 
 

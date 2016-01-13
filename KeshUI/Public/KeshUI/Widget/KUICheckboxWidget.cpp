@@ -123,5 +123,5 @@ void UKUICheckboxWidget::SendEvent( FKUIInterfaceEvent& stEventInfo )
 
 void UKUICheckboxWidget::OnCheckboxStateChange( UKUICheckboxWidget* cmCheckbox )
 {
-	KUILogDebugUO( "Checkbox State Change!%d %d %d", ( bDown ? 1 : 0 ), ( bMouseOver ? 1 : 0 ), ( uint8 ) eState );
+	KUILogDebugUO( "Checkbox State Change!%d %d %d", ( bDown ? 1 : 0 ), ( bMouseOver ? 1 : 0 ), static_cast< uint8 >( eState ) );
 }

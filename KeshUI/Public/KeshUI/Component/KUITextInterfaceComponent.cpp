@@ -2,6 +2,7 @@
 
 #include "KeshUI/KeshUI.h"
 #include "KeshUI/KUIInterfaceContainer.h"
+#include "KeshUI/KUIRenderCache.h"
 #include "KeshUI/Component/KUITextInterfaceComponent.h"
 
 
@@ -447,6 +448,11 @@ void UKUITextInterfaceComponent::ConstructNewItem()
 	static_cast<FCanvasTextItem*>(&*stItem)->bDontCorrectStereoscopic = bDontCorrectStereoscopic;
 	static_cast<FCanvasTextItem*>(&*stItem)->FontRenderInfo.bClipText = bClipped;
 	static_cast<FCanvasTextItem*>(&*stItem)->Text = txText;
+
+	if ( foFont != NULL && foFont->FontCacheType == EFontCacheType::Runtime &&
+		eBlendMode != ESimpleElementBlendMode::SE_BLEND_Translucent &&
+		eBlendMode != ESimpleElementBlendMode::SE_BLEND_TranslucentAlphaOnly )
+		eBlendMode = ESimpleElementBlendMode::SE_BLEND_TranslucentAlphaOnly;
 
 	Super::ConstructNewItem();
 }

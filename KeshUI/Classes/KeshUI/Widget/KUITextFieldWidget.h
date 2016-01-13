@@ -171,7 +171,7 @@ protected:
 	virtual void OnTextBoxClick( UKUISimpleClickWidget* cmClicked, const FVector2D& v2ClickOffset );
 
 	/* Default method for the text edited delegate. */
-	virtual void OnInlineValueChange( UKUIInterfaceWidget* cmWidget, void* oOldValue, void* oNewValue );
+	virtual void OnInlineValueChange( UKUIInterfaceWidget* cmWidget, const void* oOldValue, const void* oNewValue );
 
 	/* Default method for the text changed delegate. */
 	virtual void OnValueChange( UKUIInterfaceWidget* cmWidget );

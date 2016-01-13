@@ -29,13 +29,13 @@ ESimpleElementBlendMode UKUICanvasItemInterfaceComponent::GetBlendMode() const
 
 uint8 UKUICanvasItemInterfaceComponent::GetBlendModeBP() const
 {
-	return (uint8) eBlendMode;
+	return static_cast< uint8 >( eBlendMode );
 }
 
 
 void UKUICanvasItemInterfaceComponent::SetBlendMode( uint8 eBlendMode )
 {
-	this->eBlendMode = (ESimpleElementBlendMode) eBlendMode;
+	this->eBlendMode = static_cast< ESimpleElementBlendMode >( eBlendMode );
 }
 
 
@@ -137,7 +137,7 @@ void UKUICanvasItemInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCa
 	stItem->Position.X = bRoundPosition ? FMath::RoundToInt( stItem->Position.X ) : stItem->Position.X;
 	stItem->Position.Y = bRoundPosition ? FMath::RoundToInt( stItem->Position.Y ) : stItem->Position.Y;
 
-	if ( oRenderCacheObject != NULL && eBlendMode == SE_BLEND_Translucent )
+	if ( oRenderCacheObject != NULL && ( eBlendMode == SE_BLEND_Translucent || eBlendMode == SE_BLEND_TranslucentAlphaOnly ) )
 		stItem->BlendMode = ESimpleElementBlendMode::SE_BLEND_AlphaComposite;
 
 	else

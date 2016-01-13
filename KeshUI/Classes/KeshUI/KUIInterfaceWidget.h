@@ -9,7 +9,7 @@
 class UKUIInterfaceWidget;
 
 KUI_DECLARE_DELEGATE_OneParam( FKUIInterfaceWidgetValueChange, UKUIInterfaceWidget* );
-KUI_DECLARE_DELEGATE_ThreeParams( FKUIInterfaceWidgetInlineValueChange, UKUIInterfaceWidget*, void*, void* );
+KUI_DECLARE_DELEGATE_ThreeParams( FKUIInterfaceWidgetInlineValueChange, UKUIInterfaceWidget*, const void*, const void* );
 
 
 UENUM( BlueprintType )
@@ -31,7 +31,7 @@ struct FKUIInterfaceWidgetInlineValueChangeEvent : public FKUIInterfaceEvent
 
 	FKUIInterfaceWidgetInlineValueChangeEvent() : FKUIInterfaceEvent() { }
 
-	FKUIInterfaceWidgetInlineValueChangeEvent( uint8 iEventID, void* oOldValue, void* oNewValue )
+	FKUIInterfaceWidgetInlineValueChangeEvent( uint8 iEventID, const void* oOldValue, const void* oNewValue )
 		: FKUIInterfaceEvent( iEventID )
 	{
 		this->oOldValue = oOldValue;
@@ -39,10 +39,10 @@ struct FKUIInterfaceWidgetInlineValueChangeEvent : public FKUIInterfaceEvent
 	}
 
 	//UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "Old Value Pointer (sort of)" ) )
-	void* oOldValue;
+	const void* oOldValue;
 
 	//UPROPERTY( Category = "KeshUI", EditInstanceOnly, BlueprintReadWrite, Meta = ( DisplayName = "New Value Pointer (sort of)" ) )
-	void* oNewValue;
+	const void* oNewValue;
 };
 
 class AKUIInterface;

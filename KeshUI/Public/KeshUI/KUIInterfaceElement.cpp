@@ -802,7 +802,7 @@ void UKUIInterfaceElement::InvalidateContainerRenderCache()
 
 void UKUIInterfaceElement::EnableRenderCache()
 {
-	if ( oRenderCache )
+	if ( oRenderCache != NULL )
 		return;
 
 	oRenderCache = NewObject<UKUIRenderCache>( this );

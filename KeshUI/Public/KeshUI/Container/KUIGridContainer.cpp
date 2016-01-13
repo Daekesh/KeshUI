@@ -81,8 +81,12 @@ void UKUIGridContainer::RemoveGridSlot( UKUIInterfaceElement* oChild )
 				continue;
 
 			bFound = true;
-			RemoveChild( ar2Elements[ i ][ j ].Get() );
+			UKUIInterfaceElement* oChildTemp = ar2Elements[ i ][ j ].Get();
 			ar2Elements[ i ][ j ] = NULL;
+			
+			if ( oChildTemp != NULL )
+				RemoveChild( oChildTemp );
+
 			break;
 		}
 

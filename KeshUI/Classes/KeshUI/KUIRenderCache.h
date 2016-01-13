@@ -20,6 +20,9 @@ class KESHUI_API UKUIRenderCache : public UKUITextureInterfaceComponent
 
 public:
 
+	/* Creates a new render cache.  Destroys the old one first. */
+	virtual void CreateRenderCache( const FVector2D& v2Size );
+
 	virtual void UpdateRenderCache( UKUIInterfaceElement* oElement );
 
 	/* Returns true if the render cache doesn't need to be updated. */
@@ -36,9 +39,6 @@ protected:
 
 	/* Destroys the current render cache. */
 	virtual void DestroyRenderCache();
-
-	/* Creates a new render cache.  Destroys the old one first. */
-	virtual void CreateRenderCache( const FVector2D& v2Size );
 
 	virtual void InvalidateContainerRenderCache();
 

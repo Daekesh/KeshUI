@@ -81,6 +81,7 @@ void UKUIInterfaceContainer::AddChild( UKUIInterfaceElement* oChild )
 
 	// Add the child to our array.
 	arChildren.Add( oChild );
+	SortChildren();
 
 	oChild->SetContainer( this );
 
@@ -195,6 +196,9 @@ TArray<UKUIInterfaceElement*>::TIterator UKUIInterfaceContainer::GetChildIterato
 
 void UKUIInterfaceContainer::SortChildren()
 {
+	if ( bDebug )
+		bDebug = true;
+
 	if ( arChildren.Num() == 0 )
 		return;
 

@@ -415,6 +415,7 @@ public:
 
 	void InitializeElement();
 	virtual bool IsInitialized() const;
+	virtual void InvalidateContainerRenderCache();
 
 	bool bDebug;
 
@@ -440,7 +441,6 @@ protected:
 	UKUIRenderCache* oRenderCache;
 
 	virtual void InvalidateRenderCache();
-	virtual void InvalidateContainerRenderCache();
 
 	/* Called when this item is first added to a container which is part of an interface. */
 	virtual void OnInitialize( const FKUIInterfaceEvent& stEventInfo );
