@@ -154,10 +154,10 @@ void UKUIGridContainer::RemoveColumn( uint8 iColumn )
 
 	for (int32 i = 0; i < arRows.Num( ); i++)
 	{
-		ar2Elements[ i ].SetNum( arColumns.Num( ) );
 		UKUIInterfaceElement *Child = ar2Elements [ i ] [ iColumn ].Get();
 		if ( Child != NULL )
 			RemoveChild ( Child );
+		ar2Elements[ i ].RemoveAt ( iColumn );
 	}
 
 	InvalidateLayout( );
@@ -196,7 +196,7 @@ void UKUIGridContainer::RemoveRow( uint8 iRow )
 			RemoveChild ( Child );
 	}
 
-	ar2Elements.SetNum( arRows.Num( ) );
+	ar2Elements.RemoveAt ( iRow );
 
 	InvalidateLayout( );
 }
