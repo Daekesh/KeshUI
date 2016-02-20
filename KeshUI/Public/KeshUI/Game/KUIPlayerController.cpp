@@ -29,12 +29,23 @@ void AKUIPlayerController::PlayerTick( float fDeltaTime )
 
 void AKUIPlayerController::ProcessInput()
 {
-	FVector2D v2Delta;
+	AKUIInterface* const aHud = Cast<AKUIInterface>( GetHUD() );
 
-	GetInputMouseDelta( v2Delta.X, v2Delta.Y );
+	if ( aHud == NULL )
+		return;
 
-	if ( v2Delta.X != 0 || v2Delta.Y != 0 )
-		OnMouseMoved( v2Delta );
+	if ( aHud->IsUsingHardwareCursorPosition() )
+		OnMouseMoved( FVector2D::ZeroVector );
+
+	else
+	{
+		FVector2D v2Delta;
+
+		GetInputMouseDelta( v2Delta.X, v2Delta.Y );
+
+		if ( v2Delta.X != 0 || v2Delta.Y != 0 )
+			OnMouseMoved( v2Delta );
+	}
 }
 
 
