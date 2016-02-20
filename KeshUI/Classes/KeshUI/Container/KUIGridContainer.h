@@ -44,9 +44,17 @@ public:
 	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void AddColumn( float fWidth );
 
+	/* removes a column given it's index */
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
+	virtual void RemoveColumn( uint8 iColumn );
+
 	/* Adds a row with the given size. Can be either relative (<1.0) or specific (>=1.0) */
 	UFUNCTION(Category="KeshUI|Container|Grid", BlueprintCallable)
 	virtual void AddRow( float fHeight );
+
+	/* removes a row given it's index */
+	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
+	virtual void RemoveRow( uint8 iRow );
 
 	UFUNCTION( Category = "KeshUI|Container|Grid", BlueprintCallable )
 	virtual int32 GetRowCount() { return arRows.Num(); }
