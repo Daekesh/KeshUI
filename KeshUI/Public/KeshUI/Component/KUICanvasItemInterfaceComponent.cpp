@@ -2,6 +2,7 @@
 
 #include "KeshUI/KeshUI.h"
 #include "KeshUI/KUIInterfaceContainer.h"
+#include "KeshUI/Component/KUITextInterfaceComponent.h"
 #include "KeshUI/Component/KUICanvasItemInterfaceComponent.h"
 
 
@@ -137,7 +138,7 @@ void UKUICanvasItemInterfaceComponent::Render( AKUIInterface* aHud, UCanvas* oCa
 	stItem->Position.X = bRoundPosition ? FMath::RoundToInt( stItem->Position.X ) : stItem->Position.X;
 	stItem->Position.Y = bRoundPosition ? FMath::RoundToInt( stItem->Position.Y ) : stItem->Position.Y;
 
-	if ( oRenderCacheObject != NULL && ( eBlendMode == SE_BLEND_Translucent || eBlendMode == SE_BLEND_TranslucentAlphaOnly ) )
+	if ( oRenderCacheObject != NULL && !this->IsA<UKUITextInterfaceComponent>() && ( eBlendMode == SE_BLEND_Translucent || eBlendMode == SE_BLEND_TranslucentAlphaOnly ) )
 		stItem->BlendMode = ESimpleElementBlendMode::SE_BLEND_AlphaComposite;
 
 	else
