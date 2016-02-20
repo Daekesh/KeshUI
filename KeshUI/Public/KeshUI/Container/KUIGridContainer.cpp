@@ -144,23 +144,25 @@ void UKUIGridContainer::AddColumn( float fWidth )
 
 void UKUIGridContainer::RemoveColumn( uint8 iColumn )
 {
-	if (iColumn >= arColumns.Num( ))
+	if ( iColumn >= arColumns.Num() )
 	{
 		KUIErrorUO( "Invalid column: %d", iColumn );
 		return;
 	}
 
-	arColumns.RemoveAt( iColumn );
-
-	for (int32 i = 0; i < arRows.Num( ); i++)
+	for ( int32 i = 0; i < arRows.Num(); i++ )
 	{
-		UKUIInterfaceElement *Child = ar2Elements [ i ] [ iColumn ].Get();
+		UKUIInterfaceElement* Child = ar2Elements[ i ][ iColumn ].Get();
+
 		if ( Child != NULL )
-			RemoveChild ( Child );
-		ar2Elements[ i ].RemoveAt ( iColumn );
+			RemoveChild( Child );
+
+		ar2Elements[ i ].RemoveAt( iColumn );
 	}
 
-	InvalidateLayout( );
+	arColumns.RemoveAt( iColumn );
+
+	InvalidateLayout();
 }
 
 
@@ -182,23 +184,24 @@ void UKUIGridContainer::AddRow( float fHeight )
 
 void UKUIGridContainer::RemoveRow( uint8 iRow )
 {
-	if ( iRow >= arRows.Num( ) )
+	if ( iRow >= arRows.Num() )
 	{
 		KUIErrorUO( "Invalid row: %d", iRow );
 		return;
 	}
 
-	arRows.RemoveAt( iRow );
-	for ( int32 i = 0; i < arColumns.Num ( ); ++i )
+	for ( int32 i = 0; i < arColumns.Num(); ++i )
 	{
-		UKUIInterfaceElement *Child = ar2Elements[ iRow ][ i ].Get();
+		UKUIInterfaceElement* Child = ar2Elements[ iRow ][ i ].Get();
+		
 		if ( Child != NULL )
-			RemoveChild ( Child );
+			RemoveChild( Child );
 	}
 
-	ar2Elements.RemoveAt ( iRow );
+	arRows.RemoveAt( iRow );
+	ar2Elements.RemoveAt( iRow );
 
-	InvalidateLayout( );
+	InvalidateLayout();
 }
 
 
