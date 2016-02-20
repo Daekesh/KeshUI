@@ -56,8 +56,7 @@ void UKUISubContainerRenderCache::UpdateRenderCache( UKUIInterfaceElement* oElem
 	}
 
 	UTextureRenderTarget2D* const tRenderTarget = Cast<UTextureRenderTarget2D>( GetTexture() );
-	//tRenderTarget->UpdateResource();
-	//tRenderTarget->UpdateResourceImmediate();
+	tRenderTarget->UpdateResourceImmediate();
 
 	UCanvas* uoCanvas = Cast<UCanvas>( StaticFindObjectFast( UCanvas::StaticClass(), GetTransientPackage(), FName( TEXT( "Sub Container Render Cache Canvas" ) ) ) );
 

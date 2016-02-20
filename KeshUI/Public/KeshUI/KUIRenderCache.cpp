@@ -28,7 +28,9 @@ void UKUIRenderCache::CreateRenderCache( const FVector2D& v2Size )
 	tRenderTarget->InitAutoFormat( floor( v2Size.X ), floor( v2Size.Y ) );
 	tRenderTarget->ClearColor = FLinearColor::Transparent;
 	tRenderTarget->bHDR = false;
-	tRenderTarget->MipGenSettings = TextureMipGenSettings::TMGS_NoMipmaps;
+	tRenderTarget->CompressionSettings = TextureCompressionSettings::TC_EditorIcon;
+	tRenderTarget->Filter = TextureFilter::TF_Nearest;
+	tRenderTarget->LODGroup = TextureGroup::TEXTUREGROUP_UI;
 	tRenderTarget->UpdateResourceImmediate();
 
 	SetTexture( tRenderTarget );
