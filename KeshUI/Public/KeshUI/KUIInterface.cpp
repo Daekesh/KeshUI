@@ -33,6 +33,7 @@ AKUIInterface::AKUIInterface( const class FObjectInitializer& oObjectInitializer
 	v2CursorVector = FVector2D::ZeroVector;
 	arCancellables.SetNum( 0 );
 	ctFocused = NULL;
+	bHardwareCursorPosition = false;
 
 	ctRootContainers.SetNum( 4 );
 
@@ -503,25 +504,37 @@ void AKUIInterface::BroadcastEvent( FKUIInterfaceEvent& stEventInfo, bool bTopDo
 
 void AKUIInterface::OnMouseMove( const FVector2D& v2OldLocation, const FVector2D& v2NewLocation )
 {
+	FVector2D v2NewLocationActual = v2NewLocation;
+
+	if ( bHardwareCursorPosition )
+	{
+		APlayerController* aPlayerController = GetPlayerController();
+
+		if ( aPlayerController == NULL )
+			return;
+
+		aPlayerController->GetMousePosition( v2NewLocationActual.X, v2NewLocationActual.Y );
+	}
+
 	if ( this->v2CursorLocation.X == KUI_INTERFACE_FIRST_CURSOR_UPDATE )
 		return;
 
-	const FVector2D v2FixedNewLocation = FVector2D(
-		clamp( v2NewLocation.X, 0.f, v2ScreenResolution.X - 1.f ),
-		clamp( v2NewLocation.Y, 0.f, v2ScreenResolution.Y - 1.f )
+	v2NewLocationActual = FVector2D(
+		clamp( v2NewLocationActual.X, 0.f, v2ScreenResolution.X - 1.f ),
+		clamp( v2NewLocationActual.Y, 0.f, v2ScreenResolution.Y - 1.f )
 	);
 
-	v2CursorVector = v2NewLocation - v2OldLocation;
+	v2CursorVector = v2NewLocationActual - v2OldLocation;
 
 	if ( v2CursorVector.IsNearlyZero( 0.1f ) )
 		return;
 
-	this->v2CursorLocation = v2FixedNewLocation;
+	this->v2CursorLocation = v2NewLocationActual;
 
-	KUIBroadcastSubEvent( FKUIInterfaceContainerMouseLocationEvent, EKUIInterfaceContainerEventList::E_MouseMove, v2OldLocation, v2FixedNewLocation );
+	KUIBroadcastSubEvent( FKUIInterfaceContainerMouseLocationEvent, EKUIInterfaceContainerEventList::E_MouseMove, v2OldLocation, v2NewLocationActual );
 
 	if ( !IsTemplate() )
-		OnMouseMoveBP( v2OldLocation, v2FixedNewLocation );
+		OnMouseMoveBP( v2OldLocation, v2NewLocationActual );
 }
 
 
@@ -759,4 +772,19 @@ void AKUIInterface::OnMatchStateChange( FName nMatchState )
 
 	if ( !IsTemplate() )
 		OnMatchStateChangeBP( nMatchState );
+}
+
+
+bool AKUIInterface::IsUsingHardwareCursorPosition() const
+{
+	return bHardwareCursorPosition;
+}
+
+
+void AKUIInterface::SetUseHardwareCursorPosition( bool bHardwarePosition )
+{
+	bHardwareCursorPosition = bHardwarePosition;
+
+	if ( bHardwareCursorPosition )
+		OnMouseMove( v2CursorLocation, FVector2D::ZeroVector );
 }

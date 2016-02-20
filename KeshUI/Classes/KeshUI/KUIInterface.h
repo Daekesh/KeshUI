@@ -94,6 +94,13 @@ public:
 	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual void SetCursorVisible( bool bVisible );
 
+	/* Returns whether this is using hardware cursor position or simulated. */
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
+	virtual bool IsUsingHardwareCursorPosition() const;
+
+	UFUNCTION( Category = "KeshUI|Interface", BlueprintCallable )
+	virtual void SetUseHardwareCursorPosition( bool bHardwarePosition );
+
 	/* Gets the screen resolution. */
 	UFUNCTION(Category = "KeshUI|Interface", BlueprintCallable)
 	virtual FVector2D GetScreenResolution() const;
@@ -217,6 +224,7 @@ protected:
 	TArray<FVector2D> arMouseButtonDownLocations;
 	TArray<TWeakObjectPtr<UObject>> arCancellables;
 	TWeakObjectPtr<UKUIInterfaceContainer> ctFocused;
+	bool bHardwareCursorPosition;
 	
 	UPROPERTY()
 	TArray<UKUIRootContainer*> ctRootContainers;
